@@ -150,21 +150,34 @@ img{width:100%;border-radius:var(--radius)}
   .hero-text h1{font-size:44px}
 }
 
-/* MOBILE OPTIMIZATIONS */
+/* NAVBAR FIX FOR PHONES */
 @media (max-width:768px) {
+  .navbar {
+    padding: 10px 0;
+  }
+
   .nav-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
     height: auto;
-    padding: 12px 0;
+  }
+
+  .logo {
+    font-size: 20px;
   }
 
   .nav-links {
     flex-direction: column;
-    gap: 12px;
     width: 100%;
+    gap: 8px;
   }
+
+  .nav-links a.btn {
+    width: 100%;
+    text-align: center;
+  }
+}
 
   .hero {
     padding: 80px 0;
@@ -211,5 +224,3 @@ img{width:100%;border-radius:var(--radius)}
     gap: 12px;
     text-align: center;
   }
-}
-
