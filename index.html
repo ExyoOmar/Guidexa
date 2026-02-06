@@ -1,189 +1,537 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guidexa — Walk with confidence</title>
-  <meta name="description" content="Guidexa helps people move safely and independently through intelligent guidance designed for real environments.">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guidexa — Independence, Redefined.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-bg: #f5f5f7;
+            --apple-text: #1d1d1f;
+            --apple-blue: #0071e3;
+            --nav-height: 48px;
+            --subnav-height: 52px;
+        }
 
-  <link rel="stylesheet" href="styles.css" />
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.015em;
+        }
+
+        /* Apple Glassmorphism Blur */
+        .glass-nav {
+            backdrop-filter: saturate(180%) blur(20px);
+            background-color: rgba(251, 251, 253, 0.8);
+        }
+
+        /* Typography Refinements */
+        .hero-title {
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+
+        .gradient-gray {
+            background: linear-gradient(180deg, #1d1d1f 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Bento Grid & Card Sophistication */
+        .bento-card {
+            background: #ffffff;
+            border-radius: 30px;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.8s cubic-bezier(0.15, 0, 0.15, 1);
+        }
+
+        .bento-card:hover {
+            transform: scale(1.005) translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+
+        /* Sticky Subnav Logic */
+        .subnav-sticky {
+            top: var(--nav-height);
+            transition: all 0.3s ease;
+        }
+
+        /* Scroll Reveal System */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                        transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Comparison Table Spacing */
+        .spec-row {
+            display: grid;
+            grid-template-cols: 2fr 1fr 1fr;
+            padding: 24px 0;
+            border-bottom: 1px solid #e5e5e7;
+            align-items: center;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation { animation: float 6s ease-in-out infinite; }
+    </style>
 </head>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guidexa — Independence, Redefined.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-bg: #f5f5f7;
+            --apple-text: #1d1d1f;
+            --apple-blue: #0071e3;
+            --nav-height: 48px;
+            --subnav-height: 52px;
+        }
 
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.015em;
+        }
+
+        /* Apple Glassmorphism Blur */
+        .glass-nav {
+            backdrop-filter: saturate(180%) blur(20px);
+            background-color: rgba(251, 251, 253, 0.8);
+        }
+
+        /* Typography Refinements */
+        .hero-title {
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+
+        .gradient-gray {
+            background: linear-gradient(180deg, #1d1d1f 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Bento Grid & Card Sophistication */
+        .bento-card {
+            background: #ffffff;
+            border-radius: 30px;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.8s cubic-bezier(0.15, 0, 0.15, 1);
+        }
+
+        .bento-card:hover {
+            transform: scale(1.005) translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+
+        /* Sticky Subnav Logic */
+        .subnav-sticky {
+            top: var(--nav-height);
+            transition: all 0.3s ease;
+        }
+
+        /* Scroll Reveal System */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                        transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Comparison Table Spacing */
+        .spec-row {
+            display: grid;
+            grid-template-cols: 2fr 1fr 1fr;
+            padding: 24px 0;
+            border-bottom: 1px solid #e5e5e7;
+            align-items: center;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation { animation: float 6s ease-in-out infinite; }
+    </style>
+</head>
 <body>
 
-<!-- ================= NAV ================= -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <div class="logo">Guidexa</div>
-      <nav class="nav-links">
-        <a href="#features" data-en="Features" data-ar="الميزات">Features</a>
-        <a href="#how" data-en="How it works" data-ar="كيف يعمل">How it works</a>
-        <a href="#mission" data-en="Mission" data-ar="المهمة">Mission</a>
-        <a href="#faq" data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</a>
-        <a href="#contact" class="btn primary small" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
-      </nav>
-      <div class="nav-extras">
-        <button id="language-toggle" class="btn ghost small">العربية</button>
-        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
-      </div>
-    </div>
-  </header>
-
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-text reveal">
-      <span class="eyebrow" data-en="Guided Movement" data-ar="حركة موجهة">Guided Movement</span>
-      <h1 data-en="Walk with confidence" data-ar="امشِ بثقة">Walk with confidence</h1>
-      <p data-en="Guidexa helps people move safely and independently through intelligent guidance designed for real environments." data-ar="يساعد Guidexa الأشخاص على التحرك بأمان واستقلالية من خلال توجيه ذكي مصمم للبيئات الحقيقية.">
-        Guidexa helps people move safely and independently through intelligent guidance designed for real environments.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn primary" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
-        <a href="learn-more.html" class="btn ghost" style="color: var(--text);" data-en="Learn More" data-ar="تعرف على المزيد">Learn More</a>
-      </div>
-    </div>
-
-    <div class="hero-media reveal delay-1">
-      <img src="placeholder-1.png" alt="Guidexa device in use">
-      <div class="media-glow"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FEATURES ================= -->
-<section id="features" class="section soft">
-  <div class="container">
-
-    <div class="section-header reveal">
-      <span class="eyebrow" data-en="Why Guidexa" data-ar="لماذا Guidexa">Why Guidexa</span>
-      <h2 data-en="Designed for real confidence" data-ar="مصمم للثقة الحقيقية">Designed for real confidence</h2>
-      <p data-en="Every component works together to remove uncertainty." data-ar="يعمل كل مكون معًا لإزالة الشك.">Every component works together to remove uncertainty.</p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card reveal">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg>
+    <nav class="fixed top-0 w-full z-[100] h-[48px] glass-nav border-b border-gray-200/50">
+        <div class="max-w-[1024px] mx-auto px-6 h-full flex items-center justify-between">
+            <span class="text-[18px] md:text-[21px] font-semibold tracking-tight">Guidexa</span>
+            <div class="flex items-center space-x-6 text-[11px] font-normal">
+                <a href="#tech" class="hidden md:block opacity-60 hover:text-blue-600 transition">Tech Specs</a>
+                <a href="#about" class="hidden md:block opacity-60 hover:text-blue-600 transition">Our Story</a>
+                <button class="bg-[#0071e3] text-white px-3 py-1 rounded-full hover:bg-[#0077ed] transition font-medium">Pre-order</button>
+            </div>
         </div>
-        <h3 data-en="Spatial Awareness" data-ar="الوعي المكاني">Spatial Awareness</h3>
-        <p data-en="Continuously understands surroundings and movement paths." data-ar="يفهم المحيط والمسارات الحركية باستمرار.">Continuously understands surroundings and movement paths.</p>
-        <img src="/images/placeholder-2.jpg" alt="">
-      </div>
+    </div>
+    </nav>
 
-      <div class="feature-card reveal delay-1">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg>
+    <section id="vest" class="pt-40 pb-20 bg-white overflow-hidden">
+        <div class="max-w-[1024px] mx-auto px-6 text-center">
+            <div class="reveal active">
+                <h2 class="text-orange-600 font-semibold text-lg md:text-xl mb-3">New</h2>
+                <h1 class="hero-title text-[56px] md:text-[96px] gradient-gray">Vision. <br>Without eyes.</h1>
+                <p class="text-[21px] md:text-[28px] text-[#6e6e73] mt-6 font-medium max-w-2xl mx-auto leading-tight">
+                    Experience the first wearable detection system that uses spatial haptics to map the world around you.
+                </p>
+                <div class="mt-8 flex space-x-8 justify-center text-lg font-normal">
+                    <a href="https://www.facebook.com/share/v/1GRNqfGHyV/" class="text-[#0066cc] hover:underline transition">Watch the film ></a>
+                    <a href="#preorder" class="text-[#0066cc] hover:underline transition">Buy ></a>
+                </div>
+            </div>
+            
+            <div class="mt-20 reveal active delay-300 relative">
+                <div class="float-animation w-full max-w-4xl mx-auto flex items-center justify-center">
+                    <img src="hero-vest-front.png" alt="Guidexa One Vest Front View" class="w-full h-auto max-h-[600px] object-contain">
+                </div>
+            </div>
         </div>
-        <h3 data-en="Adaptive Feedback" data-ar="التغذية الراجعة التكيفية">Adaptive Feedback</h3>
-        <p data-en="Guidance adapts naturally to changing environments." data-ar="يتكيف التوجيه بشكل طبيعي مع البيئات المتغيرة.">Guidance adapts naturally to changing environments.</p>
-        <img src="/images/placeholder-3.jpg" alt="">
-      </div>
+    </section>
 
-      <div class="feature-card reveal delay-2">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+    <section class="py-40 bg-white px-6">
+        <div class="max-w-[800px] mx-auto text-center reveal">
+            <h3 class="text-[40px] md:text-[64px] font-semibold tracking-tight leading-tight mb-10">A 360° safety bubble. <br>For your life on the move.</h3>
+            <p class="text-[19px] md:text-[24px] text-[#86868b] leading-relaxed font-medium">
+                Our sensors don’t just spot walls. They identify head-height hazards, stairs, and fast-moving obstacles, translating them into gentle pulses that guide your intuition.
+            </p>
         </div>
-        <h3 data-en="Human-Centered" data-ar="مركز على الإنسان">Human-Centered</h3>
-        <p data-en="Designed around people, not screens or data overload." data-ar="مصمم حول الأشخاص، لا الشاشات أو زيادة البيانات.">Designed around people, not screens or data overload.</p>
-        <img src="/images/placeholder-4.jpg" alt="">
-      </div>
-    </div>
+    </section>
 
-  </div>
+    <section id="tech" class="py-24 px-6 max-w-[1200px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <div class="bento-card col-span-1 md:col-span-8 p-12 h-[640px] flex flex-col justify-between overflow-hidden reveal">
+                <div class="max-w-md">
+                    <span class="text-blue-600 font-bold text-[12px] uppercase tracking-widest">Active Scanning</span>
+                    <h4 class="text-[40px] font-semibold tracking-tight leading-tight mt-4">Precision ToF. <br>Navigates the dark.</h4>
+                    <p class="text-[#86868b] mt-4 text-lg">Borrowed from autonomous vehicles, engineered for the human form. Detection range up to 5 meters.</p>
+                </div>
+                <div class="w-full h-80 bg-gray-50 rounded-[24px] border border-gray-100 flex items-center justify-center relative overflow-hidden">
+                   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50 to-transparent opacity-50"></div>
+                   <div class="w-24 h-24 border border-blue-200 rounded-full animate-ping opacity-30"></div>
+                   <div class="w-48 h-48 border border-blue-100 rounded-full animate-ping opacity-20 delay-75"></div>
+                </div>
+            </div>
+
+            <div class="bento-card col-span-1 md:col-span-4 p-12 h-[640px] flex flex-col justify-between bg-white reveal">
+                <div>
+                    <span class="text-green-600 font-bold text-[12px] uppercase tracking-widest">Efficiency</span>
+                    <h4 class="text-[36px] font-semibold tracking-tight leading-tight mt-4">Dawn till <br>Dusk.</h4>
+                    <p class="text-[#86868b] mt-4">An 18-hour battery that powers through your longest journeys. Fast charge via USB-C.</p>
+                </div>
+                <div class="flex items-baseline space-x-1">
+                    <span class="text-[120px] font-bold tracking-tighter text-[#1d1d1f]">18</span>
+                    <span class="text-[32px] font-bold text-[#86868b]">hr</span>
+                </div>
+            </div>
+
+            <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[500px] reveal">
+                <span class="text-purple-600 font-bold text-[12px] uppercase tracking-widest">Haptic Engine</span>
+                <h4 class="text-[32px] font-semibold tracking-tight mt-4">Intuitive Language.</h4>
+                <p class="text-[#86868b] mt-4 text-[19px] leading-relaxed">Variable frequency vibrations localized to your chest and shoulders. It feels like someone is gently guiding your path.</p>
+                <div class="mt-16 h-1 w-full bg-gray-100 rounded-full overflow-hidden">
+                    <div class="h-full bg-purple-500 w-2/3"></div>
+                </div>
+            </div>
+
+            <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[500px] reveal">
+                <span class="text-orange-600 font-bold text-[12px] uppercase tracking-widest">Sustainability</span>
+                <h4 class="text-[32px] font-semibold tracking-tight mt-4">Featherlight fabric.</h4>
+                <p class="text-[#86868b] mt-4 text-[19px] leading-relaxed">Crafted from aerospace mesh. Water-resistant, breathable, and designed to disappear under a jacket.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="specs" class="py-40 bg-white px-6">
+        <div class="max-w-[1024px] mx-auto">
+            <h2 class="text-5xl font-semibold tracking-tight mb-20">Compare Mobility Solutions.</h2>
+            <div class="grid grid-cols-3 gap-8 text-center border-b border-gray-100 pb-12">
+                <div class="text-left text-gray-400 font-medium">Feature</div>
+                <div class="font-bold text-xl">White Cane</div>
+                <div class="font-bold text-xl text-blue-600">Guidexa</div>
+            </div>
+            <div class="grid grid-cols-3 gap-8 text-center py-8 border-b border-gray-50 items-center">
+                <div class="text-left font-semibold">Detection Range</div>
+                <div class="text-gray-400">1.2 Meters</div>
+                <div class="font-semibold text-lg">5.0 Meters</div>
+            </div>
+            <div class="grid grid-cols-3 gap-8 text-center py-8 border-b border-gray-50 items-center">
+                <div class="text-left font-semibold">Head-Height Hazards</div>
+                <div class="text-red-500">None</div>
+                <div class="text-green-500 font-semibold">Active ToF Sensors</div>
+            </div>
+            <div class="grid grid-cols-3 gap-8 text-center py-8 border-b border-gray-50 items-center">
+                <div class="text-left font-semibold">Hands-Free</div>
+                <div class="text-gray-400">No</div>
+                <div class="font-semibold text-lg">Yes</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="scenarios" class="py-40 bg-white overflow-hidden">
+        <div class="max-w-[1024px] mx-auto px-6">
+            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-20 text-center">In the city. <br><span class="text-gray-400">In the home. In the flow.</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <div class="aspect-square bg-[#f5f5f7] rounded-[40px] mb-8 overflow-hidden">
+                        <img src="scenario-city-walk.png" alt="Person using Guidexa in a busy city" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-2xl font-semibold mb-4">The Crowded Commute</h4>
+                    <p class="text-[#86868b] text-lg leading-relaxed">As you move through a station, Guidexa filters out static walls and focuses on moving obstacles. A soft pulse on your right shoulder tells you someone is passing by, allowing you to maintain your stride without a pause.</p>
+                </div>
+
+                <div class="reveal delay-200">
+                    <div class="aspect-square bg-[#f5f5f7] rounded-[40px] mb-8 overflow-hidden">
+                        <img src="scenario-hazard-detect.png" alt="Guidexa detecting a head-height hazard" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-2xl font-semibold mb-4">The Invisible Hazard</h4>
+                    <p class="text-[#86868b] text-lg leading-relaxed">Traditional canes miss what's at chest height. Guidexa’s LiDAR "sees" the low-hanging tree branch or the open cabinet door, providing a high-intensity warning before contact occurs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="py-40 bg-black text-white">
+    <div class="max-w-[1024px] mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center gap-20">
+            <div class="flex-1 reveal">
+                <span class="text-blue-500 font-bold text-[14px] uppercase tracking-widest">Inclusion</span>
+                <h2 class="text-[48px] font-semibold tracking-tight leading-tight mt-6">Designed for everyone. <br>Built for you.</h2>
+                <p class="text-[#86868b] mt-8 text-xl leading-relaxed">
+                    Our "Accessibility-First" philosophy means this website is fully navigable by screen readers, and our vest's haptic language was co-developed with Braille experts to ensure every pulse feels like a second language.
+                </p>
+                <div class="mt-10 space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span class="text-sm font-medium">WCAG 2.1 AA Compliant Web Experience</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span class="text-sm font-medium">Haptic Feedback optimized for sensory clarity</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 reveal">
+                <div class="flex-1 reveal">
+        <div class="w-full aspect-square flex items-center justify-center">
+            <img src="accessibility-design-schematic.png" alt="Anatomical mapping of haptic points" class="w-full h-auto">
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- ================= HOW IT WORKS ================= -->
-<section id="how" class="section">
-  <div class="container how-grid">
-    <div class="how-media reveal">
-      <img src="placeholder-5.png" alt="">
-    </div>
+<section id="preorder" class="py-40 bg-[#f5f5f7]">
+    <div class="max-w-[1024px] mx-auto px-6 text-center">
+        <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight mb-4">Choose your Guidexa Vest.</h2>
+        <p class="text-xl text-gray-500 mb-16 font-medium">Shipping starts Summer 2026. Student discounts available.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            <div class="bg-white p-10 rounded-[32px] border border-gray-200 flex flex-col justify-between reveal">
+                <div>
+                    <h3 class="text-3xl font-semibold mb-2">Guidexa One</h3>
+                    <p class="text-gray-500 mb-8">Essential spatial awareness for daily urban life.</p>
+                    <div class="text-4xl font-semibold mb-8">$95 <span class="text-lg font-normal text-gray-400">or $7.91/mo.</span></div>
+                    <ul class="space-y-4 text-sm font-medium border-t border-gray-100 pt-8">
+                        <li class="flex items-center">✓ 360° ToF Array</li>
+                        <li class="flex items-center">✓ Standard Haptic Engine</li>
+                    </ul>
+                </div>
+<a href="checkout.html" class="block mt-12 w-full bg-[#0071e3] text-white py-4 rounded-2xl font-semibold hover:bg-[#0077ed] transition text-center">
+    Select
+</a>            </div>
 
-    <div class="how-text reveal delay-1">
-      <span class="eyebrow" data-en="Process" data-ar="العملية">Process</span>
-      <h2 data-en="How Guidexa works" data-ar="كيف يعمل Guidexa">How Guidexa works</h2>
-      <p data-en="Guidexa interprets real-world signals and transforms them into intuitive guidance without constant attention." data-ar="يفسر Guidexa الإشارات في العالم الحقيقي ويحولها إلى توجيه بديهي دون انتباه مستمر.">
-        Guidexa interprets real-world signals and transforms them into intuitive guidance without constant attention.
-      </p>
+            <div class="bg-white p-10 rounded-[32px] border border-gray-200 flex flex-col justify-between relative overflow-hidden reveal">
+                <div class="absolute inset-0 z-10 flex items-center justify-center bg-white/10 backdrop-blur-[2px]">
+                    <div class="bg-black text-white px-6 py-2 rounded-full font-bold tracking-tight shadow-xl">
+                        Coming Soon
+                    </div>
+                </div>
 
-      <ul class="steps">
-        <li data-en="Environmental sensing" data-ar="استشعار البيئة">Environmental sensing</li>
-        <li data-en="Context interpretation" data-ar="تفسير السياق">Context interpretation</li>
-        <li data-en="Clear, timely guidance" data-ar="توجيه واضح وفي الوقت المناسب">Clear, timely guidance</li>
-      </ul>
+                <div class="blur-[4px] opacity-50 select-none pointer-events-none">
+                    <span class="absolute top-6 right-10 bg-gray-100 text-gray-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Premium</span>
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-2">Guidexa Pro</h3>
+                        <p class="text-gray-500 mb-8">The ultimate vision system with LiDAR Pro technology.</p>
+                        <div class="text-4xl font-semibold mb-8">$499 <span class="text-lg font-normal text-gray-400">or $41.58/mo.</span></div>
+                        <ul class="space-y-4 text-sm font-medium border-t border-gray-100 pt-8">
+                            <li class="flex items-center">✓ 360° Ultrasonic Array</li>
+                            <li class="flex items-center">✓ Advanced Haptic Engine 2.0</li>
+                            <li class="flex items-center">✓ LiDAR Pro (10m range)</li>
+                        </ul>
+                    </div>
+                    <button class="mt-12 w-full bg-gray-200 text-gray-400 py-4 rounded-2xl font-semibold cursor-not-allowed">Notify Me</button>
+                </div>
+            </div>
+        </div>
+        
+        <p class="mt-12 text-sm text-gray-400 max-w-lg mx-auto leading-relaxed">
+            Need help choosing? <a href="#" class="text-[#0066cc] hover:underline">Chat with a student specialist ></a>
+        </p>
     </div>
-  </div>
 </section>
 
-<!-- ================= MISSION ================= -->
-<section id="mission" class="section soft">
-  <div class="container mission-grid">
-    <div class="mission-text reveal">
-      <span class="eyebrow" data-en="Purpose" data-ar="الغرض">Purpose</span>
-      <h2 data-en="Our mission" data-ar="مهمتنا">Our mission</h2>
-      <p data-en="Confidence should never depend on vision, environment, or external help. Guidexa exists to restore independence." data-ar="يجب ألا تعتمد الثقة أبدًا على الرؤية أو البيئة أو المساعدة الخارجية. يوجد Guidexa لاستعادة الاستقلالية.">
-        Confidence should never depend on vision, environment, or external help. Guidexa exists to restore independence.
-      </p>
-    </div>
+<section id="specs" class="py-40 bg-white border-t border-gray-100">
+        <div class="max-w-[1024px] mx-auto px-6">
+            <h2 class="text-[40px] md:text-[56px] font-semibold tracking-tight mb-20">Tech Specs.</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
+                <div class="text-[21px] font-semibold">Vision & Sensing</div>
+                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
+                    <div>
+                        <h5 class="font-semibold text-gray-900 mb-2">VL53L1X ToF Sensor Array</h5>
+                        <p class="text-[#86868b] text-[15px] leading-relaxed">Four Solid-state pulse-coded ToF sensors with 5-meter range. 270° horizontal field of view.</p>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold text-gray-900 mb-2">ESP-32 S3</h5>
+                        <p class="text-[#86868b] text-[15px] leading-relaxed">High-Quality Microcontroller capable of delivering accurate alerts</p>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold text-gray-900 mb-2">Spatial Mapping</h5>
+                        <p class="text-[#86868b] text-[15px] leading-relaxed">Dedicated Neural Engine for real-time obstacle classification and trajectory prediction.</p>
+                    </div>
+                </div>
+            </div>
 
-    <div class="mission-media reveal delay-1">
-      <img src="placeholder-6.png" alt="">
-    </div>
-  </div>
-</section>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
+                <div class="text-[21px] font-semibold">Haptics & Feedback</div>
+                <div class="md:col-span-2 space-y-8">
+                    <div>
+                        <h5 class="font-semibold text-gray-900 mb-2">Guidexa Engine 1.0</h5>
+                        <p class="text-[#86868b] text-[15px] leading-relaxed">4 Linear Resonant Actuators (LRAs) positioned at high-density nerve points across the shoulders and chest. Provides variable-frequency directional pulses.</p>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold text-gray-900 mb-2">Audio Integration</h5>
+                        <p class="text-[#86868b] text-[15px] leading-relaxed">Bluetooth 5.3 support for optional bone-conduction audio cues via compatible headsets.</p>
+                    </div>
+                </div>
+            </div>
 
-<!-- ================= FAQ ================= -->
-<section id="faq" class="section soft">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow" data-en="Questions" data-ar="أسئلة">Questions</span>
-      <h2 data-en="Frequently Asked Questions" data-ar="الأسئلة الشائعة">Frequently Asked Questions</h2>
-    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
+                <div class="text-[21px] font-semibold">Power and Battery</div>
+                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
+                    <div>
+                        <h5 class="font-semibold text-gray-900 mb-2">Daily Use</h5>
+                        <p class="text-[#86868b] text-[15px] leading-relaxed">Up to 18 hours of active scanning in High-Precision mode.</p>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold text-gray-900 mb-2">Charging</h5>
+                        <p class="text-[#86868b] text-[15px] leading-relaxed">USB‑C Fast Charge. 0% to 50% in 30 minutes. Full charge in 90 minutes.</p>
+                    </div>
+                </div>
+            </div>
 
-    <div class="faq-list">
-      <details class="faq-item reveal">
-        <summary data-en="Who is Guidexa for?" data-ar="من هو Guidexa موجه له؟">Who is Guidexa for?</summary>
-        <p data-en="Guidexa is designed for anyone who wants safer, more confident movement — especially people with visual impairments, the elderly, or those navigating unfamiliar places." data-ar="Guidexa مصمم لأي شخص يريد حركة أكثر أمانًا وثقة — خاصة الأشخاص ذوي الإعاقات البصرية، أو كبار السن، أو الذين يتنقلون في أماكن غير مألوفة.">Guidexa is designed for anyone who wants safer, more confident movement — especially people with visual impairments, the elderly, or those navigating unfamiliar places.</p>
-      </details>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
+                <div class="text-[21px] font-semibold">Design & Build</div>
+                <div class="md:col-span-2">
+                    <h5 class="font-semibold text-gray-900 mb-2">Aerospace Mesh</h5>
+                    <p class="text-[#86868b] text-[15px] leading-relaxed max-w-lg">Ultra-breathable, antimicrobial synthetic weave.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <details class="faq-item reveal delay-1">
-        <summary data-en="How does the guidance feel?" data-ar="كيف يبدو التوجيه؟">How does the guidance feel?</summary>
-        <p data-en="Subtle vibrations and audio cues provide clear, intuitive directions without overwhelming the user." data-ar="اهتزازات خفيفة وإشارات صوتية توفر توجيهات واضحة وبديهية دون إرباك المستخدم.">Subtle vibrations and audio cues provide clear, intuitive directions without overwhelming the user.</p>
-      </details>
+    <section id="about" class="py-40 bg-white border-t border-gray-100">
+        <div class="max-w-[1024px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-20 items-center">
+                <div class="flex-1 reveal">
+                    <span class="text-orange-600 font-bold text-[14px] uppercase tracking-widest">The Student Mission</span>
+                    <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mt-6">Built for impact. <br>Not for profit.</h2>
+                    <p class="text-[21px] text-[#86868b] mt-8 leading-relaxed font-medium">
+                        Guidexa is a student-founded company dedicated to engineering radical accessibility. We believe that independence is a human right, and technology is the bridge to achieving it.
+                    </p>
+                 <a href="team.html" class="inline-block mt-10 text-[#0066cc] text-xl font-medium hover:underline transition">
+    Meet our student team >
+</a>
+                </div>
+                <div class="flex-1 grid grid-cols-2 gap-4 reveal">
+                    <div class="aspect-square bg-[#f5f5f7] rounded-3xl p-8 flex flex-col justify-end">
+                        <span class="text-4xl font-bold">19</span>
+                        <span class="text-[11px] text-gray-500 font-bold uppercase tracking-widest mt-2">Engineers</span>
+                    </div>
+                    <div class="aspect-square bg-black text-white rounded-3xl p-8 flex flex-col justify-end">
+                        <span class="text-4xl font-bold">01</span>
+                        <span class="text-[11px] text-gray-400 font-bold uppercase tracking-widest mt-2">Vision</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <details class="faq-item reveal delay-2">
-        <summary data-en="Is it available now?" data-ar="هل هو متاح الآن؟">Is it available now?</summary>
-        <p data-en="We're a student company currently in the prototype phase. Join our waitlist to be the first to try it!" data-ar="نحن شركة طلابية في مرحلة النموذج الأولي حاليًا. انضم إلى قائمة الانتظار لتكون من الأوائل الذين يجربونه!">We're a student company currently in the prototype phase. Join our waitlist to be the first to try it!</p>
-      </details>
-    </div>
-  </div>
-</section>
+    <footer class="bg-[#f5f5f7] pt-20 pb-12 px-6">
+        <div class="max-w-[1024px] mx-auto">
+            <div class="text-[12px] text-[#6e6e73] leading-relaxed space-y-4 pb-8 border-b border-gray-300">
+                <p>1. 10-meter detection range is optimal in indoor environments. External factors like heavy rain or mirror surfaces may affect LiDAR accuracy.</p>
+                <p>2. Battery life claim based on vibration level 2 and LiDAR scanning at 5Hz. Actual results will vary.</p>
+                <p>Guidexa One is not a medical device. It is an assistive tool intended to augment traditional mobility aids.</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center mt-8 text-[12px] text-[#6e6e73]">
+                <p>Copyright © 2026 Guidexa Student Co. All rights reserved.</p>
+                <div class="flex space-x-6">
+                <a href="legal.html" class="hover:underline hover:text-black">Privacy Policy</a>
+                <a href="legal.html" class="hover:underline hover:text-black">Terms of Sale</a>
+                <a href="legal.html" class="hover:underline hover:text-black">Sales Policy</a>
+            </div>
+            </div>
+        </div>
+    </footer>
 
-<section class="cta">
-  <div class="container cta-box reveal">
-    <h2 data-en="Ready to walk with confidence?" data-ar="هل أنت جاهز للمشي بثقة؟">Ready to walk with confidence?</h2>
-    <p data-en="Join Guidexa and experience guidance that feels natural." data-ar="انضم إلى Guidexa وجرب توجيهًا يبدو طبيعيًا.">Join Guidexa and experience guidance that feels natural.</p>
-    <a class="btn primary large" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
-  </div>
-</section>
+    <script>
+        // Scroll Reveal Controller
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <span>© 2025 Guidexa</span>
-    <div class="footer-links">
-      <a data-en="Privacy" data-ar="الخصوصية">Privacy</a>
-      <a data-en="Terms" data-ar="الشروط">Terms</a>
-    </div>
-  </div>
-</footer>
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-<script src="script.js"></script>
+        // Subnav Shadow Logic
+        window.addEventListener('scroll', () => {
+            const subnav = document.querySelector('.subnav-sticky');
+            if (window.scrollY > 10) {
+                subnav.classList.add('shadow-sm');
+            } else {
+                subnav.classList.remove('shadow-sm');
+            }
+        });
+    </script>
 </body>
 </html>
