@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Guidexa — Logistics Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-blue: #0071e3;
+            --apple-gray: #86868b;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Premium Blur */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+        }
+        /* Bento Grid Style */
+        .bento-card {
+            background: white;
+            border-radius: 28px;
+            border: 1px solid rgba(0,0,0,0.04);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.02);
+        }
+        /* Live Indicator */
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #34c759;
+            border-radius: 50%;
+            position: relative;
+        }
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 2px solid #34c759;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        /* Hide scrollbars but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="pb-20">
+
+    <nav class="fixed top-0 w-full z-[100] h-[52px] glass-header border-b border-gray-200/50 px-6 flex items-center justify-between">
+        <a href="index.html" class="text-[17px] font-semibold tracking-tight">Guidexa <span class="text-gray-400 font-normal">Track</span></a>
+        <div class="flex gap-6">
+            <a href="index.html" class="text-[12px] font-medium text-blue-600">Store</a>
+            <a href="#" class="text-[12px] font-medium text-gray-400">Support</a>
+        </div>
+    </nav>
+
+    <main class="max-w-[1100px] mx-auto pt-24 px-6">
+        
+        <div class="max-w-xl mx-auto text-center mb-16">
+            <h1 class="text-[40px] md:text-[52px] font-bold tracking-tight mb-6">Where's your Guidexa?</h1>
+            <div class="relative group">
+                <input type="text" id="orderID" 
+                    class="w-full h-[72px] bg-white rounded-[22px] px-8 text-xl font-medium shadow-xl shadow-gray-200/40 border border-transparent focus:border-blue-500 transition-all outline-none"
+                    placeholder="Enter Order ID (GX-0000)">
+                <button onclick="revealTracking()" class="absolute right-3 top-3 bottom-3 px-8 bg-black text-white rounded-[16px] font-bold hover:scale-[1.02] active:scale-95 transition-all">
+                    Track
+                </button>
+            </div>
+            <p class="mt-4 text-sm text-gray-400 font-medium">Example: GX-2026-ALPHA</p>
+        </div>
+
+        <div id="dashboard" class="hidden grid grid-cols-1 md:grid-cols-12 gap-6 animate-in fade-in slide-in-from-bottom-10 duration-1000">
+            
+            <div class="md:col-span-8 space-y-6">
+                
+                <div class="bento-card p-10 relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="live-dot"></div>
+                        <span class="text-[11px] font-black uppercase tracking-[0.2em] text-green-600">Live Status</span>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-end md:items-center gap-6">
+                        <div>
+                            <h2 class="text-5xl font-bold tracking-tight mb-2">Transit</h2>
+                            <p class="text-xl text-gray-500 font-medium">Departed Regional Lab — Tulkarm, PS</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400">Est. Arrival</span>
+                            <p class="text-2xl font-bold text-blue-600">Wednesday, Feb 24</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 h-2 bg-gray-100 rounded-full overflow-hidden flex gap-1">
+                        <div class="h-full bg-blue-600 flex-1 rounded-full"></div>
+                        <div class="h-full bg-blue-600 flex-1 rounded-full"></div>
+                        <div class="h-full bg-blue-600 flex-1 rounded-full animate-pulse"></div>
+                        <div class="h-full bg-gray-100 flex-1 rounded-full"></div>
+                    </div>
+                    <div class="flex justify-between mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest px-1">
+                        <span>Ordered</span>
+                        <span>Assembled</span>
+                        <span class="text-blue-600">In Transit</span>
+                        <span>Home</span>
+                    </div>
+                </div>
+
+                <div class="bento-card h-[300px] relative overflow-hidden bg-[#e5e5e1]">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-80" style="background-image: url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/15,52,4/1100x300?access_token=YOUR_TOKEN');"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-lg border border-white flex items-center gap-3">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full animate-ping"></div>
+                            <span class="text-xs font-bold">GX-2026 is currently in transit to Riyadh, Saudi Arabia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card p-10">
+                    <h3 class="text-lg font-bold mb-8">Technical Log</h3>
+                    <div class="space-y-10">
+                        <div class="flex gap-6">
+                            <div class="text-xs font-bold text-gray-400 w-24 pt-1">FEB 10, 14:20</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Firmware Synchronization</h4>
+                                <p class="text-sm text-gray-500 mt-1">Guidexa OS v2.1.4 flashed. Neural haptic engine calibrated for urban environments.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="text-xs font-bold text-gray-400 w-24 pt-1">FEB 09, 09:15</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Optical Stress Test</h4>
+                                <p class="text-sm text-gray-500 mt-1">Time-of-Flight (ToF) array passed 10,000 cycle obstacle detection test.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 space-y-6">
+                
+                <div class="bento-card p-8">
+                    <h3 class="text-xs font-black uppercase tracking-widest text-gray-400 mb-6">Package Details</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between border-b border-gray-50 pb-4">
+                            <span class="text-sm text-gray-500">Weight</span>
+                            <span class="text-sm font-bold">420g (Ultra-light)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-50 pb-4">
+                            <span class="text-sm text-gray-500">Service</span>
+                            <span class="text-sm font-bold">Express Air</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">Haptic Engine</span>
+                            <span class="text-sm font-bold">Gen 2 (8-Point)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card p-8 bg-gray-50 border-none">
+                    <h3 class="text-xs font-black uppercase tracking-widest text-gray-400 mb-6">Courier Info</h3>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div>
+                            <p class="text-sm font-bold">DHL Express</p>
+                            <p class="text-xs text-gray-500 font-medium">ID: 992-102-44</p>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 py-3 bg-white border border-gray-200 rounded-xl text-xs font-bold hover:bg-gray-100 transition">Contact Carrier</button>
+                </div>
+
+                <div class="bento-card p-8 bg-blue-600 text-white border-none shadow-blue-200">
+                    <h3 class="text-lg font-bold mb-2">Get Ready.</h3>
+                    <p class="text-sm opacity-80 mb-6">Learn the haptic language before your device arrives.</p>
+                    <a href="#" class="block w-full py-4 bg-white/10 hover:bg-white/20 transition rounded-xl text-center text-sm font-bold">Watch Tutorial</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function revealTracking() {
+            const id = document.getElementById('orderID').value;
+            if(!id) return;
+            
+            // Reassurance loading state
+            const btn = document.querySelector('button');
+            btn.innerHTML = "Authenticating...";
+            
+            setTimeout(() => {
+                document.getElementById('dashboard').classList.remove('hidden');
+                btn.innerHTML = "Track";
+                window.scrollTo({ top: 500, behavior: 'smooth' });
+            }, 800);
+        }
+    </script>
+</body>
+</html>

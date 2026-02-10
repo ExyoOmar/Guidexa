@@ -186,17 +186,239 @@
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-[100] h-[48px] glass-nav border-b border-gray-200/50">
-        <div class="max-w-[1024px] mx-auto px-6 h-full flex items-center justify-between">
-            <span class="text-[18px] md:text-[21px] font-semibold tracking-tight">Guidexa</span>
-            <div class="flex items-center space-x-6 text-[11px] font-normal">
-                <a href="#tech" class="hidden md:block opacity-60 hover:text-blue-600 transition">Tech Specs</a>
-                <a href="#about" class="hidden md:block opacity-60 hover:text-blue-600 transition">Our Story</a>
-                <button class="bg-[#0071e3] text-white px-3 py-1 rounded-full hover:bg-[#0077ed] transition font-medium">Pre-order</button>
+<div id="accessibility-nav" class="sr-only-focusable">
+    <a href="#main-content" class="skip-link">Skip to Main Content</a>
+    <a href="#tech" class="skip-link">Jump to Technology</a>
+    <a href="#preorder" class="skip-link">Jump to Pricing</a>
+</div>
+
+<nav class="fixed top-0 w-full z-[100] h-[48px] glass-nav border-b border-gray-200/50" role="navigation">
+    <div class="max-w-[1024px] mx-auto px-6 h-full flex items-center justify-between">
+        <a href="#" class="text-[19px] font-semibold tracking-tight hover:opacity-70 transition flex items-center gap-2">
+            <span>Guidexa</span>
+            <span class="sr-only">(Student Company - Independence Redefined)</span>
+        </a>
+        <div class="flex items-center space-x-8 text-[12px] font-normal tracking-wide">
+            <div class="hidden md:flex space-x-8">
+                <a href="#tech" class="opacity-70 hover:opacity-100 transition">Technology</a>
+                <a href="#specs" class="opacity-70 hover:opacity-100 transition">Specs</a>
+                <a href="track.html" class="opacity-70 hover:opacity-100 transition flex items-center gap-1.5">
+    <span>Track</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+</a>
+                <a href="#about" class="opacity-70 hover:opacity-100 transition">Our Story</a>
             </div>
+            <a href="#preorder" class="bg-[#0071e3] text-white px-4 py-1.5 rounded-full hover:bg-[#0077ed] transition font-medium">
+                Pre-order
+            </a>
         </div>
     </div>
-    </nav>
+</nav>
+
+<div class="fixed bottom-8 right-8 z-[500]">
+    <button onclick="toggleA11yMenu()" id="a11y-main-trigger" 
+        class="group flex items-center justify-center w-16 h-16 bg-[#0071e3] text-white rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300"
+        aria-label="Accessibility Settings">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12h6"/><path d="M12 9v6"/></svg>
+    </button>
+
+    <div id="a11y-panel" class="hidden absolute bottom-20 right-0 w-[340px] bg-white/90 backdrop-blur-xl rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-white/20 p-6 animate-in slide-in-from-bottom-8 duration-500">
+        
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-xl font-bold tracking-tight">Accessibility</h2>
+            <button onclick="resetA11y()" class="text-[12px] font-bold text-[#0071e3] uppercase tracking-wider hover:opacity-70">Reset</button>
+        </div>
+
+        <div class="space-y-6">
+            <div>
+                <span class="text-[11px] font-black uppercase tracking-widest text-gray-400 block mb-4">Vision</span>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="toggleA11y('high-contrast')" class="a11y-btn" id="btn-high-contrast">
+                        <div class="icon">◐</div>
+                        <span>Contrast</span>
+                    </button>
+                    <button onclick="toggleA11y('grayscale')" class="a11y-btn" id="btn-grayscale">
+                        <div class="icon">▩</div>
+                        <span>Grayscale</span>
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <span class="text-[11px] font-black uppercase tracking-widest text-gray-400 block mb-4">Reading & Text</span>
+                <div class="space-y-3">
+                    <button onclick="toggleA11y('large-text')" class="a11y-btn w-full flex justify-between px-4" id="btn-large-text">
+                        <span>Text Size</span>
+                        <span class="opacity-50">+25%</span>
+                    </button>
+                    <button onclick="toggleA11y('dyslexic-font')" class="a11y-btn w-full flex justify-between px-4" id="btn-dyslexic-font">
+                        <span>Dyslexic Font</span>
+                        <div class="w-2 h-2 rounded-full bg-gray-300 status-dot"></div>
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <span class="text-[11px] font-black uppercase tracking-widest text-gray-400 block mb-4">Focus & Interaction</span>
+                <div class="space-y-3">
+                    <button onclick="toggleA11y('big-cursor')" class="a11y-btn w-full flex justify-between px-4" id="btn-big-cursor">
+                        <span>Large Cursor</span>
+                        <div class="w-2 h-2 rounded-full bg-gray-300 status-dot"></div>
+                    </button>
+                    <button onclick="toggleA11y('hide-animations')" class="a11y-btn w-full flex justify-between px-4" id="btn-hide-animations">
+                        <span>Reduce Motion</span>
+                        <div class="w-2 h-2 rounded-full bg-gray-300 status-dot"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="toggleA11yMenu()" class="mt-8 w-full py-4 bg-gray-100 rounded-2xl text-sm font-bold hover:bg-gray-200 transition">Done</button>
+    </div>
+</div>
+
+<style>
+    /* UI Design */
+    .a11y-btn {
+        background: #f5f5f7;
+        padding: 12px;
+        border-radius: 16px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1d1d1f;
+        transition: all 0.2s ease;
+        text-align: left;
+    }
+    .a11y-btn:hover { background: #e8e8ed; }
+    .a11y-btn.active {
+        background: #0071e3;
+        color: white;
+    }
+    .a11y-btn.active .status-dot { background: white !important; }
+    .a11y-btn .icon { font-size: 18px; margin-bottom: 4px; }
+
+    /* Accessibility States */
+    body.high-contrast {
+        background: black !important;
+        color: white !important;
+    }
+    body.high-contrast * {
+        background-color: black !important;
+        color: #00ff00 !important; /* Classic High Vis Green */
+        border-color: #00ff00 !important;
+    }
+    
+    body.grayscale { filter: grayscale(100%); }
+    
+    body.large-text { font-size: 1.25rem; }
+    body.large-text h1 { font-size: 120%; }
+
+    body.dyslexic-font {
+        font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+    }
+
+    body.big-cursor { cursor: url('https://cur.cursors-4u.net/others/oth-9/oth824.cur'), auto !important; }
+
+    body.hide-animations * {
+        animation: none !important;
+        transition: none !important;
+    }
+</style>
+
+<style>
+
+    /* Accessibility Classes */
+.high-contrast {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+.high-contrast section, .high-contrast div {
+    background-color: #000 !important;
+    border-color: #444 !important;
+}
+.high-contrast p, .high-contrast h1, .high-contrast h2 {
+    color: #fff !important;
+}
+
+.large-text {
+    font-size: 1.25rem !important;
+}
+
+.dyslexic-font {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+}
+
+.active-dot {
+    background-color: #0071e3 !important;
+    box-shadow: 0 0 8px rgba(0, 113, 227, 0.5);
+}
+    /* Navigation Glassmorphism */
+    .glass-nav {
+        backdrop-filter: saturate(180%) blur(20px);
+        background-color: rgba(251, 251, 253, 0.75);
+    }
+
+    /* Accessibility: Hidden Link Logic */
+    .sr-only-focusable {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    /* When a blind user tabs into the site, this menu "wakes up" */
+    .sr-only-focusable:focus-within {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        width: auto;
+        height: auto;
+        padding: 20px;
+        background: #000000; /* High contrast for low vision */
+        color: #ffffff;
+        z-index: 1001;
+        border-radius: 18px;
+        clip: auto;
+        overflow: visible;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .skip-link {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4db2ff; /* High contrast blue */
+        text-decoration: none;
+    }
+
+    .skip-link:hover, .skip-link:focus {
+        text-decoration: underline;
+        color: #ffffff;
+    }
+
+    /* Screen Reader Only Utility */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+</style>
 
     <section id="vest" class="pt-40 pb-20 bg-white overflow-hidden">
         <div class="max-w-[1024px] mx-auto px-6 text-center">
@@ -324,33 +546,66 @@
         </div>
     </section>
 
-<section class="py-40 bg-black text-white">
+    <section id="impact" class="py-32 bg-white">
     <div class="max-w-[1024px] mx-auto px-6">
-        <div class="flex flex-col md:flex-row items-center gap-20">
-            <div class="flex-1 reveal">
-                <span class="text-blue-500 font-bold text-[14px] uppercase tracking-widest">Inclusion</span>
-                <h2 class="text-[48px] font-semibold tracking-tight leading-tight mt-6">Designed for everyone. <br>Built for you.</h2>
-                <p class="text-[#86868b] mt-8 text-xl leading-relaxed">
-                    Our "Accessibility-First" philosophy means this website is fully navigable by screen readers, and our vest's haptic language was co-developed with Braille experts to ensure every pulse feels like a second language.
-                </p>
-                <div class="mt-10 space-y-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span class="text-sm font-medium">WCAG 2.1 AA Compliant Web Experience</span>
+        <div class="reveal mb-20 text-center">
+            <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-[#6e6e73] mb-4">Global Impact</h2>
+            <h3 class="text-5xl font-bold tracking-tight">Our commitment to <br>the 2030 Agenda.</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bento-card p-12 flex flex-col justify-between border border-gray-100 bg-[#fbfbfd]">
+                <div>
+                    <div class="w-12 h-12 bg-[#10689D] rounded-lg flex items-center justify-center mb-8 shadow-lg">
+                        <span class="text-white font-bold text-xl">9</span>
                     </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span class="text-sm font-medium">Haptic Feedback optimized for sensory clarity</span>
-                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Industry, Innovation, <br>& Infrastructure</h4>
+                    <p class="text-[#6e6e73] leading-relaxed text-lg">
+                        Guidexa is pioneering "Personal Infrastructure." By integrating Time-of-Flight (ToF) sensors into wearable tech, we are building resilient, inclusive innovation that allows the visually impaired to navigate modern urban environments as easily as anyone else.
+                    </p>
+                </div>
+                <div class="mt-10 pt-6 border-t border-gray-200">
+                    <p class="text-sm font-semibold text-[#10689D]">Target 9.5: Enhancing Scientific Research & Innovation</p>
                 </div>
             </div>
-            <div class="flex-1 reveal">
-                <div class="flex-1 reveal">
-        <div class="w-full aspect-square flex items-center justify-center">
-            <img src="accessibility-design-schematic.png" alt="Anatomical mapping of haptic points" class="w-full h-auto">
+
+            <div class="bento-card p-12 flex flex-col justify-between border border-gray-100 bg-[#fbfbfd]">
+                <div>
+                    <div class="w-12 h-12 bg-[#DD1367] rounded-lg flex items-center justify-center mb-8 shadow-lg">
+                        <span class="text-white font-bold text-xl">10</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Reduced <br>Inequalities</h4>
+                    <p class="text-[#6e6e73] leading-relaxed text-lg">
+                        Inequality often starts with a lack of mobility. By providing an affordable, high-tech alternative to expensive guide dogs or limited canes, we are empowering 285 million people to participate fully in the workforce, education, and social life.
+                    </p>
+                </div>
+                <div class="mt-10 pt-6 border-t border-gray-200">
+                    <p class="text-sm font-semibold text-[#DD1367]">Target 10.2: Promoting Social & Economic Inclusion</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center reveal">
+            <p class="text-[24px] text-[#1d1d1f] font-medium italic max-w-2xl mx-auto leading-snug">
+               "Accessibility is not a feature; it's a fundamental human right. When we design for the edges, we often find better solutions for the center." — Satya Nadella, CEO of Microsoft
+            </p>
         </div>
     </div>
+</section>
+
+<section class="py-24 bg-white">
+    <div class="max-w-[1024px] mx-auto px-6">
+        <div class="bento-card p-12 bg-[#f5f5f7] flex flex-col md:flex-row items-center justify-between gap-8 reveal">
+            <div>
+                <h2 class="text-3xl font-bold tracking-tight mb-2">Track your Guidexa.</h2>
+                <p class="text-[#6e6e73] text-lg">Check your shipment status and estimated delivery date.</p>
             </div>
+            <a href="track.html" class="group bg-white border border-gray-200 px-8 py-4 rounded-full font-bold text-[#1d1d1f] hover:bg-black hover:text-white hover:border-black transition-all duration-300 flex items-center gap-3">
+                Go to Tracking
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </a>
         </div>
     </div>
 </section>
@@ -365,7 +620,7 @@
                 <div>
                     <h3 class="text-3xl font-semibold mb-2">Guidexa One</h3>
                     <p class="text-gray-500 mb-8">Essential spatial awareness for daily urban life.</p>
-                    <div class="text-4xl font-semibold mb-8">$95 <span class="text-lg font-normal text-gray-400">or $7.91/mo.</span></div>
+                    <div class="text-4xl font-semibold mb-8">$70 <span class="text-lg font-normal text-gray-400">or $2.91/mo.</span></div>
                     <ul class="space-y-4 text-sm font-medium border-t border-gray-100 pt-8">
                         <li class="flex items-center">✓ 360° ToF Array</li>
                         <li class="flex items-center">✓ Standard Haptic Engine</li>
@@ -533,5 +788,43 @@
             }
         });
     </script>
+
+    <script>
+    function toggleA11yMenu() {
+        document.getElementById('a11y-panel').classList.toggle('hidden');
+    }
+
+    function toggleA11y(feature) {
+        const body = document.body;
+        const button = document.getElementById(`btn-${feature}`);
+        
+        body.classList.toggle(feature);
+        button.classList.toggle('active');
+
+        // Save state to local storage
+        const isActive = body.classList.contains(feature);
+        localStorage.setItem(`a11y-${feature}`, isActive);
+    }
+
+    function resetA11y() {
+        const features = ['high-contrast', 'grayscale', 'large-text', 'dyslexic-font', 'big-cursor', 'hide-animations'];
+        features.forEach(f => {
+            document.body.classList.remove(f);
+            document.getElementById(`btn-${f}`).classList.remove('active');
+            localStorage.removeItem(`a11y-${f}`);
+        });
+    }
+
+    // Load saved settings on page load
+    window.onload = () => {
+        const features = ['high-contrast', 'grayscale', 'large-text', 'dyslexic-font', 'big-cursor', 'hide-animations'];
+        features.forEach(f => {
+            if (localStorage.getItem(`a11y-${f}`) === 'true') {
+                document.body.classList.add(f);
+                document.getElementById(`btn-${f}`).classList.add('active');
+            }
+        });
+    }
+</script>
 </body>
 </html>
