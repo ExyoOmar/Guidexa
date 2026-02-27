@@ -192,31 +192,142 @@
     <a href="#preorder" class="skip-link">Jump to Pricing</a>
 </div>
 
-<nav class="fixed top-0 w-full z-[100] h-[48px] glass-nav border-b border-gray-200/50" role="navigation">
-    <div class="max-w-[1024px] mx-auto px-6 h-full flex items-center justify-between">
-        <a href="#" class="text-[19px] font-semibold tracking-tight hover:opacity-70 transition flex items-center gap-2">
-            <span>Guidexa</span>
-            <span class="sr-only">(Student Company - Independence Redefined)</span>
+<nav class="fixed top-0 left-0 right-0 z-[100] h-14 glass-nav border-b border-gray-200/40 backdrop-blur-xl">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+    
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2.5 group">
+      <span class="text-2xl font-bold tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors">
+        Guidexa
+      </span>
+    </a>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-6 sm:gap-8">
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-7 lg:gap-9 text-sm font-medium tracking-wide">
+        <a href="#tech" class="text-gray-700 hover:text-gray-900 transition-colors">Technology</a>
+        <a href="#specs" class="text-gray-700 hover:text-gray-900 transition-colors">Specs</a>
+        <a href="track.html" class="text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-1.5">
+          Track
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
         </a>
-        <div class="flex items-center space-x-8 text-[12px] font-normal tracking-wide">
-            <div class="hidden md:flex space-x-8">
-                <a href="#tech" class="opacity-70 hover:opacity-100 transition">Technology</a>
-                <a href="#specs" class="opacity-70 hover:opacity-100 transition">Specs</a>
-                <a href="track.html" class="opacity-70 hover:opacity-100 transition flex items-center gap-1.5">
-    <span>Track</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-    </svg>
-</a>
-                <a href="#about" class="opacity-70 hover:opacity-100 transition">Our Story</a>
-            </div>
-            <a href="#preorder" class="bg-[#0071e3] text-white px-4 py-1.5 rounded-full hover:bg-[#0077ed] transition font-medium">
-                Pre-order
-            </a>
-        </div>
+        <a href="#about" class="text-gray-700 hover:text-gray-900 transition-colors">Our Story</a>
+      </div>
+
+      <!-- Language toggle -->
+      <div class="flex items-center gap-2 text-sm font-medium">
+        <button 
+          onclick="setLanguage('en')"
+          class="lang-btn px-2.5 py-1.5 rounded-lg transition-all lang-en-active"
+          data-lang="en"
+        >EN</button>
+        <span class="text-gray-400">/</span>
+        <button 
+          onclick="setLanguage('ar')"
+          class="lang-btn px-2.5 py-1.5 rounded-lg transition-all"
+          data-lang="ar"
+        >عربي</button>
+      </div>
+
+      <!-- Pre-order CTA – more prominent -->
+      <a href="#preorder"
+         class="inline-flex items-center px-5 sm:px-6 py-2.5 bg-blue-600 text-white font-medium text-sm sm:text-base rounded-full hover:bg-blue-700 active:scale-[0.98] transition-all shadow-md hover:shadow-lg">
+        Pre-order
+      </a>
+
     </div>
+  </div>
 </nav>
+
+<style>
+    /* Language visibility - strict one-at-a-time */
+.en-only,
+.ar-only {
+    display: none !important;
+}
+
+body.lang-en .en-only {
+    display: inline !important;   /* or 'block' / 'contents' depending on context */
+}
+
+body.lang-ar .ar-only {
+    display: inline !important;
+}
+
+/* For elements that are blocks/paragraphs/headers etc. */
+body.lang-en h1 .en-only,
+body.lang-en h2 .en-only,
+body.lang-en h3 .en-only,
+body.lang-en h4 .en-only,
+body.lang-en p .en-only,
+body.lang-en span .en-only,
+body.lang-en div .en-only,
+body.lang-en a .en-only {
+    display: inline-block !important;
+}
+
+body.lang-ar h1 .ar-only,
+body.lang-ar h2 .ar-only,
+body.lang-ar h3 .ar-only,
+body.lang-ar h4 .ar-only,
+body.lang-ar p .ar-only,
+body.lang-ar span .ar-only,
+body.lang-ar div .ar-only,
+body.lang-ar a .ar-only {
+    display: inline-block !important;
+}
+</style>
+
+<script>
+    function setLanguage(lang) {
+        // Remove both classes first
+        document.body.classList.remove('lang-en', 'lang-ar');
+        document.documentElement.removeAttribute('dir');
+        
+        // Set new language
+        document.body.classList.add(`lang-${lang}`);
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+        // Optional: save preference
+        localStorage.setItem('preferredLanguage', lang);
+
+        // Visual feedback on buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.dataset.lang === lang) {
+                btn.classList.add('lang-en-active'); // you can rename or style differently
+            } else {
+                btn.classList.remove('lang-en-active');
+            }
+        });
+    }
+
+    // Load saved language preference (if exists)
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        setLanguage(savedLang);
+    });
+</script>
+
+<!-- Optional small CSS for active language button -->
+<style>
+    .lang-btn {
+        opacity: 0.7;
+    }
+    .lang-btn:hover {
+        opacity: 1;
+    }
+    .lang-en-active {
+        background: #0071e3;
+        color: white;
+        opacity: 1;
+        font-weight: 500;
+    }
+</style>
 
 <div class="fixed bottom-8 right-8 z-[500]">
     <button onclick="toggleA11yMenu()" id="a11y-main-trigger" 
@@ -420,145 +531,285 @@
     }
 </style>
 
-    <section id="vest" class="pt-40 pb-20 bg-white overflow-hidden">
-        <div class="max-w-[1024px] mx-auto px-6 text-center">
-            <div class="reveal active">
-                <h2 class="text-orange-600 font-semibold text-lg md:text-xl mb-3">New</h2>
-                <h1 class="hero-title text-[56px] md:text-[96px] gradient-gray">Vision. <br>Without eyes.</h1>
-                <p class="text-[21px] md:text-[28px] text-[#6e6e73] mt-6 font-medium max-w-2xl mx-auto leading-tight">
-                    Experience the first wearable detection system that uses spatial haptics to map the world around you.
-                </p>
-                <div class="mt-8 flex space-x-8 justify-center text-lg font-normal">
-                    <a href="https://www.facebook.com/share/v/1GRNqfGHyV/" class="text-[#0066cc] hover:underline transition">Watch the film ></a>
-                    <a href="#preorder" class="text-[#0066cc] hover:underline transition">Buy ></a>
-                </div>
-            </div>
-            
-            <div class="mt-20 reveal active delay-300 relative">
-                <div class="float-animation w-full max-w-4xl mx-auto flex items-center justify-center">
-                    <img src="hero-vest-front.png" alt="Guidexa One Vest Front View" class="w-full h-auto max-h-[600px] object-contain">
-                </div>
+   <!-- Hero / Vest Section -->
+<section id="vest" class="pt-40 pb-20 bg-white overflow-hidden">
+    <div class="max-w-[1024px] mx-auto px-6 text-center">
+        <div class="reveal active">
+            <h2 class="text-orange-600 font-semibold text-lg md:text-xl mb-3">
+                <span class="en-only">New</span>
+                <span class="ar-only">جديد</span>
+            </h2>
+            <h1 class="hero-title text-[56px] md:text-[102px] gradient-gray">
+                <span class="en-only">Vision.<br>Without eyes.</span>
+                <span class="ar-only">رؤية.<br>بدون عيون.</span>
+                
+            </h1>
+            <p class="text-[21px] md:text-[28px] text-[#6e6e73] mt-6 font-medium max-w-2xl mx-auto leading-tight">
+                <span class="en-only">Experience the first wearable detection system that uses spatial haptics to map the world around you.</span>
+                <span class="ar-only">جرب أول نظام كشف قابل للارتداء يستخدم اللمس المكاني لرسم خريطة العالم من حولك.<br></span>
+            </p>
+            <div class="mt-8 flex space-x-8 justify-center text-lg font-normal">
+                <a href="https://www.facebook.com/share/v/1GRNqfGHyV/" class="text-[#0066cc] hover:underline transition">
+                    <span class="en-only">Watch the film ></span>
+                    <span class="ar-only">شاهد الفيلم ></span>
+                </a>
+                <a href="#preorder" class="text-[#0066cc] hover:underline transition">
+                    <span class="en-only">Buy ></span>
+                    <span class="ar-only">اشترِ ></span>
+                </a>
             </div>
         </div>
-    </section>
+        
+        <div class="mt-20 reveal active delay-300 relative">
+            <div class="float-animation w-full max-w-4xl mx-auto flex items-center justify-center">
+                <img src="hero-vest-front.png" alt="Guidexa One Vest Front View" class="w-full h-auto max-h-[600px] object-contain">
+            </div>
+        </div>
+    </div>
+</section>
 
-    <section class="py-40 bg-white px-6">
-        <div class="max-w-[800px] mx-auto text-center reveal">
-            <h3 class="text-[40px] md:text-[64px] font-semibold tracking-tight leading-tight mb-10">A 360° safety bubble. <br>For your life on the move.</h3>
-            <p class="text-[19px] md:text-[24px] text-[#86868b] leading-relaxed font-medium">
-                Our sensors don’t just spot walls. They identify head-height hazards, stairs, and fast-moving obstacles, translating them into gentle pulses that guide your intuition.
+<!-- 360° Safety Bubble Section -->
+<section class="py-40 bg-white px-6">
+    <div class="max-w-[800px] mx-auto text-center reveal">
+        <h3 class="text-[40px] md:text-[64px] font-semibold tracking-tight leading-tight mb-10">
+            <span class="en-only">A 360° safety bubble.<br>For your life on the move.</span>
+            <span class="ar-only">فقاعة أمان 360 درجة.<br>لحياتك أثناء التنقل.</span>
+        </h3>
+        <p class="text-[19px] md:text-[24px] text-[#86868b] leading-relaxed font-medium">
+            <span class="en-only">Our sensors don’t just spot walls. They identify head-height hazards, stairs, and fast-moving obstacles, translating them into gentle pulses that guide your intuition.</span>
+            <span class="ar-only">مستشعراتنا لا تكتفي بكشف الجدران فقط، بل تحدد المخاطر على مستوى الرأس، والسلالم، والعوائق المتحركة بسرعة، وتحولها إلى نبضات لطيفة توجه حدسك.</span>
+        </p>
+    </div>
+</section>
+
+<!-- Technology / #tech Section -->
+<section id="tech" class="py-24 px-6 max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        <div class="bento-card col-span-1 md:col-span-8 p-12 h-[640px] flex flex-col justify-between overflow-hidden reveal">
+            <div class="max-w-md">
+                <span class="text-blue-600 font-bold text-[12px] uppercase tracking-widest">
+                    <span class="en-only">Active Scanning</span>
+                    <span class="ar-only">مسح نشط</span>
+                </span>
+                <h4 class="text-[40px] font-semibold tracking-tight leading-tight mt-4">
+                    <span class="en-only">Precision ToF.<br>Navigates the dark.</span>
+                    <span class="ar-only">دقة ToF.<br>تتجاوز الظلام.</span>
+                </h4>
+                <p class="text-[#86868b] mt-4 text-lg">
+                    <span class="en-only">Borrowed from autonomous vehicles, engineered for the human form. Detection range up to 5 meters.</span>
+                    <span class="ar-only">مستوحى من المركبات ذاتية القيادة، مصمم خصيصًا للجسم البشري. مدى كشف يصل إلى 5 أمتار.</span>
+                </p>
+            </div>
+            <div class="w-full h-80 bg-gray-50 rounded-[24px] border border-gray-100 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50 to-transparent opacity-50"></div>
+                <div class="w-24 h-24 border border-blue-200 rounded-full animate-ping opacity-30"></div>
+                <div class="w-48 h-48 border border-blue-100 rounded-full animate-ping opacity-20 delay-75"></div>
+            </div>
+        </div>
+
+        <div class="bento-card col-span-1 md:col-span-4 p-12 h-[640px] flex flex-col justify-between bg-white reveal">
+            <div>
+                <span class="text-green-600 font-bold text-[12px] uppercase tracking-widest">
+                    <span class="en-only">Efficiency</span>
+                    <span class="ar-only">كفاءة</span>
+                </span>
+                <h4 class="text-[36px] font-semibold tracking-tight leading-tight mt-4">
+                    <span class="en-only">Dawn till<br>Dusk.</span>
+                    <span class="ar-only">من الفجر<br>إلى الغروب.</span>
+                </h4>
+                <p class="text-[#86868b] mt-4">
+                    <span class="en-only">An 18-hour battery that powers through your longest journeys. Fast charge via USB-C.</span>
+                    <span class="ar-only">بطارية تدوم 18 ساعة تتحمل أطول رحلاتك. شحن سريع عبر USB-C.</span>
+                </p>
+            </div>
+            <div class="flex items-baseline space-x-1">
+                <span class="text-[120px] font-bold tracking-tighter text-[#1d1d1f]">18</span>
+                <span class="text-[32px] font-bold text-[#86868b]">
+                    <span class="en-only">hr</span>
+                    <span class="ar-only">ساعة</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[500px] reveal">
+            <span class="text-purple-600 font-bold text-[12px] uppercase tracking-widest">
+                <span class="en-only">Haptic Engine</span>
+                <span class="ar-only">محرك اللمس</span>
+            </span>
+            <h4 class="text-[32px] font-semibold tracking-tight mt-4">
+                <span class="en-only">Intuitive Language.</span>
+                <span class="ar-only">لغة حدسية.</span>
+            </h4>
+            <p class="text-[#86868b] mt-4 text-[19px] leading-relaxed">
+                <span class="en-only">Variable frequency vibrations localized to your chest and shoulders. It feels like someone is gently guiding your path.</span>
+                <span class="ar-only">اهتزازات بتردد متغير مركزة على الصدر والكتفين. تشعر وكأن شخصًا يرشدك بلطف في طريقك.</span>
+            </p>
+            <div class="mt-16 h-1 w-full bg-gray-100 rounded-full overflow-hidden">
+                <div class="h-full bg-purple-500 w-2/3"></div>
+            </div>
+        </div>
+
+        <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[500px] reveal">
+            <span class="text-orange-600 font-bold text-[12px] uppercase tracking-widest">
+                <span class="en-only">Sustainability</span>
+                <span class="ar-only">استدامة</span>
+            </span>
+            <h4 class="text-[32px] font-semibold tracking-tight mt-4">
+                <span class="en-only">Featherlight fabric.</span>
+                <span class="ar-only">نسيج خفيف كالريشة.</span>
+            </h4>
+            <p class="text-[#86868b] mt-4 text-[19px] leading-relaxed">
+                <span class="en-only">Crafted from aerospace mesh. Water-resistant, breathable, and designed to disappear under a jacket.</span>
+                <span class="ar-only">مصنوع من شبكة فضائية. مقاوم للماء، قابل للتنفس، ومصمم ليختفي تحت الجاكيت.</span>
             </p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="tech" class="py-24 px-6 max-w-[1200px] mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            
-            <div class="bento-card col-span-1 md:col-span-8 p-12 h-[640px] flex flex-col justify-between overflow-hidden reveal">
-                <div class="max-w-md">
-                    <span class="text-blue-600 font-bold text-[12px] uppercase tracking-widest">Active Scanning</span>
-                    <h4 class="text-[40px] font-semibold tracking-tight leading-tight mt-4">Precision ToF. <br>Navigates the dark.</h4>
-                    <p class="text-[#86868b] mt-4 text-lg">Borrowed from autonomous vehicles, engineered for the human form. Detection range up to 5 meters.</p>
-                </div>
-                <div class="w-full h-80 bg-gray-50 rounded-[24px] border border-gray-100 flex items-center justify-center relative overflow-hidden">
-                   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50 to-transparent opacity-50"></div>
-                   <div class="w-24 h-24 border border-blue-200 rounded-full animate-ping opacity-30"></div>
-                   <div class="w-48 h-48 border border-blue-100 rounded-full animate-ping opacity-20 delay-75"></div>
-                </div>
-            </div>
-
-            <div class="bento-card col-span-1 md:col-span-4 p-12 h-[640px] flex flex-col justify-between bg-white reveal">
-                <div>
-                    <span class="text-green-600 font-bold text-[12px] uppercase tracking-widest">Efficiency</span>
-                    <h4 class="text-[36px] font-semibold tracking-tight leading-tight mt-4">Dawn till <br>Dusk.</h4>
-                    <p class="text-[#86868b] mt-4">An 18-hour battery that powers through your longest journeys. Fast charge via USB-C.</p>
-                </div>
-                <div class="flex items-baseline space-x-1">
-                    <span class="text-[120px] font-bold tracking-tighter text-[#1d1d1f]">18</span>
-                    <span class="text-[32px] font-bold text-[#86868b]">hr</span>
-                </div>
-            </div>
-
-            <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[500px] reveal">
-                <span class="text-purple-600 font-bold text-[12px] uppercase tracking-widest">Haptic Engine</span>
-                <h4 class="text-[32px] font-semibold tracking-tight mt-4">Intuitive Language.</h4>
-                <p class="text-[#86868b] mt-4 text-[19px] leading-relaxed">Variable frequency vibrations localized to your chest and shoulders. It feels like someone is gently guiding your path.</p>
-                <div class="mt-16 h-1 w-full bg-gray-100 rounded-full overflow-hidden">
-                    <div class="h-full bg-purple-500 w-2/3"></div>
-                </div>
-            </div>
-
-            <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[500px] reveal">
-                <span class="text-orange-600 font-bold text-[12px] uppercase tracking-widest">Sustainability</span>
-                <h4 class="text-[32px] font-semibold tracking-tight mt-4">Featherlight fabric.</h4>
-                <p class="text-[#86868b] mt-4 text-[19px] leading-relaxed">Crafted from aerospace mesh. Water-resistant, breathable, and designed to disappear under a jacket.</p>
-            </div>
-        </div>
-    </section>
-
+<!-- Comparison Table Section -->
 <section id="comparison" class="py-40 bg-white px-6 border-t border-gray-100">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal mb-16">
-            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">Compare Mobility Solutions.</h2>
+            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
+                <span class="en-only">Compare Mobility Solutions.</span>
+                <span class="ar-only">قارن حلول التنقل.</span>
+            </h2>
             <p class="text-[21px] md:text-[28px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
-                See how Guidexa stacks up against the traditional white cane — delivering hands-free awareness, head-height protection, and everyday independence at an accessible price.
+                <span class="en-only">See how Guidexa stacks up against the traditional white cane — delivering hands-free awareness, head-height protection, and everyday independence at an accessible price.</span>
+                <span class="ar-only">تعرف على كيفية تفوق Guidexa على العصا البيضاء التقليدية — يوفر وعيًا بدون استخدام اليدين، حماية لمستوى الرأس، واستقلالية يومية بسعر في متناول الجميع.</span>
             </p>
         </div>
 
         <div class="overflow-x-auto">
             <div class="min-w-[600px] md:min-w-full grid grid-cols-3 gap-0 border border-gray-200 rounded-3xl overflow-hidden">
                 <!-- Header Row -->
-                <div class="bg-[#f5f5f7] p-8 text-left font-semibold text-lg border-b border-gray-200">Feature</div>
-                <div class="bg-[#f5f5f7] p-8 text-center font-bold text-xl border-b border-gray-200">White Cane</div>
-                <div class="bg-[#f5f5f7] p-8 text-center font-bold text-xl text-[#0071e3] border-b border-gray-200">Guidexa Vest</div>
+                <div class="bg-[#f5f5f7] p-8 text-left font-semibold text-lg border-b border-gray-200">
+                    <span class="en-only">Feature</span>
+                    <span class="ar-only">الخاصية</span>
+                </div>
+                <div class="bg-[#f5f5f7] p-8 text-center font-bold text-xl border-b border-gray-200">
+                    <span class="en-only">White Cane</span>
+                    <span class="ar-only">العصا البيضاء</span>
+                </div>
+                <div class="bg-[#f5f5f7] p-8 text-center font-bold text-xl text-[#0071e3] border-b border-gray-200">
+                    <span class="en-only">Guidexa Vest</span>
+                    <span class="ar-only">سترة Guidexa</span>
+                </div>
 
-                <!-- Row 1: Detection Range -->
-                <div class="p-8 border-b border-gray-200 font-medium">Detection Range</div>
-                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">~1.2–1.5 meters (ground level only)</div>
-                <div class="p-8 border-b border-gray-200 text-center font-semibold text-lg">Up to 5 meters (360° ToF scanning)</div>
+                <!-- Row 1 -->
+                <div class="p-8 border-b border-gray-200 font-medium">
+                    <span class="en-only">Detection Range</span>
+                    <span class="ar-only">مدى الكشف</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">
+                    <span class="en-only">~1.2–1.5 meters (ground level only)</span>
+                    <span class="ar-only">~1.2–1.5 متر (مستوى الأرض فقط)</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center font-semibold text-lg">
+                    <span class="en-only">Up to 5 meters (360° ToF scanning)</span>
+                    <span class="ar-only">حتى 5 أمتار (مسح ToF 360°)</span>
+                </div>
 
-                <!-- Row 2: Head-Height Hazards -->
-                <div class="p-8 border-b border-gray-200 font-medium">Head-Height Hazards (branches, signs, open doors)</div>
-                <div class="p-8 border-b border-gray-200 text-center text-red-600 font-bold">None</div>
-                <div class="p-8 border-b border-gray-200 text-center text-green-600 font-bold">Active Detection & Warning</div>
+                <!-- Row 2 -->
+                <div class="p-8 border-b border-gray-200 font-medium">
+                    <span class="en-only">Head-Height Hazards (branches, signs, open doors)</span>
+                    <span class="ar-only">مخاطر مستوى الرأس (أغصان، لافتات، أبواب مفتوحة)</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center text-red-600 font-bold">
+                    <span class="en-only">None</span>
+                    <span class="ar-only">لا يوجد</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center text-green-600 font-bold">
+                    <span class="en-only">Active Detection & Warning</span>
+                    <span class="ar-only">كشف نشط وتحذير</span>
+                </div>
 
-                <!-- Row 3: Hands-Free Operation -->
-                <div class="p-8 border-b border-gray-200 font-medium">Hands-Free</div>
-                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">No — Occupies one hand</div>
-                <div class="p-8 border-b border-gray-200 text-center text-green-600 font-bold">Yes — Wearable vest design</div>
+                <!-- Row 3 -->
+                <div class="p-8 border-b border-gray-200 font-medium">
+                    <span class="en-only">Hands-Free</span>
+                    <span class="ar-only">بدون استخدام اليدين</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">
+                    <span class="en-only">No — Occupies one hand</span>
+                    <span class="ar-only">لا — تشغل يدًا واحدة</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center text-green-600 font-bold">
+                    <span class="en-only">Yes — Wearable vest design</span>
+                    <span class="ar-only">نعم — تصميم سترة قابلة للارتداء</span>
+                </div>
 
-                <!-- Row 4: Feedback Type -->
-                <div class="p-8 border-b border-gray-200 font-medium">Feedback Type</div>
-                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">Tactile (physical contact only)</div>
-                <div class="p-8 border-b border-gray-200 text-center">Intuitive directional haptics (chest & shoulders)</div>
+                <!-- Row 4 -->
+                <div class="p-8 border-b border-gray-200 font-medium">
+                    <span class="en-only">Feedback Type</span>
+                    <span class="ar-only">نوع التغذية الراجعة</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">
+                    <span class="en-only">Tactile (physical contact only)</span>
+                    <span class="ar-only">لمسي (اتصال مادي فقط)</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center">
+                    <span class="en-only">Intuitive directional haptics (chest & shoulders)</span>
+                    <span class="ar-only">لمس اتجاهي حدسي (الصدر والكتفين)</span>
+                </div>
 
-                <!-- Row 5: Battery Life -->
-                <div class="p-8 border-b border-gray-200 font-medium">Battery Life</div>
-                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">None required</div>
-                <div class="p-8 border-b border-gray-200 text-center font-semibold">Up to 18 hours (fast USB-C charge)</div>
+                <!-- Row 5 -->
+                <div class="p-8 border-b border-gray-200 font-medium">
+                    <span class="en-only">Battery Life</span>
+                    <span class="ar-only">عمر البطارية</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">
+                    <span class="en-only">None required</span>
+                    <span class="ar-only">لا يتطلب بطارية</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center font-semibold">
+                    <span class="en-only">Up to 18 hours (fast USB-C charge)</span>
+                    <span class="ar-only">حتى 18 ساعة (شحن سريع USB-C)</span>
+                </div>
 
-                <!-- Row 7: Discreet & Social -->
-                <div class="p-8 border-b border-gray-200 font-medium">Discreet Use</div>
-                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">Visible white cane signals impairment</div>
-                <div class="p-8 border-b border-gray-200 text-center">Low-profile vest design</div>
+                <!-- Row 6 -->
+                <div class="p-8 border-b border-gray-200 font-medium">
+                    <span class="en-only">Discreet Use</span>
+                    <span class="ar-only">استخدام غير ملفت</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center text-[#86868b]">
+                    <span class="en-only">Visible white cane signals impairment</span>
+                    <span class="ar-only">العصا البيضاء المرئية تشير إلى الإعاقة</span>
+                </div>
+                <div class="p-8 border-b border-gray-200 text-center">
+                    <span class="en-only">Low-profile vest design</span>
+                    <span class="ar-only">تصميم سترة منخفض المظهر</span>
+                </div>
 
-                <!-- Row 8: Additional Features -->
-                <div class="p-8 font-medium">Additional Features</div>
-                <div class="p-8 text-center text-[#86868b]">Simple, no tech needed</div>
+                <!-- Row 7 -->
+                <div class="p-8 font-medium">
+                    <span class="en-only">Additional Features</span>
+                    <span class="ar-only">ميزات إضافية</span>
+                </div>
+                <div class="p-8 text-center text-[#86868b]">
+                    <span class="en-only">Simple, no tech needed</span>
+                    <span class="ar-only">بسيطة، لا تحتاج تقنية</span>
+                </div>
                 <div class="p-8 text-center">
-                    Real-time obstacle classification, SOS Emergency Mode, and countless essential features
+                    <span class="en-only">Real-time obstacle classification, SOS Emergency Mode, and countless essential features</span>
+                    <span class="ar-only">تصنيف العوائق في الوقت الفعلي، وضع الطوارئ SOS، وميزات أساسية لا حصر لها</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Built-in Safety. Always On. -->
 <section id="additional-features" class="py-40 bg-white px-6">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal mb-16">
-            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">Built-in Safety. Always On.</h2>
+            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
+                <span class="en-only">Built-in Safety. Always On.</span>
+                <span class="ar-only">الأمان المدمج. دائمًا مفعّل.</span>
+            </h2>
             <p class="text-[21px] md:text-[28px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
-                Guidexa goes beyond navigation — it includes thoughtful safety features to protect you in unexpected situations. From emergency alerts to intelligent fail-safes, your independence comes with peace of mind.
+                <span class="en-only">Guidexa goes beyond navigation — it includes thoughtful safety features to protect you in unexpected situations. From emergency alerts to intelligent fail-safes, your independence comes with peace of mind.</span>
+                <span class="ar-only">تتجاوز Guidexa مجرد التنقل — فهي تتضمن ميزات أمان مدروسة تحميك في المواقف غير المتوقعة. من التنبيهات الطارئة إلى آليات الحماية الذكية، استقلاليتك تأتي مع راحة البال.</span>
             </p>
         </div>
 
@@ -570,80 +821,102 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
                 </div>
-                <h3 class="text-3xl font-semibold mb-4 text-center">SOS Emergency Mode</h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">
+                    <span class="en-only">SOS Emergency Mode</span>
+                    <span class="ar-only">وضع الطوارئ SOS</span>
+                </h3>
                 <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                    In case of distress — a fall, getting lost, sudden disorientation, or any emergency — activate SOS with a simple double-tap or long-press gesture on the vest controls.
+                    <span class="en-only">In case of distress — a fall, getting lost, sudden disorientation, or any emergency — activate SOS with a simple double-tap or long-press gesture on the vest controls.</span>
+                    <span class="ar-only">في حالة الضيق — سقوط، ضياع الطريق، ارتباك مفاجئ، أو أي طارئ — فعّل وضع SOS بلمسة مزدوجة بسيطة أو ضغطة طويلة على أزرار السترة.</span>
                 </p>
                 <ul class="space-y-4 text-lg mt-auto">
                     <li class="flex items-start">
                         <span class="text-red-600 font-bold mr-3">•</span>
-                        Instantly sends your GPS location to pre-set emergency contacts (family, friends, or local services)
+                        <span class="en-only">Instantly sends your GPS location to pre-set emergency contacts (family, friends, or local services)</span>
+                        <span class="ar-only">يرسل فورًا موقعك عبر GPS إلى جهات الاتصال الطارئة المحددة مسبقًا (العائلة، الأصدقاء، أو الخدمات المحلية)</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-red-600 font-bold mr-3">•</span>
-                        Triggers high-intensity haptic pulses + optional loud audio alert (if connected to Bluetooth earbuds) to draw nearby help
+                        <span class="en-only">Triggers high-intensity haptic pulses + optional loud audio alert (if connected to Bluetooth earbuds) to draw nearby help</span>
+                        <span class="ar-only">يُفعّل نبضات لمس قوية + تنبيه صوتي عالٍ اختياري (إذا كان متصلًا بسماعات بلوتوث) لجذب المساعدة القريبة</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-red-600 font-bold mr-3">•</span>
-                        Can auto-activate on severe fall detection (via built-in accelerometer) if enabled
+                        <span class="en-only">Can auto-activate on severe fall detection (via built-in accelerometer) if enabled</span>
+                        <span class="ar-only">يمكن تفعيله تلقائيًا عند اكتشاف سقوط شديد (عبر مقياس التسارع المدمج) إذا تم تمكينه</span>
                     </li>
                 </ul>
             </div>
 
-            <!-- Fail-Safes Card -->
+            <!-- Intelligent Fail-Safes Card -->
             <div class="reveal bento-card p-10 flex flex-col h-full border border-gray-200 bg-[#fbfbfd] delay-100">
                 <div class="w-20 h-20 rounded-full bg-orange-100 flex items-center justify-center mb-6 mx-auto">
                     <svg class="w-10 h-10 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <h3 class="text-3xl font-semibold mb-4 text-center">Intelligent Fail-Safes</h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">
+                    <span class="en-only">Intelligent Fail-Safes</span>
+                    <span class="ar-only">آليات الحماية الذكية</span>
+                </h3>
                 <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                    Guidexa is engineered to keep working — or gracefully degrade — even if something goes wrong.
+                    <span class="en-only">Guidexa is engineered to keep working — or gracefully degrade — even if something goes wrong.</span>
+                    <span class="ar-only">تم تصميم Guidexa لتستمر في العمل — أو تتدهور بأمان — حتى لو حدث خطأ ما.</span>
                 </p>
                 <ul class="space-y-4 text-lg mt-auto">
                     <li class="flex items-start">
                         <span class="text-orange-600 font-bold mr-3">•</span>
-                        Low battery warning: Gradual haptic slowdown + persistent shoulder pulses 30 minutes before shutdown
+                        <span class="en-only">Low battery warning: Gradual haptic slowdown + persistent shoulder pulses 30 minutes before shutdown</span>
+                        <span class="ar-only">تحذير انخفاض البطارية: تبطيء تدريجي للنبضات اللمسية + نبضات مستمرة على الكتفين قبل 30 دقيقة من الإغلاق</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-orange-600 font-bold mr-3">•</span>
-                        Sensor failure: Switches to safe mode (reduced scanning + stronger default center pulses) and alerts user via vibration pattern
+                        <span class="en-only">Sensor failure: Switches to safe mode (reduced scanning + stronger default center pulses) and alerts user via vibration pattern</span>
+                        <span class="ar-only">فشل مستشعر: ينتقل إلى الوضع الآمن (مسح مخفض + نبضات مركزية أقوى افتراضيًا) وينبه المستخدم بنمط اهتزاز</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-orange-600 font-bold mr-3">•</span>
-                        Overheating / error detection: Auto-shutdown with clear haptic "stop" sequence + LED indicator (if equipped)
+                        <span class="en-only">Overheating / error detection: Auto-shutdown with clear haptic "stop" sequence + LED indicator (if equipped)</span>
+                        <span class="ar-only">السخونة الزائدة / اكتشاف خطأ: إيقاف تلقائي مع تسلسل لمس واضح "توقف" + مؤشر LED (إن وجد)</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-orange-600 font-bold mr-3">•</span>
-                        Offline fallback: Continues basic directional haptics using last-known calibration even without full processing
+                        <span class="en-only">Offline fallback: Continues basic directional haptics using last-known calibration even without full processing</span>
+                        <span class="ar-only">الرجوع الاحتياطي دون اتصال: يستمر في تقديم توجيه لمس أساسي باستخدام آخر معايرة معروفة حتى بدون معالجة كاملة</span>
                     </li>
                 </ul>
             </div>
 
-            <!-- Bonus Safety Card (optional enhancement) -->
+            <!-- Everyday Peace of Mind -->
             <div class="reveal bento-card p-10 flex flex-col h-full border border-gray-200 bg-[#fbfbfd] delay-200">
                 <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6 mx-auto">
                     <svg class="w-10 h-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
-                <h3 class="text-3xl font-semibold mb-4 text-center">Everyday Peace of Mind</h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">
+                    <span class="en-only">Everyday Peace of Mind</span>
+                    <span class="ar-only">راحة البال اليومية</span>
+                </h3>
                 <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                    These features are always active — no extra setup needed — because safety shouldn't be optional.
+                    <span class="en-only">These features are always active — no extra setup needed — because safety shouldn't be optional.</span>
+                    <span class="ar-only">هذه الميزات مفعّلة دائمًا — لا حاجة لإعداد إضافي — لأن الأمان لا يجب أن يكون اختياريًا.</span>
                 </p>
                 <ul class="space-y-4 text-lg mt-auto">
                     <li class="flex items-start">
                         <span class="text-green-600 font-bold mr-3">•</span>
-                        Moving obstacle priority: Stronger pulses for fast-approaching people/vehicles
+                        <span class="en-only">Moving obstacle priority: Stronger pulses for fast-approaching people/vehicles</span>
+                        <span class="ar-only">أولوية العوائق المتحركة: نبضات أقوى للأشخاص/المركبات القادمة بسرعة</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-green-600 font-bold mr-3">•</span>
-                        Customizable intensity: Adjust via simple controls for different environments
+                        <span class="en-only">Customizable intensity: Adjust via simple controls for different environments</span>
+                        <span class="ar-only">شدة قابلة للتخصيص: اضبطها عبر أدوات تحكم بسيطة حسب البيئة</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-green-600 font-bold mr-3">•</span>
-                        Future-proof: OTA updates for new safety patterns and features
+                        <span class="en-only">Future-proof: OTA updates for new safety patterns and features</span>
+                        <span class="ar-only">محمية للمستقبل: تحديثات عبر الهواء لأنماط أمان وميزات جديدة</span>
                     </li>
                 </ul>
             </div>
@@ -651,12 +924,17 @@
     </div>
 </section>
 
-    <section id="how-it-works" class="py-40 bg-white px-6">
+<!-- How Guidexa Works -->
+<section id="how-it-works" class="py-40 bg-white px-6">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal">
-            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">How Guidexa Works.</h2>
+            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
+                <span class="en-only">How Guidexa Works.</span>
+                <span class="ar-only">كيف تعمل Guidexa.</span>
+            </h2>
             <p class="text-[21px] md:text-[28px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
-                Four sensors quietly scan. Your body feels the world. You move with confidence — no sound, no holding anything.
+                <span class="en-only">Four sensors quietly scan. Your body feels the world. You move with confidence — no sound, no holding anything.</span>
+                <span class="ar-only">أربعة مستشعرات تمسح بهدوء. يشعر جسمك بالعالم. تتحرك بثقة — بدون صوت، بدون حمل أي شيء.</span>
             </p>
         </div>
 
@@ -666,9 +944,13 @@
                 <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mb-6">
                     <span class="text-[32px] font-bold text-[#0071e3]">1</span>
                 </div>
-                <h3 class="text-2xl font-semibold mb-4">Scan the Space</h3>
+                <h3 class="text-2xl font-semibold mb-4">
+                    <span class="en-only">Scan the Space</span>
+                    <span class="ar-only">مسح المكان</span>
+                </h3>
                 <p class="text-[#86868b] text-lg leading-relaxed flex-grow">
-                    Four VL53L1X Time-of-Flight (ToF) sensors — borrowed from self-driving car tech — pulse invisible infrared light up to 5 meters ahead and around you in a 270° field.
+                    <span class="en-only">Four VL53L1X Time-of-Flight (ToF) sensors — borrowed from self-driving car tech — pulse invisible infrared light up to 5 meters ahead and around you in a 270° field.</span>
+                    <span class="ar-only">أربعة مستشعرات VL53L1X لقياس الوقت للطيران (ToF) — مستوحاة من تقنية السيارات ذاتية القيادة — ترسل نبضات ضوء تحت الحمراء غير مرئية تصل إلى 5 أمتار أمامك وحولك في مجال 270 درجة.</span>
                 </p>
                 <div class="mt-8 w-24 h-24 bg-gray-50 rounded-2xl flex items-center justify-center mt-auto">
                     <svg class="w-12 h-12 text-[#0071e3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -682,9 +964,13 @@
                 <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mb-6">
                     <span class="text-[32px] font-bold text-[#0071e3]">2</span>
                 </div>
-                <h3 class="text-2xl font-semibold mb-4">Understand the Scene</h3>
+                <h3 class="text-2xl font-semibold mb-4">
+                    <span class="en-only">Understand the Scene</span>
+                    <span class="ar-only">فهم المشهد</span>
+                </h3>
                 <p class="text-[#86868b] text-lg leading-relaxed flex-grow">
-                    The ESP32-S3 microcontroller processes the data in real time. It distinguishes walls, stairs, fast-moving people, and head-height hazards like branches or signs.
+                    <span class="en-only">The ESP32-S3 microcontroller processes the data in real time. It distinguishes walls, stairs, fast-moving people, and head-height hazards like branches or signs.</span>
+                    <span class="ar-only">وحدة التحكم الدقيقة ESP32-S3 تعالج البيانات في الوقت الفعلي. تميّز الجدران، السلالم، الأشخاص المتحركين بسرعة، والمخاطر على مستوى الرأس مثل الأغصان أو اللافتات.</span>
                 </p>
                 <div class="mt-8 w-24 h-24 bg-gray-50 rounded-2xl flex items-center justify-center mt-auto">
                     <svg class="w-12 h-12 text-[#0071e3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -698,9 +984,13 @@
                 <div class="w-20 h-20 rounded-full bg-purple-100 flex items-center justify-center mb-6">
                     <span class="text-[32px] font-bold text-purple-600">3</span>
                 </div>
-                <h3 class="text-2xl font-semibold mb-4">Feel the Guidance</h3>
+                <h3 class="text-2xl font-semibold mb-4">
+                    <span class="en-only">Feel the Guidance</span>
+                    <span class="ar-only">اشعر بالتوجيه</span>
+                </h3>
                 <p class="text-[#86868b] text-lg leading-relaxed flex-grow">
-                    Four Linear Resonant Actuators (LRAs) on your chest and shoulders create gentle, directional vibrations. A soft pulse on the right shoulder means “adjust right.” Stronger pulses warn of urgent hazards ahead.
+                    <span class="en-only">Four Linear Resonant Actuators (LRAs) on your chest and shoulders create gentle, directional vibrations. A soft pulse on the right shoulder means “adjust right.” Stronger pulses warn of urgent hazards ahead.</span>
+                    <span class="ar-only">أربعة محركات رنين خطية (LRAs) على الصدر والكتفين تخلق اهتزازات لطيفة واتجاهية. نبضة خفيفة على الكتف الأيمن تعني "عدل يمينًا". نبضات أقوى تحذر من المخاطر العاجلة أمامك.</span>
                 </p>
                 <div class="mt-8 w-24 h-24 bg-gray-50 rounded-2xl flex items-center justify-center mt-auto">
                     <svg class="w-12 h-12 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -714,9 +1004,13 @@
                 <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6">
                     <span class="text-[32px] font-bold text-green-600">4</span>
                 </div>
-                <h3 class="text-2xl font-semibold mb-4">Move Freely</h3>
+                <h3 class="text-2xl font-semibold mb-4">
+                    <span class="en-only">Move Freely</span>
+                    <span class="ar-only">تحرك بحرية</span>
+                </h3>
                 <p class="text-[#86868b] text-lg leading-relaxed flex-grow">
-                    Your intuition takes over. Hands stay free for bags, phones, or holding hands. No audio overload in noisy places. Just quiet, natural guidance — all day on one charge.
+                    <span class="en-only">Your intuition takes over. Hands stay free for bags, phones, or holding hands. No audio overload in noisy places. Just quiet, natural guidance — all day on one charge.</span>
+                    <span class="ar-only">حدسك يتولى الأمر. تبقى يداك حرة لحمل الحقائب، الهاتف، أو مسك اليد. لا إرهاق صوتي في الأماكن الصاخبة. فقط توجيه هادئ وطبيعي — طوال اليوم بشحنة واحدة.</span>
                 </p>
                 <div class="mt-8 w-24 h-24 bg-gray-50 rounded-2xl flex items-center justify-center mt-auto">
                     <svg class="w-12 h-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -725,16 +1019,20 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
-
-
+<!-- Real Stories. Real Freedom. -->
 <section id="testimonials" class="py-40 bg-[#f5f5f7] px-6">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal mb-16">
-            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">Real Stories. Real Freedom.</h2>
+            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
+                <span class="en-only">Real Stories. Real Freedom.</span>
+                <span class="ar-only">قصص حقيقية. حرية حقيقية.</span>
+            </h2>
             <p class="text-[21px] md:text-[28px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
-                Early testers and friends share how Guidexa is already changing the way they move through the world.
+                <span class="en-only">Early testers and friends share how Guidexa is already changing the way they move through the world.</span>
+                <span class="ar-only">المختبرون الأوائل والأصدقاء يشاركون كيف غيّرت Guidexa بالفعل طريقة تنقلهم في العالم.</span>
             </p>
         </div>
 
@@ -743,8 +1041,7 @@
             <div class="reveal bento-card p-8 flex flex-col h-full hover:shadow-xl transition-shadow duration-300">
                 <div class="flex items-center mb-6">
                     <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
-                        <img src="709699.png" 
-                             alt="Person walking confidently in city" class="w-full h-full object-cover">
+                        <img src="709699.png" alt="Person walking confidently in city" class="w-full h-full object-cover">
                     </div>
                     <div class="ml-4">
                         <p class="font-semibold text-lg">Ahmad - School Student</p>
@@ -752,7 +1049,8 @@
                     </div>
                 </div>
                 <blockquote class="text-[#1d1d1f] text-lg leading-relaxed flex-grow italic">
-                    “I used to avoid crowded streets to class because of poles and signs at head height. Now Guidexa taps my shoulder before I even notice the danger. It feels like someone is walking with me — but I’m finally independent.”
+                    <span class="en-only">“I used to avoid crowded streets to class because of poles and signs at head height. Now Guidexa taps my shoulder before I even notice the danger. It feels like someone is walking with me — but I’m finally independent.”</span>
+                    <span class="ar-only">«كنت أتجنب الشوارع المزدحمة في طريقي إلى المدرسة بسبب الأعمدة واللافتات على مستوى الرأس. الآن Guidexa تنبهني على كتفي قبل أن ألاحظ الخطر. أشعر وكأن شخصًا يمشي معي — لكنني أخيرًا مستقل.»</span>
                 </blockquote>
             </div>
 
@@ -760,8 +1058,7 @@
             <div class="reveal bento-card p-8 flex flex-col h-full hover:shadow-xl transition-shadow duration-300 delay-100">
                 <div class="flex items-center mb-6">
                     <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
-                        <img src="709699.png" 
-                             alt="Student with assistive wearable" class="w-full h-full object-cover">
+                        <img src="709699.png" alt="Student with assistive wearable" class="w-full h-full object-cover">
                     </div>
                     <div class="ml-4">
                         <p class="font-semibold text-lg">Mohammad Engineering Student</p>
@@ -769,7 +1066,8 @@
                     </div>
                 </div>
                 <blockquote class="text-[#1d1d1f] text-lg leading-relaxed flex-grow italic">
-                    “As someone who studies late and walks home alone, the hands-free part is huge. No more cane in one hand and phone in the other. Guidexa just… guides. Quietly. Perfectly. 18 hours battery? I forget to charge it sometimes.”
+                    <span class="en-only">“As someone who studies late and walks home alone, the hands-free part is huge. No more cane in one hand and phone in the other. Guidexa just… guides. Quietly. Perfectly. 18 hours battery? I forget to charge it sometimes.”</span>
+                    <span class="ar-only">«كطالب أدرس حتى وقت متأخر وأعود إلى البيت وحدي، ميزة عدم استخدام اليدين كبيرة جدًا. لا عصا في يد وهاتف في اليد الأخرى بعد الآن. Guidexa فقط… ترشد. بهدوء. بكمال. بطارية 18 ساعة؟ أنسى شحنها أحيانًا.»</span>
                 </blockquote>
             </div>
 
@@ -777,8 +1075,7 @@
             <div class="reveal bento-card p-8 flex flex-col h-full hover:shadow-xl transition-shadow duration-300 delay-200">
                 <div class="flex items-center mb-6">
                     <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
-                        <img src="709699.png" 
-                             alt="Person with white cane near bus" class="w-full h-full object-cover">
+                        <img src="709699.png" alt="Person with white cane near bus" class="w-full h-full object-cover">
                     </div>
                     <div class="ml-4">
                         <p class="font-semibold text-lg">Sama</p>
@@ -786,7 +1083,8 @@
                     </div>
                 </div>
                 <blockquote class="text-[#1d1d1f] text-lg leading-relaxed flex-grow italic">
-                    “The crowded bus stop used to be stressful — people rushing, bags everywhere. Guidexa filters the chaos: soft pulse left = person passing, strong front pulse = step back. I arrive calmer, ready for the day.”
+                    <span class="en-only">“The crowded bus stop used to be stressful — people rushing, bags everywhere. Guidexa filters the chaos: soft pulse left = person passing, strong front pulse = step back. I arrive calmer, ready for the day.”</span>
+                    <span class="ar-only">«كان موقف الحافلة المزدحم مرهقًا — الناس يهرعون، الحقائب في كل مكان. Guidexa تصفّي الفوضى: نبضة خفيفة يسار = شخص يمر، نبضة قوية أمام = تراجع خطوة. أصل بهدوء أكبر، جاهزًا لليوم.»</span>
                 </blockquote>
             </div>
 
@@ -794,8 +1092,7 @@
             <div class="reveal bento-card p-8 flex flex-col h-full hover:shadow-xl transition-shadow duration-300 delay-300">
                 <div class="flex items-center mb-6">
                     <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
-                        <img src="709699.png" 
-                             alt="Student using assistive tech" class="w-full h-full object-cover">
+                        <img src="709699.png" alt="Student using assistive tech" class="w-full h-full object-cover">
                     </div>
                     <div class="ml-4">
                         <p class="font-semibold text-lg">Rami</p>
@@ -803,68 +1100,72 @@
                     </div>
                 </div>
                 <blockquote class="text-[#1d1d1f] text-lg leading-relaxed flex-grow italic">
-                    “$70 is life-changing. I couldn’t afford other devices, but Guidexa gives me what guide dogs or expensive canes can’t — full 5-meter awareness without anyone knowing I’m using it. Thank you, student team.”
+                    <span class="en-only">“$70 is life-changing. I couldn’t afford other devices, but Guidexa gives me what guide dogs or expensive canes can’t — full 5-meter awareness without anyone knowing I’m using it. Thank you, student team.”</span>
+                    <span class="ar-only">«70 دولار تغيّر الحياة. لم أستطع تحمل تكلفة الأجهزة الأخرى، لكن Guidexa تعطيني ما لا تستطيع كلاب الإرشاد أو العصي الباهظة — وعي كامل بـ5 أمتار دون أن يعرف أحد أنني أستخدمها. شكرًا لفريق الطلاب.»</span>
                 </blockquote>
             </div>
         </div>
 
         <div class="mt-16 text-center reveal">
             <p class="text-xl font-medium text-[#1d1d1f] mb-8">
-                Have your own Guidexa story? We'd love to hear it and feature it here!
+                <span class="en-only">Have your own Guidexa story? We'd love to hear it and feature it here!</span>
+                <span class="ar-only">لديك قصتك الخاصة مع Guidexa؟ نحب أن نسمعها ونعرضها هنا!</span>
             </p>
             <a href="https://wa.me/970597439818?text=Hi%20Guidexa%20team!%20I'd%20love%20to%20share%20my%20experience%20with%20the%20vest%3A%0A%0A[Write%20your%20story%20here...]%0A%0AName%3A%20%0ALocation%3A%20%0AHow%20long%20have%20you%20used%20it%3F%20"
                target="_blank" 
                rel="noopener noreferrer"
                class="inline-block bg-[#0071e3] text-white px-10 py-4 rounded-full font-semibold text-lg hover:bg-[#0077ed] transition">
-                Share Your Guidexa Story
+                <span class="en-only">Share Your Guidexa Story</span>
+                <span class="ar-only">شارك قصتك مع Guidexa</span>
             </a>
         </div>
     </div>
 </section>
 
+<!-- Made in Palestine -->
 <section id="made-in-palestine" class="py-40 bg-white px-6 border-t border-gray-100">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal mb-16">
             <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
-                Made in Palestine —<br>With Arab World Ambition
+                <span class="en-only">Made in Palestine —<br>With Arab World Ambition</span>
+                <span class="ar-only">صُنع في فلسطين —<br>بطموح عربي واسع</span>
             </h2>
             <p class="text-[21px] md:text-[28px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
-                Born in the classrooms and streets of Palestine — Guidexa carries the spirit of innovation from our land. Our dream reaches across the entire Arab world: from Morocco to Oman, from Mauritania to Iraq. Independence and dignity should belong to every person in every Arab city.
+                <span class="en-only">Born in the classrooms and streets of Palestine — Guidexa carries the spirit of innovation from our land. Our dream reaches across the entire Arab world: from Morocco to Oman, from Mauritania to Iraq. Independence and dignity should belong to every person in every Arab city.</span>
+                <span class="ar-only">وُلدت في صفوف المدارس وشوارع فلسطين — تحمل Guidexa روح الابتكار من أرضنا. حلمُنا يمتد عبر العالم العربي بأكمله: من المغرب إلى عُمان، من موريتانيا إلى العراق. الاستقلال والكرامة يجب أن يكونا حقًا لكل إنسان في كل مدينة عربية.</span>
             </p>
         </div>
 
         <!-- Stylized Arab World Map Container -->
         <div class="reveal bento-card overflow-hidden bg-[#f5f5f7] rounded-[40px] p-8 md:p-12 mb-16">
             <div class="relative aspect-[4/3] md:aspect-[16/9] w-full max-w-5xl mx-auto bg-white rounded-3xl overflow-hidden shadow-inner border border-gray-200">
-                <!-- Replace src with your downloaded map (Wikimedia SVG → PNG or direct SVG embed) -->
                 <img 
                     src="Cairo.png" 
                     alt="Minimalist outline map of the Arab world showing 22 Arab League countries" 
                     class="w-full h-full object-contain p-4"
                 >
-
-
-                    <!-- Add 5–8 more pins for: Algiers, Tunis, Khartoum, Riyadh, Doha, Kuwait City, Sanaa, Damascus, etc. -->
-                </div>
+                <!-- pins remain the same -->
             </div>
-            
-            <p class="text-center text-[#86868b] mt-6 text-lg max-w-3xl mx-auto">
-                Blue pins mark where Guidexa began where it aims to reach — because freedom of movement is a shared Arab dream.
-            </p>
         </div>
+        
+        <p class="text-center text-[#86868b] mt-6 text-lg max-w-3xl mx-auto">
+            <span class="en-only">Blue pins mark where Guidexa began where it aims to reach — because freedom of movement is a shared Arab dream.</span>
+            <span class="ar-only">الدبابيس الزرقاء تشير إلى مكان بداية Guidexa وإلى حيث تطمح للوصول — لأن حرية التنقل حلم عربي مشترك.</span>
+        </p>
     </div>
 </section>
 
+<!-- Partnerships -->
 <section id="partnerships" class="py-40 bg-[#f5f5f7] px-6">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal mb-16">
             <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
-                التعاون والشراكات التي نوقّعها
-                <br>
-                <span class="text-[#6e6e73] text-[32px] md:text-[48px]">Cooperation & Partnerships We Sign</span>
+                <span class="en-only">Cooperation & Partnerships We Sign</span>
+                <span class="ar-only">التعاون والشراكات التي نوقّعها</span>
             </h2>
             <p class="text-[21px] md:text-[28px] text-[#86868b] font-medium max-w-3xl mx-auto leading-tight">
-                As a student-led company from Palestine, Guidexa is proud to collaborate with local authorities and institutions in Tulkarm Governorate. These partnerships help us test, refine, and deploy our haptic navigation vest where it's needed most — in schools, health centers, and community safety efforts.
+                <span class="en-only">As a student-led company from Palestine, Guidexa is proud to collaborate with local authorities and institutions in Tulkarm Governorate. These partnerships help us test, refine, and deploy our haptic navigation vest where it's needed most — in schools, health centers, and community safety efforts.</span>
+                <span class="ar-only">كشركة يقودها طلاب من فلسطين، نفخر في Guidexa بالتعاون مع السلطات والمؤسسات المحلية في محافظة طولكرم. تساعدنا هذه الشراكات على اختبار وتطوير ونشر سترة التنقل اللمسي حيث تشتد الحاجة إليها — في المدارس، مراكز الصحة، وجهود سلامة المجتمع.</span>
             </p>
         </div>
 
@@ -877,25 +1178,35 @@
                          class="w-full h-full object-cover">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-3xl font-semibold mb-4 text-center">الدفاع المدني الفلسطيني - طولكرم</h3>
+                    <h3 class="text-3xl font-semibold mb-4 text-center">
+                        <span class="en-only">Palestinian Civil Defence – Tulkarm Branch</span>
+                        <span class="ar-only">الدفاع المدني الفلسطيني – فرع طولكرم</span>
+                    </h3>
                     <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                        Palestinian Civil Defence – Tulkarm Branch
+                        <span class="en-only">Palestinian Civil Defence – Tulkarm Branch</span>
+                        <span class="ar-only">الدفاع المدني الفلسطيني – فرع طولكرم</span>
                     </p>
                     <p class="text-[#1d1d1f] text-lg leading-relaxed flex-grow">
-                        Cooperation agreement focused on integrating Guidexa into emergency response training and community safety programs. Our vest's obstacle detection and haptic guidance can support first responders and visually impaired individuals during evacuations or daily mobility in high-risk areas.
+                        <span class="en-only">Cooperation agreement focused on integrating Guidexa into emergency response training and community safety programs. Our vest's obstacle detection and haptic guidance can support first responders and visually impaired individuals during evacuations or daily mobility in high-risk areas.</span>
+                        <span class="ar-only">اتفاق تعاون يركز على دمج Guidexa في تدريبات الاستجابة للطوارئ وبرامج سلامة المجتمع. يمكن لكشف العوائق والتوجيه اللمسي في السترة دعم رجال الإنقاذ والأشخاص ذوي الإعاقة البصرية أثناء الإخلاء أو التنقل اليومي في المناطق عالية المخاطر.</span>
                     </p>
                     <ul class="mt-6 space-y-3 text-lg">
                         <li class="flex items-center">
                             <span class="text-red-600 font-bold mr-3">✓</span>
-                            Joint awareness sessions on assistive tech for emergencies
+                            <span class="en-only">Joint awareness sessions on assistive tech for emergencies</span>
+                            <span class="ar-only">جلسات توعية مشتركة حول التقنيات المساعدة في حالات الطوارئ</span>
                         </li>
                         <li class="flex items-center">
                             <span class="text-red-600 font-bold mr-3">✓</span>
-                            Potential field testing in Tulkarm camps and urban zones
+                            <span class="en-only">Potential field testing in Tulkarm camps and urban zones</span>
+                            <span class="ar-only">اختبارات ميدانية محتملة في مخيمات طولكرم والمناطق الحضرية</span>
                         </li>
                     </ul>
                     <div class="mt-8 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-sm font-semibold text-red-600">Enhancing safety and independence in crisis-prone environments.</p>
+                        <p class="text-sm font-semibold text-red-600">
+                            <span class="en-only">Enhancing safety and independence in crisis-prone environments.</span>
+                            <span class="ar-only">تعزيز السلامة والاستقلالية في البيئات المعرضة للأزمات.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -908,25 +1219,35 @@
                          class="w-full h-full object-cover">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-3xl font-semibold mb-4 text-center">مديرية التربية والتعليم - طولكرم</h3>
+                    <h3 class="text-3xl font-semibold mb-4 text-center">
+                        <span class="en-only">Tulkarm Directorate of Education</span>
+                        <span class="ar-only">مديرية التربية والتعليم - طولكرم</span>
+                    </h3>
                     <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                        Tulkarm Directorate of Education
+                        <span class="en-only">Tulkarm Directorate of Education</span>
+                        <span class="ar-only">مديرية التربية والتعليم - طولكرم</span>
                     </p>
                     <p class="text-[#1d1d1f] text-lg leading-relaxed flex-grow">
-                        Memorandum of Understanding (MoU) for pilot programs in schools, providing Guidexa vests to visually impaired students and raising awareness among educators about inclusive assistive technologies. This supports accessible education and independent mobility for students in Tulkarm.
+                        <span class="en-only">Memorandum of Understanding (MoU) for pilot programs in schools, providing Guidexa vests to visually impaired students and raising awareness among educators about inclusive assistive technologies. This supports accessible education and independent mobility for students in Tulkarm.</span>
+                        <span class="ar-only">مذكرة تفاهم لبرامج تجريبية في المدارس، توفير سترات Guidexa للطلاب ذوي الإعاقة البصرية ورفع الوعي بين المعلمين حول التقنيات المساعدة الشاملة. يدعم ذلك التعليم المتاح والتنقل المستقل للطلاب في طولكرم.</span>
                     </p>
                     <ul class="mt-6 space-y-3 text-lg">
                         <li class="flex items-center">
                             <span class="text-blue-600 font-bold mr-3">✓</span>
-                            Student testing and feedback loops in classrooms
+                            <span class="en-only">Student testing and feedback loops in classrooms</span>
+                            <span class="ar-only">اختبارات الطلاب وحلقات التغذية الراجعة في الصفوف</span>
                         </li>
                         <li class="flex items-center">
                             <span class="text-blue-600 font-bold mr-3">✓</span>
-                            Workshops on disability inclusion and tech innovation
+                            <span class="en-only">Workshops on disability inclusion and tech innovation</span>
+                            <span class="ar-only">ورش عمل حول الإدماج لذوي الإعاقة والابتكار التقني</span>
                         </li>
                     </ul>
                     <div class="mt-8 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-sm font-semibold text-blue-600">Empowering the next generation through inclusive education.</p>
+                        <p class="text-sm font-semibold text-blue-600">
+                            <span class="en-only">Empowering the next generation through inclusive education.</span>
+                            <span class="ar-only">تمكين الجيل القادم من خلال التعليم الشامل.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -939,25 +1260,35 @@
                          class="w-full h-full object-cover">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-3xl font-semibold mb-4 text-center">مديرية الصحة - طولكرم</h3>
+                    <h3 class="text-3xl font-semibold mb-4 text-center">
+                        <span class="en-only">Tulkarm Directorate of Health</span>
+                        <span class="ar-only">مديرية الصحة - طولكرم</span>
+                    </h3>
                     <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                        Tulkarm Directorate of Health
+                        <span class="en-only">Tulkarm Directorate of Health</span>
+                        <span class="ar-only">مديرية الصحة - طولكرم</span>
                     </p>
                     <p class="text-[#1d1d1f] text-lg leading-relaxed flex-grow">
-                        Cooperation deal to promote Guidexa in health centers and rehabilitation programs for visually impaired patients. Collaboration includes awareness campaigns on affordable assistive devices and potential integration into community health initiatives.
+                        <span class="en-only">Cooperation deal to promote Guidexa in health centers and rehabilitation programs for visually impaired patients. Collaboration includes awareness campaigns on affordable assistive devices and potential integration into community health initiatives.</span>
+                        <span class="ar-only">اتفاق تعاون للترويج لـ Guidexa في مراكز الصحة وبرامج التأهيل للمرضى ذوي الإعاقة البصرية. يشمل التعاون حملات توعية حول الأجهزة المساعدة بأسعار معقولة وإمكانية دمجها في مبادرات الصحة المجتمعية.</span>
                     </p>
                     <ul class="mt-6 space-y-3 text-lg">
                         <li class="flex items-center">
                             <span class="text-green-600 font-bold mr-3">✓</span>
-                            Referrals and demonstrations at health facilities
+                            <span class="en-only">Referrals and demonstrations at health facilities</span>
+                            <span class="ar-only">إحالات وعروض توضيحية في المرافق الصحية</span>
                         </li>
                         <li class="flex items-center">
                             <span class="text-green-600 font-bold mr-3">✓</span>
-                            Joint events on mobility aids and preventive health
+                            <span class="en-only">Joint events on mobility aids and preventive health</span>
+                            <span class="ar-only">فعاليات مشتركة حول أدوات التنقل والصحة الوقائية</span>
                         </li>
                     </ul>
                     <div class="mt-8 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-sm font-semibold text-green-600">Supporting health equity and independent living.</p>
+                        <p class="text-sm font-semibold text-green-600">
+                            <span class="en-only">Supporting health equity and independent living.</span>
+                            <span class="ar-only">دعم العدالة الصحية والعيش المستقل.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -965,47 +1296,73 @@
 
         <div class="mt-16 text-center reveal">
             <p class="text-xl text-[#1d1d1f] font-medium italic max-w-3xl mx-auto leading-relaxed mb-8">
-                “These local partnerships make Guidexa more than a product — it's a community effort for real change in Palestine and beyond.”
+                <span class="en-only">“These local partnerships make Guidexa more than a product — it's a community effort for real change in Palestine and beyond.”</span>
+                <span class="ar-only">«هذه الشراكات المحلية تجعل Guidexa أكثر من مجرد منتج — إنها جهد مجتمعي لتغيير حقيقي في فلسطين وخارجها.»</span>
             </p>
             <a href="#preorder" class="inline-block bg-[#0071e3] text-white px-10 py-4 rounded-full font-semibold text-lg hover:bg-[#0077ed] transition">
-                Join the Movement — Pre-order Guidexa
+                <span class="en-only">Join the Movement — Pre-order Guidexa</span>
+                <span class="ar-only">انضم إلى الحركة — اطلب Guidexa مسبقًا</span>
             </a>
             <p class="mt-6 text-sm text-[#86868b]">
-                Interested in partnership? <a href="https://wa.me/970597439818" class="text-[#0071e3] hover:underline" target="_blank">Contact us via WhatsApp</a>
+                <span class="en-only">Interested in partnership? <a href="https://wa.me/970597439818" class="text-[#0071e3] hover:underline" target="_blank">Contact us via WhatsApp</a></span>
+                <span class="ar-only">مهتم بالشراكة؟ <a href="https://wa.me/970597439818" class="text-[#0071e3] hover:underline" target="_blank">تواصل معنا عبر واتساب</a></span>
             </p>
         </div>
     </div>
 </section>
-    
-    <section id="scenarios" class="py-40 bg-white overflow-hidden">
-        <div class="max-w-[1024px] mx-auto px-6">
-            <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-20 text-center">In the city. <br><span class="text-gray-400">In the home. In the flow.</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="reveal">
-                    <div class="aspect-square bg-[#f5f5f7] rounded-[40px] mb-8 overflow-hidden">
-                        <img src="scenario-city-walk.png" alt="Person using Guidexa in a busy city" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-2xl font-semibold mb-4">The Crowded Commute</h4>
-                    <p class="text-[#86868b] text-lg leading-relaxed">As you move through a station, Guidexa filters out static walls and focuses on moving obstacles. A soft pulse on your right shoulder tells you someone is passing by, allowing you to maintain your stride without a pause.</p>
-                </div>
 
-                <div class="reveal delay-200">
-                    <div class="aspect-square bg-[#f5f5f7] rounded-[40px] mb-8 overflow-hidden">
-                        <img src="scenario-hazard-detect.png" alt="Guidexa detecting a head-height hazard" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-2xl font-semibold mb-4">The Invisible Hazard</h4>
-                    <p class="text-[#86868b] text-lg leading-relaxed">Traditional canes miss what's at chest height. Guidexa’s LiDAR "sees" the low-hanging tree branch or the open cabinet door, providing a high-intensity warning before contact occurs.</p>
+<!-- Scenarios -->
+<section id="scenarios" class="py-40 bg-white overflow-hidden">
+    <div class="max-w-[1024px] mx-auto px-6">
+        <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-20 text-center">
+            <span class="en-only">In the city.<br><span class="text-gray-400">In the home. In the flow.</span></span>
+            <span class="ar-only">في المدينة.<br><span class="text-gray-400">في البيت. في التدفق.</span></span>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="reveal">
+                <div class="aspect-square bg-[#f5f5f7] rounded-[40px] mb-8 overflow-hidden">
+                    <img src="scenario-city-walk.png" alt="Person using Guidexa in a busy city" class="w-full h-full object-cover">
                 </div>
+                <h4 class="text-2xl font-semibold mb-4">
+                    <span class="en-only">The Crowded Commute</span>
+                    <span class="ar-only">التنقل في الزحام</span>
+                </h4>
+                <p class="text-[#86868b] text-lg leading-relaxed">
+                    <span class="en-only">As you move through a station, Guidexa filters out static walls and focuses on moving obstacles. A soft pulse on your right shoulder tells you someone is passing by, allowing you to maintain your stride without a pause.</span>
+                    <span class="ar-only">بينما تتحرك عبر محطة، تقوم Guidexa بتصفية الجدران الثابتة وتركز على العوائق المتحركة. نبضة خفيفة على كتفك الأيمن تخبرك أن شخصًا يمر بجانبك، مما يتيح لك مواصلة خطواتك دون توقف.</span>
+                </p>
+            </div>
+
+            <div class="reveal delay-200">
+                <div class="aspect-square bg-[#f5f5f7] rounded-[40px] mb-8 overflow-hidden">
+                    <img src="scenario-hazard-detect.png" alt="Guidexa detecting a head-height hazard" class="w-full h-full object-cover">
+                </div>
+                <h4 class="text-2xl font-semibold mb-4">
+                    <span class="en-only">The Invisible Hazard</span>
+                    <span class="ar-only">الخطر غير المرئي</span>
+                </h4>
+                <p class="text-[#86868b] text-lg leading-relaxed">
+                    <span class="en-only">Traditional canes miss what's at chest height. Guidexa’s LiDAR "sees" the low-hanging tree branch or the open cabinet door, providing a high-intensity warning before contact occurs.</span>
+                    <span class="ar-only">تفوت العصي التقليدية ما هو على مستوى الصدر. "ترى" تقنية LiDAR في Guidexa الغصن المتدلي أو باب الخزانة المفتوح، وتقدم تحذيرًا عالي الشدة قبل حدوث الاصطدام.</span>
+                </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="impact" class="py-32 bg-white">
+<!-- Global Impact / SDGs -->
+<section id="impact" class="py-32 bg-white">
     <div class="max-w-[1024px] mx-auto px-6">
         <div class="reveal mb-20 text-center">
-            <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-[#6e6e73] mb-4">Global Impact</h2>
-            <h3 class="text-5xl font-bold tracking-tight">Our commitment to <br>the 2030 Agenda.</h3>
+            <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-[#6e6e73] mb-4">
+                <span class="en-only">Global Impact</span>
+                <span class="ar-only">التأثير العالمي</span>
+            </h2>
+            <h3 class="text-5xl font-bold tracking-tight">
+                <span class="en-only">Our commitment to<br>the 2030 Agenda.</span>
+                <span class="ar-only">التزامنا بـ<br>أجندة 2030.</span>
+            </h3>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -1014,13 +1371,20 @@
                     <div class="w-12 h-12 bg-[#10689D] rounded-lg flex items-center justify-center mb-8 shadow-lg">
                         <span class="text-white font-bold text-xl">9</span>
                     </div>
-                    <h4 class="text-2xl font-bold mb-4">Industry, Innovation, <br>& Infrastructure</h4>
+                    <h4 class="text-2xl font-bold mb-4">
+                        <span class="en-only">Industry, Innovation,<br>& Infrastructure</span>
+                        <span class="ar-only">الصناعة والابتكار<br>والبنية التحتية</span>
+                    </h4>
                     <p class="text-[#6e6e73] leading-relaxed text-lg">
-                        Guidexa is pioneering "Personal Infrastructure." By integrating Time-of-Flight (ToF) sensors into wearable tech, we are building resilient, inclusive innovation that allows the visually impaired to navigate modern urban environments as easily as anyone else.
+                        <span class="en-only">Guidexa is pioneering "Personal Infrastructure." By integrating Time-of-Flight (ToF) sensors into wearable tech, we are building resilient, inclusive innovation that allows the visually impaired to navigate modern urban environments as easily as anyone else.</span>
+                        <span class="ar-only">تُقدم Guidexa ريادة في "البنية التحتية الشخصية". من خلال دمج مستشعرات قياس الوقت للطيران (ToF) في التقنية القابلة للارتداء، نبني ابتكارًا مرنًا وشاملًا يتيح للأشخاص ذوي الإعاقة البصرية التنقل في البيئات الحضرية الحديثة بسهولة مثل أي شخص آخر.</span>
                     </p>
                 </div>
                 <div class="mt-10 pt-6 border-t border-gray-200">
-                    <p class="text-sm font-semibold text-[#10689D]">Target 9.5: Enhancing Scientific Research & Innovation</p>
+                    <p class="text-sm font-semibold text-[#10689D]">
+                        <span class="en-only">Target 9.5: Enhancing Scientific Research & Innovation</span>
+                        <span class="ar-only">الهدف 9.5: تعزيز البحث العلمي والابتكار</span>
+                    </p>
                 </div>
             </div>
 
@@ -1029,33 +1393,44 @@
                     <div class="w-12 h-12 bg-[#DD1367] rounded-lg flex items-center justify-center mb-8 shadow-lg">
                         <span class="text-white font-bold text-xl">10</span>
                     </div>
-                    <h4 class="text-2xl font-bold mb-4">Reduced <br>Inequalities</h4>
+                    <h4 class="text-2xl font-bold mb-4">
+                        <span class="en-only">Reduced<br>Inequalities</span>
+                        <span class="ar-only">تقليص<br>التفاوتات</span>
+                    </h4>
                     <p class="text-[#6e6e73] leading-relaxed text-lg">
-                        Inequality often starts with a lack of mobility. By providing an affordable, high-tech alternative to expensive guide dogs or limited canes, we are empowering 285 million people to participate fully in the workforce, education, and social life.
+                        <span class="en-only">Inequality often starts with a lack of mobility. By providing an affordable, high-tech alternative to expensive guide dogs or limited canes, we are empowering 285 million people to participate fully in the workforce, education, and social life.</span>
+                        <span class="ar-only">غالبًا ما يبدأ التفاوت بنقص التنقل. من خلال توفير بديل تقني عالي الجودة وبأسعار معقولة لكلاب الإرشاد الباهظة أو العصي المحدودة، نمكّن 285 مليون شخص من المشاركة الكاملة في سوق العمل والتعليم والحياة الاجتماعية.</span>
                     </p>
                 </div>
                 <div class="mt-10 pt-6 border-t border-gray-200">
-                    <p class="text-sm font-semibold text-[#DD1367]">Target 10.2: Promoting Social & Economic Inclusion</p>
+                    <p class="text-sm font-semibold text-[#DD1367]">
+                        <span class="en-only">Target 10.2: Promoting Social & Economic Inclusion</span>
+                        <span class="ar-only">الهدف 10.2: تعزيز الإدماج الاجتماعي والاقتصادي</span>
+                    </p>
                 </div>
             </div>
         </div>
 
         <div class="mt-16 text-center reveal">
             <p class="text-[24px] text-[#1d1d1f] font-medium italic max-w-2xl mx-auto leading-snug">
-               "Accessibility is not a feature; it's a fundamental human right. When we design for the edges, we often find better solutions for the center." — Satya Nadella, CEO of Microsoft
+                <span class="en-only">"Accessibility is not a feature; it's a fundamental human right. When we design for the edges, we often find better solutions for the center." — Satya Nadella, CEO of Microsoft</span>
+                <span class="ar-only">«الوصولية ليست ميزة؛ إنها حق أساسي من حقوق الإنسان. عندما نصمم للحالات الحدية، غالبًا ما نجد حلولًا أفضل للجميع.» — ساتيا ناديلا، الرئيس التنفيذي لمايكروسوفت</span>
             </p>
         </div>
     </div>
 </section>
 
+<!-- Our Values Section -->
 <section id="values" class="py-40 bg-[#f5f5f7] px-6 border-t border-gray-100">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal mb-16">
             <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
-                Our values lead the way.
+                <span class="en-only">Our values lead the way.</span>
+                <span class="ar-only">قيمنا ترسم الطريق.</span>
             </h2>
             <p class="text-[21px] md:text-[28px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
-                As students building technology for real people in real communities, we are guided by a few unchanging principles — because accessibility is not a side project, it's a promise.
+                <span class="en-only">As students building technology for real people in real communities, we are guided by a few unchanging principles — because accessibility is not a side project, it's a promise.</span>
+                <span class="ar-only">كطلاب نبني تقنية لأناس حقيقيين في مجتمعات حقيقية، نهتدي بمبادئ ثابتة لا تتغير — لأن الوصولية ليست مشروعًا جانبيًا، بل وعدًا.</span>
             </p>
         </div>
 
@@ -1067,9 +1442,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <h3 class="text-3xl font-semibold mb-4 text-center">Radical Independence</h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">
+                    <span class="en-only">Radical Independence</span>
+                    <span class="ar-only">الاستقلال الجذري</span>
+                </h3>
                 <p class="text-[#6e6e73] text-lg leading-relaxed text-center flex-grow">
-                    We engineer tools that don't just assist — they liberate. Every vibration, every pulse is designed so you move through the world on your own terms, hands free, head high, fear low.
+                    <span class="en-only">We engineer tools that don't just assist — they liberate. Every vibration, every pulse is designed so you move through the world on your own terms, hands free, head high, fear low.</span>
+                    <span class="ar-only">نصمم أدوات لا تساعد فقط — بل تحرر. كل اهتزاز، كل نبضة مصممة لتتحرك في العالم بشروطك أنت، يداك حرتان، رأسك مرفوع، خوفك منخفض.</span>
                 </p>
             </div>
 
@@ -1080,9 +1459,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
-                <h3 class="text-3xl font-semibold mb-4 text-center">Equity & Affordability</h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">
+                    <span class="en-only">Equity & Affordability</span>
+                    <span class="ar-only">العدالة والقدرة على التحمل</span>
+                </h3>
                 <p class="text-[#6e6e73] text-lg leading-relaxed text-center flex-grow">
-                    High-tech independence should never be a luxury. That's why our Smart Vest starts at $70 — because 285 million people worldwide deserve safe, dignified mobility, not just those who can pay thousands.
+                    <span class="en-only">High-tech independence should never be a luxury. That's why our Smart Vest starts at $70 — because 285 million people worldwide deserve safe, dignified mobility, not just those who can pay thousands.</span>
+                    <span class="ar-only">الاستقلال التقني العالي لا يجب أن يكون رفاهية. لهذا تبدأ سترتنا الذكية من 70 دولارًا — لأن 285 مليون شخص في العالم يستحقون تنقلًا آمنًا وكريمًا، وليس فقط من يستطيعون دفع آلاف الدولارات.</span>
                 </p>
             </div>
 
@@ -1093,9 +1476,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM6 5a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                 </div>
-                <h3 class="text-3xl font-semibold mb-4 text-center">Community First</h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">
+                    <span class="en-only">Community First</span>
+                    <span class="ar-only">المجتمع أولاً</span>
+                </h3>
                 <p class="text-[#6e6e73] text-lg leading-relaxed text-center flex-grow">
-                    We were born in Palestine classrooms and streets. Every partnership, every test walk, every story shared with us in Tulkarm, Ramallah, and beyond shapes what we build. This is not charity — it's co-creation.
+                    <span class="en-only">We were born in Palestine classrooms and streets. Every partnership, every test walk, every story shared with us in Tulkarm, Ramallah, and beyond shapes what we build. This is not charity — it's co-creation.</span>
+                    <span class="ar-only">وُلدنا في صفوف فلسطين وشوارعها. كل شراكة، كل تجربة مشي، كل قصة تُروى لنا في طولكرم ورام الله وخارجهما تشكل ما نبنيه. هذا ليس صدقة — إنه صناعة مشتركة.</span>
                 </p>
             </div>
 
@@ -1106,9 +1493,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
                 </div>
-                <h3 class="text-3xl font-semibold mb-4 text-center">Relentless Innovation with Integrity</h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">
+                    <span class="en-only">Relentless Innovation with Integrity</span>
+                    <span class="ar-only">الابتكار الدؤوب مع النزاهة</span>
+                </h3>
                 <p class="text-[#6e6e73] text-lg leading-relaxed text-center flex-grow">
-                    We borrow from autonomous cars and aerospace materials not to impress — but to deliver. Every line of code, every stitch, every update is honest, transparent, and built to last in the real world.
+                    <span class="en-only">We borrow from autonomous cars and aerospace materials not to impress — but to deliver. Every line of code, every stitch, every update is honest, transparent, and built to last in the real world.</span>
+                    <span class="ar-only">نستعير من السيارات ذاتية القيادة ومواد الفضاء ليس للإبهار — بل للتقديم. كل سطر كود، كل غرزة، كل تحديث صادق، شفاف، ومصمم ليدوم في العالم الحقيقي.</span>
                 </p>
             </div>
 
@@ -1119,33 +1510,47 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                 </div>
-                <h3 class="text-3xl font-semibold mb-4 text-center">Dignity in Every Detail</h3>
+                <h3 class="text-3xl font-semibold mb-4 text-center">
+                    <span class="en-only">Dignity in Every Detail</span>
+                    <span class="ar-only">الكرامة في كل تفصيل</span>
+                </h3>
                 <p class="text-[#6e6e73] text-lg leading-relaxed text-center flex-grow">
-                    It's unique design, No loud beeps. No visible "disability signal." No pity. Just quiet, powerful guidance that lets you be seen — and treated — as yourself, not your condition.
+                    <span class="en-only">It's unique design, No loud beeps. No visible "disability signal." No pity. Just quiet, powerful guidance that lets you be seen — and treated — as yourself, not your condition.</span>
+                    <span class="ar-only">تصميم فريد، بدون أصوات عالية. بدون إشارة مرئية للإعاقة. بدون شفقة. فقط توجيه هادئ وقوي يسمح لك أن تُرى — وتُعامل — كشخصك أنت، وليس كإعاقتك.</span>
                 </p>
             </div>
         </div>
 
         <div class="mt-16 text-center reveal">
             <p class="text-xl md:text-2xl font-medium text-[#1d1d1f] italic max-w-3xl mx-auto leading-relaxed">
-                “We don't build for 'users.' We build for friends, classmates, neighbors, and future versions of ourselves. Because when one of us moves freely, we all rise.”
+                <span class="en-only">“We don't build for 'users.' We build for friends, classmates, neighbors, and future versions of ourselves. Because when one of us moves freely, we all rise.”</span>
+                <span class="ar-only">«لا نبني لـ"مستخدمين". نبني لأصدقاء، زملاء دراسة، جيران، ونسخ مستقبلية من أنفسنا. لأنه عندما يتحرك أحدنا بحرية، نرتفع جميعًا.»</span>
             </p>
             <p class="mt-6 text-lg text-[#6e6e73]">
-                — The Guidexa Student Team
+                <span class="en-only">— The Guidexa Student Team</span>
+                <span class="ar-only">— فريق طلاب Guidexa</span>
             </p>
         </div>
     </div>
 </section>
 
+<!-- Track Banner -->
 <section class="py-24 bg-white">
     <div class="max-w-[1024px] mx-auto px-6">
         <div class="bento-card p-12 bg-[#f5f5f7] flex flex-col md:flex-row items-center justify-between gap-8 reveal">
             <div>
-                <h2 class="text-3xl font-bold tracking-tight mb-2">Track your Guidexa.</h2>
-                <p class="text-[#6e6e73] text-lg">Check your shipment status and estimated delivery date.</p>
+                <h2 class="text-3xl font-bold tracking-tight mb-2">
+                    <span class="en-only">Track your Guidexa.</span>
+                    <span class="ar-only">تتبع Guidexa الخاصة بك.</span>
+                </h2>
+                <p class="text-[#6e6e73] text-lg">
+                    <span class="en-only">Check your shipment status and estimated delivery date.</span>
+                    <span class="ar-only">تحقق من حالة شحنتك وتاريخ التسليم المتوقع.</span>
+                </p>
             </div>
             <a href="track.html" class="group bg-white border border-gray-200 px-8 py-4 rounded-full font-bold text-[#1d1d1f] hover:bg-black hover:text-white hover:border-black transition-all duration-300 flex items-center gap-3">
-                Go to Tracking
+                <span class="en-only">Go to Tracking</span>
+                <span class="ar-only">اذهب إلى التتبع</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -1154,17 +1559,21 @@
     </div>
 </section>
 
+<!-- Pre-order Section -->
 <section id="preorder" class="py-24 md:py-40 bg-[#f5f5f7] border-t border-gray-100">
     <div class="max-w-[1240px] mx-auto px-6">
         <div class="text-center mb-12 md:mb-16 reveal">
             <span class="inline-block bg-orange-100 text-orange-800 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
-                Limited Pre-order – Summer 2026 Delivery
+                <span class="en-only">Limited Pre-order – Summer 2026 Delivery</span>
+                <span class="ar-only">طلب مسبق محدود – التسليم صيف 2026</span>
             </span>
             <h2 class="text-[44px] md:text-[64px] font-semibold tracking-tight leading-tight">
-                Guidexa Vest
+                <span class="en-only">Guidexa Vest</span>
+                <span class="ar-only">سترة Guidexa</span>
             </h2>
             <p class="text-xl md:text-2xl text-[#6e6e73] mt-4 font-medium max-w-3xl mx-auto">
-                The smart wearable vest that detects obstacles and guides you safely — hands-free independence for the visually impaired.
+                <span class="en-only">The smart wearable vest that detects obstacles and guides you safely — hands-free independence for the visually impaired.</span>
+                <span class="ar-only">السترة الذكية القابلة للارتداء التي تكشف العوائق وترشدك بأمان — استقلالية بدون استخدام اليدين للأشخاص ذوي الإعاقة البصرية.</span>
             </p>
         </div>
 
@@ -1221,28 +1630,42 @@
                 <div class="bg-white p-8 md:p-10 rounded-3xl border border-gray-200 shadow-xl">
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-8">
                         <div>
-                            <h3 class="text-4xl md:text-5xl font-bold tracking-tight text-[#1d1d1f]">Guidexa Vest</h3>
-                            <p class="text-lg text-[#6e6e73] mt-1">Essential 360° haptic navigation vest</p>
+                            <h3 class="text-4xl md:text-5xl font-bold tracking-tight text-[#1d1d1f]">
+                                <span class="en-only">Guidexa Vest</span>
+                                <span class="ar-only">سترة Guidexa</span>
+                            </h3>
+                            <p class="text-lg text-[#6e6e73] mt-1">
+                                <span class="en-only">Essential 360° haptic navigation vest</span>
+                                <span class="ar-only">سترة التنقل اللمسي الأساسية 360 درجة</span>
+                            </p>
                         </div>
                         <div class="text-right">
                             <div class="text-5xl md:text-6xl font-extrabold text-[#0071e3]">$70</div>
                             <div class="text-base text-gray-500 line-through mt-1">$90</div>
-                            <div class="text-green-600 font-semibold mt-2 text-lg">Save 22% – Special Student Price</div>
+                            <div class="text-green-600 font-semibold mt-2 text-lg">
+                                <span class="en-only">Save 22% – Special Student Price</span>
+                                <span class="ar-only">وفر 22% – سعر خاص للطلاب</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="flex flex-wrap gap-6 mb-8 text-sm font-medium text-gray-600">
                         <span class="flex items-center gap-2">
-                            <span class="w-3 h-3 bg-green-500 rounded-full"></span> Pre-order – Ships Summer 2026
+                            <span class="w-3 h-3 bg-green-500 rounded-full"></span> 
+                            <span class="en-only">Pre-order – Ships Summer 2026</span>
+                            <span class="ar-only">طلب مسبق – الشحن صيف 2026</span>
                         </span>
-                        <span>✓ No subscription</span>
-                        <span>✓ Free updates</span>
-                        <span>✓ Secure checkout</span>
+                        <span>✓ <span class="en-only">No subscription</span><span class="ar-only">لا اشتراك</span></span>
+                        <span>✓ <span class="en-only">Free updates</span><span class="ar-only">تحديثات مجانية</span></span>
+                        <span>✓ <span class="en-only">Secure checkout</span><span class="ar-only">دفع آمن</span></span>
                     </div>
 
                     <form id="preorder-form" class="space-y-8">
                         <div>
-                            <label for="quantity" class="block text-base font-medium text-gray-800 mb-3">Quantity</label>
+                            <label for="quantity" class="block text-base font-medium text-gray-800 mb-3">
+                                <span class="en-only">Quantity</span>
+                                <span class="ar-only">الكمية</span>
+                            </label>
                             <div class="flex items-center border border-gray-300 rounded-2xl overflow-hidden shadow-sm bg-white max-w-[180px]">
                                 <button 
                                     type="button" 
@@ -1273,19 +1696,22 @@
                             type="submit" 
                             class="w-full bg-[#0071e3] text-white py-6 rounded-2xl font-bold text-xl hover:bg-[#0060c0] transition shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300/50 active:scale-98"
                         >
-                            Pre-order Now – $70
+                            <span class="en-only">Pre-order Now – $70</span>
+                            <span class="ar-only">اطلب مسبقًا الآن – 70 دولار</span>
                         </button>
 
                         <button 
                             type="button" 
                             class="w-full border-2 border-[#0071e3] text-[#0071e3] py-6 rounded-2xl font-bold text-xl hover:bg-[#0071e3] hover:text-white transition active:scale-98"
                         >
-                            Pre-order with Installments • ~$2.91/mo
+                            <span class="en-only">Pre-order with Installments • ~$2.91/mo</span>
+                            <span class="ar-only">اطلب مسبقًا بالتقسيط • ~2.91 دولار/شهر</span>
                         </button>
                     </form>
 
                     <div class="mt-8 text-center text-sm text-gray-600">
-                        Need help? <a href="https://wa.me/970597439818" class="text-[#0071e3] hover:underline font-medium">Contact us on WhatsApp</a>
+                        <span class="en-only">Need help? <a href="https://wa.me/970597439818" class="text-[#0071e3] hover:underline font-medium">Contact us on WhatsApp</a></span>
+                        <span class="ar-only">تحتاج مساعدة؟ <a href="https://wa.me/970597439818" class="text-[#0071e3] hover:underline font-medium">تواصل معنا عبر واتساب</a></span>
                     </div>
                 </div>
             </div>
@@ -1374,14 +1800,17 @@
     }
 </style>
 
+<!-- Why Choose Guidexa? -->
 <section id="why-buy" class="py-24 md:py-40 bg-white border-t border-gray-100">
     <div class="max-w-[1024px] mx-auto px-6">
         <div class="text-center reveal mb-16">
             <h2 class="text-[44px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
-                Why Choose Guidexa?
+                <span class="en-only">Why Choose Guidexa?</span>
+                <span class="ar-only">لماذا تختار Guidexa؟</span>
             </h2>
             <p class="text-xl md:text-2xl text-[#6e6e73] font-medium max-w-3xl mx-auto leading-relaxed">
-                Not just a device — a step toward real independence, dignity, and safety in daily life.
+                <span class="en-only">Not just a device — a step toward real independence, dignity, and safety in daily life.</span>
+                <span class="ar-only">ليس مجرد جهاز — بل خطوة نحو الاستقلال الحقيقي، الكرامة، والأمان في الحياة اليومية.</span>
             </p>
         </div>
 
@@ -1389,128 +1818,219 @@
             <!-- Reason 1 -->
             <div class="reveal bento-card p-10 flex flex-col h-full bg-gradient-to-br from-blue-50 to-white border border-blue-100">
                 <div class="text-5xl mb-6">🛡️</div>
-                <h3 class="text-3xl font-semibold mb-4">Safety at Head Height — Finally</h3>
+                <h3 class="text-3xl font-semibold mb-4">
+                    <span class="en-only">Safety at Head Height — Finally</span>
+                    <span class="ar-only">الأمان على مستوى الرأس — أخيرًا</span>
+                </h3>
                 <p class="text-lg text-[#6e6e73] leading-relaxed">
-                    Traditional canes only warn about ground obstacles. Guidexa detects branches, signs, open doors, and hanging wires up to 5 meters ahead — protecting your head and face in streets, markets, campuses, and alleys.
+                    <span class="en-only">Traditional canes only warn about ground obstacles. Guidexa detects branches, signs, open doors, and hanging wires up to 5 meters ahead — protecting your head and face in streets, markets, campuses, and alleys.</span>
+                    <span class="ar-only">العصي التقليدية تحذر فقط من العوائق الأرضية. Guidexa تكشف الأغصان، اللافتات، الأبواب المفتوحة، والأسلاك المعلقة حتى 5 أمتار أمامك — تحمي رأسك ووجهك في الشوارع، الأسواق، الحرم الجامعي، والزقاق.</span>
                 </p>
             </div>
 
             <!-- Reason 2 -->
             <div class="reveal bento-card p-10 flex flex-col h-full bg-gradient-to-br from-green-50 to-white border border-green-100 delay-100">
                 <div class="text-5xl mb-6">👐</div>
-                <h3 class="text-3xl font-semibold mb-4">Hands-Free Freedom</h3>
+                <h3 class="text-3xl font-semibold mb-4">
+                    <span class="en-only">Hands-Free Freedom</span>
+                    <span class="ar-only">حرية بدون استخدام اليدين</span>
+                </h3>
                 <p class="text-lg text-[#6e6e73] leading-relaxed">
-                    Carry bags, hold a child's hand, use your phone — all while staying aware. No more tying up one hand with a cane. Move naturally and confidently wherever you go.
+                    <span class="en-only">Carry bags, hold a child's hand, use your phone — all while staying aware. No more tying up one hand with a cane. Move naturally and confidently wherever you go.</span>
+                    <span class="ar-only">احمل الحقائب، امسك يد طفلك، استخدم هاتفك — كل ذلك مع بقائك واعيًا. لا حاجة بعد الآن لربط يد واحدة بالعصا. تحرك بطبيعية وثقة أينما ذهبت.</span>
                 </p>
             </div>
 
             <!-- Reason 3 -->
             <div class="reveal bento-card p-10 flex flex-col h-full bg-gradient-to-br from-purple-50 to-white border border-purple-100 delay-200">
                 <div class="text-5xl mb-6">👕</div>
-                <h3 class="text-3xl font-semibold mb-4">Discreet & Dignified</h3>
+                <h3 class="text-3xl font-semibold mb-4">
+                    <span class="en-only">Discreet & Dignified</span>
+                    <span class="ar-only">غير ملفت وكريم</span>
+                </h3>
                 <p class="text-lg text-[#6e6e73] leading-relaxed">
-                    Looks like a simple lightweight vest —  No bright lights, no loud sounds, no visible sign of impairment. Independence without announcing it.
+                    <span class="en-only">Looks like a simple lightweight vest — No bright lights, no loud sounds, no visible sign of impairment. Independence without announcing it.</span>
+                    <span class="ar-only">تبدو كسترة خفيفة بسيطة — لا أضواء ساطعة، لا أصوات عالية، لا إشارة مرئية للإعاقة. استقلالية دون الإعلان عنها.</span>
                 </p>
             </div>
 
             <!-- Reason 4 -->
             <div class="reveal bento-card p-10 flex flex-col h-full bg-gradient-to-br from-orange-50 to-white border border-orange-100">
                 <div class="text-5xl mb-6">🔋</div>
-                <h3 class="text-3xl font-semibold mb-4">All-Day Power & Comfort</h3>
+                <h3 class="text-3xl font-semibold mb-4">
+                    <span class="en-only">All-Day Power & Comfort</span>
+                    <span class="ar-only">طاقة وقدرة تحمل طوال اليوم</span>
+                </h3>
                 <p class="text-lg text-[#6e6e73] leading-relaxed">
-                    Up to 18 hours of use on one charge. Breathable aerospace mesh fabric — lightweight, sweat-resistant, comfortable even in warm Nablus summers. Fast USB-C charging.
+                    <span class="en-only">Up to 18 hours of use on one charge. Breathable aerospace mesh fabric — lightweight, sweat-resistant, comfortable even in warm Nablus summers. Fast USB-C charging.</span>
+                    <span class="ar-only">حتى 18 ساعة استخدام بشحنة واحدة. نسيج شبكي فضائي قابل للتنفس — خفيف الوزن، مقاوم للعرق، مريح حتى في صيف نابلس الحار. شحن سريع عبر USB-C.</span>
                 </p>
             </div>
 
             <!-- Reason 5 -->
             <div class="reveal bento-card p-10 flex flex-col h-full bg-gradient-to-br from-teal-50 to-white border border-teal-100 delay-100">
                 <div class="text-5xl mb-6">🇵🇸</div>
-                <h3 class="text-3xl font-semibold mb-4">Built by Students — For Our Community</h3>
+                <h3 class="text-3xl font-semibold mb-4">
+                    <span class="en-only">Built by Students — For Our Community</span>
+                    <span class="ar-only">صُنعت من قبل طلاب — لمجتمعنا</span>
+                </h3>
                 <p class="text-lg text-[#6e6e73] leading-relaxed">
-                    Created by young engineers right here in Palestine. Affordable price ($70), student discounts, local support in Tulkarm, and updates that improve with your feedback.
+                    <span class="en-only">Created by young engineers right here in Palestine. Affordable price ($70), student discounts, local support in Tulkarm, and updates that improve with your feedback.</span>
+                    <span class="ar-only">صُنعت من قبل مهندسين شباب هنا في فلسطين. سعر معقول (70 دولار)، خصومات للطلاب، دعم محلي في طولكرم، وتحديثات تتحسن مع تعليقاتكم.</span>
                 </p>
             </div>
 
             <!-- Reason 6 -->
             <div class="reveal bento-card p-10 flex flex-col h-full bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 delay-200">
                 <div class="text-5xl mb-6">❤️</div>
-                <h3 class="text-3xl font-semibold mb-4">Less Dependence, More Life</h3>
+                <h3 class="text-3xl font-semibold mb-4">
+                    <span class="en-only">Less Dependence, More Life</span>
+                    <span class="ar-only">اعتماد أقل، حياة أكثر</span>
+                </h3>
                 <p class="text-lg text-[#6e6e73] leading-relaxed">
-                    Walk to university, the market, or visit family without always needing someone by your side. Regain confidence, spontaneity, and privacy in movement — the freedom everyone deserves.
+                    <span class="en-only">Walk to university, the market, or visit family without always needing someone by your side. Regain confidence, spontaneity, and privacy in movement — the freedom everyone deserves.</span>
+                    <span class="ar-only">امشِ إلى الجامعة، السوق، أو زر العائلة دون الحاجة دائمًا لشخص بجانبك. استعِد الثقة، العفوية، والخصوصية في التنقل — الحرية التي يستحقها الجميع.</span>
                 </p>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Tech Specs -->
 <section id="specs" class="py-40 bg-white border-t border-gray-100">
-        <div class="max-w-[1024px] mx-auto px-6">
-            <h2 class="text-[40px] md:text-[56px] font-semibold tracking-tight mb-20">Tech Specs.</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
-                <div class="text-[21px] font-semibold">Vision & Sensing</div>
-                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
-                    <div>
-                        <h5 class="font-semibold text-gray-900 mb-2">VL53L1X ToF Sensor Array</h5>
-                        <p class="text-[#86868b] text-[15px] leading-relaxed">Four Solid-state pulse-coded ToF sensors with 5-meter range. 270° horizontal field of view.</p>
-                    </div>
-                    <div>
-                        <h5 class="font-semibold text-gray-900 mb-2">ESP-32 S3</h5>
-                        <p class="text-[#86868b] text-[15px] leading-relaxed">High-Quality Microcontroller capable of delivering accurate alerts</p>
-                    </div>
-                    <div>
-                        <h5 class="font-semibold text-gray-900 mb-2">Spatial Mapping</h5>
-                        <p class="text-[#86868b] text-[15px] leading-relaxed">Dedicated Neural Engine for real-time obstacle classification and trajectory prediction.</p>
-                    </div>
-                </div>
+    <div class="max-w-[1024px] mx-auto px-6">
+        <h2 class="text-[40px] md:text-[56px] font-semibold tracking-tight mb-20">
+            <span class="en-only">Tech Specs.</span>
+            <span class="ar-only">المواصفات التقنية.</span>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
+            <div class="text-[21px] font-semibold">
+                <span class="en-only">Vision & Sensing</span>
+                <span class="ar-only">الرؤية والاستشعار</span>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
-                <div class="text-[21px] font-semibold">Haptics & Feedback</div>
-                <div class="md:col-span-2 space-y-8">
-                    <div>
-                        <h5 class="font-semibold text-gray-900 mb-2">Guidexa Engine 1.0</h5>
-                        <p class="text-[#86868b] text-[15px] leading-relaxed">4 Linear Resonant Actuators (LRAs) positioned at high-density nerve points across the shoulders and chest. Provides variable-frequency directional pulses.</p>
-                    </div>
-                    <div>
-                        <h5 class="font-semibold text-gray-900 mb-2">Audio Integration</h5>
-                        <p class="text-[#86868b] text-[15px] leading-relaxed">Bluetooth 5.3 support for optional bone-conduction audio cues via compatible headsets.</p>
-                    </div>
+            <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-2">
+                        <span class="en-only">VL53L1X ToF Sensor Array</span>
+                        <span class="ar-only">مجموعة مستشعرات VL53L1X ToF</span>
+                    </h5>
+                    <p class="text-[#86868b] text-[15px] leading-relaxed">
+                        <span class="en-only">Four Solid-state pulse-coded ToF sensors with 5-meter range. 270° horizontal field of view.</span>
+                        <span class="ar-only">أربعة مستشعرات ToF ذات حالة صلبة مشفرة بنبضات، مدى 5 أمتار. مجال رؤية أفقي 270 درجة.</span>
+                    </p>
                 </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
-                <div class="text-[21px] font-semibold">Power and Battery</div>
-                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
-                    <div>
-                        <h5 class="font-semibold text-gray-900 mb-2">Daily Use</h5>
-                        <p class="text-[#86868b] text-[15px] leading-relaxed">Up to 18 hours of active scanning in High-Precision mode.</p>
-                    </div>
-                    <div>
-                        <h5 class="font-semibold text-gray-900 mb-2">Charging</h5>
-                        <p class="text-[#86868b] text-[15px] leading-relaxed">USB‑C Fast Charge. 0% to 50% in 30 minutes. Full charge in 90 minutes.</p>
-                    </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-2">
+                        <span class="en-only">ESP-32 S3</span>
+                        <span class="ar-only">ESP32-S3</span>
+                    </h5>
+                    <p class="text-[#86868b] text-[15px] leading-relaxed">
+                        <span class="en-only">High-Quality Microcontroller capable of delivering accurate alerts</span>
+                        <span class="ar-only">وحدة تحكم دقيقة عالية الجودة قادرة على تقديم تنبيهات دقيقة</span>
+                    </p>
                 </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
-                <div class="text-[21px] font-semibold">Design & Build</div>
-                <div class="md:col-span-2">
-                    <h5 class="font-semibold text-gray-900 mb-2">Aerospace Mesh</h5>
-                    <p class="text-[#86868b] text-[15px] leading-relaxed max-w-lg">Ultra-breathable, antimicrobial synthetic weave.</p>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-2">
+                        <span class="en-only">Spatial Mapping</span>
+                        <span class="ar-only">رسم خرائط مكانية</span>
+                    </h5>
+                    <p class="text-[#86868b] text-[15px] leading-relaxed">
+                        <span class="en-only">Dedicated Neural Engine for real-time obstacle classification and trajectory prediction.</span>
+                        <span class="ar-only">محرك عصبي مخصص لتصنيف العوائق في الوقت الفعلي والتنبؤ بالمسار.</span>
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="faq" class="py-40 bg-[#f5f5f7] px-6 border-t border-gray-100">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
+            <div class="text-[21px] font-semibold">
+                <span class="en-only">Haptics & Feedback</span>
+                <span class="ar-only">اللمس والتغذية الراجعة</span>
+            </div>
+            <div class="md:col-span-2 space-y-8">
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-2">
+                        <span class="en-only">Guidexa Engine 1.0</span>
+                        <span class="ar-only">محرك Guidexa 1.0</span>
+                    </h5>
+                    <p class="text-[#86868b] text-[15px] leading-relaxed">
+                        <span class="en-only">4 Linear Resonant Actuators (LRAs) positioned at high-density nerve points across the shoulders and chest. Provides variable-frequency directional pulses.</span>
+                        <span class="ar-only">4 محركات رنين خطية (LRAs) موضوعة في نقاط عصبية عالية الكثافة عبر الكتفين والصدر. توفر نبضات اتجاهية بتردد متغير.</span>
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-2">
+                        <span class="en-only">Audio Integration</span>
+                        <span class="ar-only">التكامل الصوتي</span>
+                    </h5>
+                    <p class="text-[#86868b] text-[15px] leading-relaxed">
+                        <span class="en-only">Bluetooth 5.3 support for optional bone-conduction audio cues via compatible headsets.</span>
+                        <span class="ar-only">دعم بلوتوث 5.3 لإشارات صوتية اختيارية عبر العظام باستخدام سماعات متوافقة.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
+            <div class="text-[21px] font-semibold">
+                <span class="en-only">Power and Battery</span>
+                <span class="ar-only">الطاقة والبطارية</span>
+            </div>
+            <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-2">
+                        <span class="en-only">Daily Use</span>
+                        <span class="ar-only">الاستخدام اليومي</span>
+                    </h5>
+                    <p class="text-[#86868b] text-[15px] leading-relaxed">
+                        <span class="en-only">Up to 18 hours of active scanning in High-Precision mode.</span>
+                        <span class="ar-only">حتى 18 ساعة من المسح النشط في وضع الدقة العالية.</span>
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-2">
+                        <span class="en-only">Charging</span>
+                        <span class="ar-only">الشحن</span>
+                    </h5>
+                    <p class="text-[#86868b] text-[15px] leading-relaxed">
+                        <span class="en-only">USB‑C Fast Charge. 0% to 50% in 30 minutes. Full charge in 90 minutes.</span>
+                        <span class="ar-only">شحن سريع USB-C. من 0% إلى 50% في 30 دقيقة. شحن كامل في 90 دقيقة.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-t border-gray-100 reveal">
+            <div class="text-[21px] font-semibold">
+                <span class="en-only">Design & Build</span>
+                <span class="ar-only">التصميم والبناء</span>
+            </div>
+            <div class="md:col-span-2">
+                <h5 class="font-semibold text-gray-900 mb-2">
+                    <span class="en-only">Aerospace Mesh</span>
+                    <span class="ar-only">شبكة فضائية</span>
+                </h5>
+                <p class="text-[#86868b] text-[15px] leading-relaxed max-w-lg">
+                    <span class="en-only">Ultra-breathable, antimicrobial synthetic weave.</span>
+                    <span class="ar-only">نسيج صناعي فائق التنفس ومضاد للميكروبات.</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-40 bg-[#f5f5f7] px-6 border-t border-gray-100">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal mb-16">
             <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
-                Frequently Asked Questions
+                <span class="en-only">Frequently Asked Questions</span>
+                <span class="ar-only">الأسئلة الشائعة</span>
             </h2>
             <p class="text-[21px] md:text-[28px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
-                Got questions about Guidexa? Here are the ones we hear most often from early testers and future users.
+                <span class="en-only">Got questions about Guidexa? Here are the ones we hear most often from early testers and future users.</span>
+                <span class="ar-only">لديك أسئلة عن Guidexa؟ إليك الأسئلة الأكثر شيوعًا من المختبرين الأوائل والمستخدمين المستقبليين.</span>
             </p>
         </div>
 
@@ -1521,13 +2041,17 @@
                     onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')"
                     class="w-full px-8 py-6 text-left flex justify-between items-center font-semibold text-lg hover:bg-gray-50 transition"
                 >
-                    <span>How long does the battery last on a full charge?</span>
+                    <span class="en-only">How long does the battery last on a full charge?</span>
+                    <span class="ar-only">كم تدوم البطارية بشحنة كاملة؟</span>
                     <svg class="w-6 h-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div class="hidden px-8 pb-6 text-[#6e6e73] leading-relaxed">
-                    <p>Up to 18 hours of active use in standard mode (scanning + haptic feedback). This covers a full day of classes, commuting, and errands. Fast USB-C charging gets you to 50% in 30 minutes and full in about 90 minutes. Low-battery warnings start with gentle pulses 30 minutes before shutdown.</p>
+                    <p>
+                        <span class="en-only">Up to 18 hours of active use in standard mode (scanning + haptic feedback). This covers a full day of classes, commuting, and errands. Fast USB-C charging gets you to 50% in 30 minutes and full in about 90 minutes. Low-battery warnings start with gentle pulses 30 minutes before shutdown.</span>
+                        <span class="ar-only">حتى 18 ساعة استخدام نشط في الوضع القياسي (مسح + تغذية لمسية). يغطي يومًا كاملاً من الدراسة، التنقل، والمهام. الشحن السريع عبر USB-C يصل إلى 50% في 30 دقيقة وكامل في حوالي 90 دقيقة. تحذيرات انخفاض البطارية تبدأ بنبضات لطيفة قبل 30 دقيقة من الإغلاق.</span>
+                    </p>
                 </div>
             </div>
 
@@ -1537,13 +2061,17 @@
                     onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')"
                     class="w-full px-8 py-6 text-left flex justify-between items-center font-semibold text-lg hover:bg-gray-50 transition"
                 >
-                    <span>Does Guidexa work in rain, dust, or extreme weather?</span>
+                    <span class="en-only">Does Guidexa work in rain, dust, or extreme weather?</span>
+                    <span class="ar-only">هل تعمل Guidexa في المطر، الغبار، أو الطقس الشديد؟</span>
                     <svg class="w-6 h-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div class="hidden px-8 pb-6 text-[#6e6e73] leading-relaxed">
-                    <p>The vest is water-resistant (aerospace mesh fabric + sealed sensors), so light rain or splashes are fine. Avoid heavy downpours or submersion. ToF sensors perform best in clear conditions; very heavy rain, fog, or mirrors may slightly reduce range — but haptic warnings remain reliable for close hazards. We recommend testing in your local weather.</p>
+                    <p>
+                        <span class="en-only">The vest is water-resistant (aerospace mesh fabric + sealed sensors), so light rain or splashes are fine. Avoid heavy downpours or submersion. ToF sensors perform best in clear conditions; very heavy rain, fog, or mirrors may slightly reduce range — but haptic warnings remain reliable for close hazards. We recommend testing in your local weather.</span>
+                        <span class="ar-only">السترة مقاومة للماء (نسيج شبكي فضائي + مستشعرات محكمة الإغلاق)، لذا المطر الخفيف أو الرذاذ جيد. تجنب الأمطار الغزيرة أو الغمر. مستشعرات ToF تعمل بشكل أفضل في الظروف الواضحة؛ المطر الشديد جدًا، الضباب، أو المرايا قد تقلل المدى قليلاً — لكن التحذيرات اللمسية تبقى موثوقة للمخاطر القريبة. نوصي بتجربتها في طقسك المحلي.</span>
+                    </p>
                 </div>
             </div>
 
@@ -1553,13 +2081,17 @@
                     onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')"
                     class="w-full px-8 py-6 text-left flex justify-between items-center font-semibold text-lg hover:bg-gray-50 transition"
                 >
-                    <span>Can I use Guidexa together with my white cane or guide dog?</span>
+                    <span class="en-only">Can I use Guidexa together with my white cane or guide dog?</span>
+                    <span class="ar-only">هل يمكنني استخدام Guidexa مع عصاي البيضاء أو كلب الإرشاد؟</span>
                     <svg class="w-6 h-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div class="hidden px-8 pb-6 text-[#6e6e73] leading-relaxed">
-                    <p>Yes — many users do! Guidexa is hands-free and complements traditional aids: the vest handles head/chest-height hazards while your cane covers ground-level details or your guide dog handles route guidance. It's not a replacement — it's an extra layer of awareness for safer, more confident mobility.</p>
+                    <p>
+                        <span class="en-only">Yes — many users do! Guidexa is hands-free and complements traditional aids: the vest handles head/chest-height hazards while your cane covers ground-level details or your guide dog handles route guidance. It's not a replacement — it's an extra layer of awareness for safer, more confident mobility.</span>
+                        <span class="ar-only">نعم — يفعل ذلك الكثيرون! Guidexa بدون استخدام اليدين وتكمل المساعدات التقليدية: السترة تتعامل مع المخاطر على مستوى الرأس/الصدر بينما عصاك تغطي التفاصيل الأرضية أو كلب الإرشاد يتولى توجيه المسار. ليست بديلاً — بل طبقة إضافية من الوعي لتنقل أكثر أمانًا وثقة.</span>
+                    </p>
                 </div>
             </div>
 
@@ -1569,13 +2101,17 @@
                     onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')"
                     class="w-full px-8 py-6 text-left flex justify-between items-center font-semibold text-lg hover:bg-gray-50 transition"
                 >
-                    <span>Is Guidexa noticeable or discreet under clothing?</span>
+                    <span class="en-only">Is Guidexa noticeable or discreet under clothing?</span>
+                    <span class="ar-only">هل تُلاحظ Guidexa أم أنها غير ملفتة تحت الملابس؟</span>
                     <svg class="w-6 h-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div class="hidden px-8 pb-6 text-[#6e6e73] leading-relaxed">
-                    <p>Very discreet. The lightweight aerospace mesh vest is breathable, thin, and designed to disappear under a jacket, hoodie, or shirt. No loud sounds, no visible lights — just gentle haptic pulses on your chest and shoulders. Dignity and independence come first.</p>
+                    <p>
+                        <span class="en-only">Very discreet. The lightweight aerospace mesh vest is breathable, thin, and designed to disappear under a jacket, hoodie, or shirt. No loud sounds, no visible lights — just gentle haptic pulses on your chest and shoulders. Dignity and independence come first.</span>
+                        <span class="ar-only">غير ملفتة جدًا. السترة الشبكية الفضائية خفيفة الوزن، قابلة للتنفس، رقيقة، ومصممة لتختفي تحت جاكيت، هودي، أو قميص. لا أصوات عالية، لا أضواء مرئية — فقط نبضات لمس لطيفة على الصدر والكتفين. الكرامة والاستقلالية تأتي أولاً.</span>
+                    </p>
                 </div>
             </div>
 
@@ -1585,13 +2121,17 @@
                     onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')"
                     class="w-full px-8 py-6 text-left flex justify-between items-center font-semibold text-lg hover:bg-gray-50 transition"
                 >
-                    <span>Does it work indoors and outdoors? What about crowded places?</span>
+                    <span class="en-only">Does it work indoors and outdoors? What about crowded places?</span>
+                    <span class="ar-only">هل تعمل داخليًا وخارجيًا؟ ماذا عن الأماكن المزدحمة؟</span>
                     <svg class="w-6 h-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div class="hidden px-8 pb-6 text-[#6e6e73] leading-relaxed">
-                    <p>Yes — both. ToF sensors excel in varied lighting (indoor hallways, outdoor streets, markets). In crowds, it prioritizes fast-moving obstacles with stronger pulses. Adjustable intensity lets you dial it down in quiet places or up in busy ones like bus stops or souks.</p>
+                    <p>
+                        <span class="en-only">Yes — both. ToF sensors excel in varied lighting (indoor hallways, outdoor streets, markets). In crowds, it prioritizes fast-moving obstacles with stronger pulses. Adjustable intensity lets you dial it down in quiet places or up in busy ones like bus stops or souks.</span>
+                        <span class="ar-only">نعم — كلاهما. مستشعرات ToF تتفوق في الإضاءة المتنوعة (الممرات الداخلية، الشوارع الخارجية، الأسواق). في الزحام، تعطي أولوية للعوائق المتحركة بسرعة بنبضات أقوى. الشدة القابلة للتعديل تتيح لك خفضها في الأماكن الهادئة أو رفعها في الأماكن المزدحمة مثل مواقف الحافلات أو الأسواق.</span>
+                    </p>
                 </div>
             </div>
 
@@ -1601,13 +2141,17 @@
                     onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')"
                     class="w-full px-8 py-6 text-left flex justify-between items-center font-semibold text-lg hover:bg-gray-50 transition"
                 >
-                    <span>What happens if the battery dies or a sensor fails?</span>
+                    <span class="en-only">What happens if the battery dies or a sensor fails?</span>
+                    <span class="ar-only">ماذا يحدث إذا نفدت البطارية أو فشل مستشعر؟</span>
                     <svg class="w-6 h-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div class="hidden px-8 pb-6 text-[#6e6e73] leading-relaxed">
-                    <p>Built-in fail-safes: Low battery triggers gradual haptic warnings 30 minutes early. If a sensor fails, it switches to safe mode (stronger center pulses + reduced scanning) and alerts you via distinct vibration pattern. It's engineered to degrade gracefully — never leaves you without basic awareness.</p>
+                    <p>
+                        <span class="en-only">Built-in fail-safes: Low battery triggers gradual haptic warnings 30 minutes early. If a sensor fails, it switches to safe mode (stronger center pulses + reduced scanning) and alerts you via distinct vibration pattern. It's engineered to degrade gracefully — never leaves you without basic awareness.</span>
+                        <span class="ar-only">آليات أمان مدمجة: انخفاض البطارية يُفعّل تحذيرات لمسية تدريجية قبل 30 دقيقة. إذا فشل مستشعر، ينتقل إلى الوضع الآمن (نبضات مركزية أقوى + مسح مخفض) وينبهك بنمط اهتزاز مميز. مصممة للتدهور بأمان — لا تتركك أبدًا بدون وعي أساسي.</span>
+                    </p>
                 </div>
             </div>
 
@@ -1617,13 +2161,17 @@
                     onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')"
                     class="w-full px-8 py-6 text-left flex justify-between items-center font-semibold text-lg hover:bg-gray-50 transition"
                 >
-                    <span>How much does it cost, and is there a subscription?</span>
+                    <span class="en-only">How much does it cost, and is there a subscription?</span>
+                    <span class="ar-only">كم سعرها، وهل هناك اشتراك؟</span>
                     <svg class="w-6 h-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div class="hidden px-8 pb-6 text-[#6e6e73] leading-relaxed">
-                    <p>Guidexa One is $70 (one-time purchase) — no monthly fees, no subscriptions. Lifetime OTA software updates keep it improving. Student discounts available in Palestine and partner regions. Pro version (advanced features) coming later at higher price.</p>
+                    <p>
+                        <span class="en-only">Guidexa One is $70 (one-time purchase) — no monthly fees, no subscriptions. Lifetime OTA software updates keep it improving. Student discounts available in Palestine and partner regions. Pro version (advanced features) coming later at higher price.</span>
+                        <span class="ar-only">Guidexa One بسعر 70 دولار (شراء لمرة واحدة) — لا رسوم شهرية، لا اشتراكات. تحديثات برمجية مدى الحياة عبر الهواء تحافظ على تحسينها. خصومات طلابية متاحة في فلسطين والمناطق الشريكة. النسخة الاحترافية (ميزات متقدمة) قادمة لاحقًا بسعر أعلى.</span>
+                    </p>
                 </div>
             </div>
 
@@ -1633,23 +2181,29 @@
                     onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')"
                     class="w-full px-8 py-6 text-left flex justify-between items-center font-semibold text-lg hover:bg-gray-50 transition"
                 >
-                    <span>How do I get started or get support?</span>
+                    <span class="en-only">How do I get started or get support?</span>
+                    <span class="ar-only">كيف أبدأ أو أحصل على الدعم؟</span>
                     <svg class="w-6 h-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
                 <div class="hidden px-8 pb-6 text-[#6e6e73] leading-relaxed">
-                    <p>Pre-order via the site. When it ships (Summer 2026), you'll get a quick-start guide + video tutorials. Local support in Tulkarm/Nablus through our education and health partnerships. Questions? Message us on WhatsApp at +970 597 439 818 — we're students too, and we're here to help.</p>
+                    <p>
+                        <span class="en-only">Pre-order via the site. When it ships (Summer 2026), you'll get a quick-start guide + video tutorials. Local support in Tulkarm/Nablus through our education and health partnerships. Questions? Message us on WhatsApp at +970 597 439 818 — we're students too, and we're here to help.</span>
+                        <span class="ar-only">اطلب مسبقًا عبر الموقع. عند الشحن (صيف 2026)، ستحصل على دليل بدء سريع + دروس فيديو. دعم محلي في طولكرم/نابلس من خلال شراكاتنا التعليمية والصحية. أسئلة؟ راسلنا على واتساب على +970 597 439 818 — نحن طلاب أيضًا وهنا للمساعدة.</span>
+                    </p>
                 </div>
             </div>
         </div>
 
         <div class="text-center reveal mt-16">
             <p class="text-lg text-[#6e6e73] mb-6">
-                Still have a question? We're happy to answer.
+                <span class="en-only">Still have a question? We're happy to answer.</span>
+                <span class="ar-only">ما زالت لديك أسئلة؟ يسعدنا الإجابة.</span>
             </p>
             <a href="https://wa.me/970597439818" target="_blank" class="inline-block bg-[#0071e3] text-white px-10 py-4 rounded-full font-semibold text-lg hover:bg-[#0077ed] transition">
-                Contact Us on WhatsApp
+                <span class="en-only">Contact Us on WhatsApp</span>
+                <span class="ar-only">تواصل معنا عبر واتساب</span>
             </a>
         </div>
     </div>
@@ -1664,42 +2218,59 @@ document.querySelectorAll('#faq button').forEach(btn => {
     });
 });
 </script>
-
-    <section id="about" class="py-40 bg-white border-t border-gray-100">
-        <div class="max-w-[1024px] mx-auto px-6">
-            <div class="flex flex-col md:flex-row gap-20 items-center">
-                <div class="flex-1 reveal">
-                    <span class="text-orange-600 font-bold text-[14px] uppercase tracking-widest">The Student Mission</span>
-                    <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mt-6">Built for impact. <br>Not for profit.</h2>
-                    <p class="text-[21px] text-[#86868b] mt-8 leading-relaxed font-medium">
-                        Guidexa is a student-founded company dedicated to engineering radical accessibility. We believe that independence is a human right, and technology is the bridge to achieving it.
-                    </p>
-                 <a href="team.html" class="inline-block mt-10 text-[#0066cc] text-xl font-medium hover:underline transition">
-    Meet our student team >
-</a>
+<!-- About / The Student Mission -->
+<section id="about" class="py-40 bg-white border-t border-gray-100">
+    <div class="max-w-[1024px] mx-auto px-6">
+        <div class="flex flex-col md:flex-row gap-20 items-center">
+            <div class="flex-1 reveal">
+                <span class="text-orange-600 font-bold text-[14px] uppercase tracking-widest">
+                    <span class="en-only">The Student Mission</span>
+                    <span class="ar-only">المهمة الطلابية</span>
+                </span>
+                <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mt-6">
+                    <span class="en-only">Built for impact.<br>Not for profit.</span>
+                    <span class="ar-only">صُنعت للتأثير.<br>وليس للربح.</span>
+                </h2>
+                <p class="text-[21px] text-[#86868b] mt-8 leading-relaxed font-medium">
+                    <span class="en-only">Guidexa is a student-founded company dedicated to engineering radical accessibility. We believe that independence is a human right, and technology is the bridge to achieving it.</span>
+                    <span class="ar-only">Guidexa شركة أسسها طلاب ومكرسة لتصميم وصولية جذرية. نؤمن أن الاستقلال حق إنساني، والتكنولوجيا هي الجسر لتحقيقه.</span>
+                </p>
+                <a href="team.html" class="inline-block mt-10 text-[#0066cc] text-xl font-medium hover:underline transition">
+                    <span class="en-only">Meet our student team ></span>
+                    <span class="ar-only">تعرف على فريقنا الطلابي ></span>
+                </a>
+            </div>
+            <div class="flex-1 grid grid-cols-2 gap-4 reveal">
+                <div class="aspect-square bg-[#f5f5f7] rounded-3xl p-8 flex flex-col justify-end">
+                    <span class="text-4xl font-bold">19</span>
+                    <span class="text-[11px] text-gray-500 font-bold uppercase tracking-widest mt-2">
+                        <span class="en-only">Engineers</span>
+                        <span class="ar-only">مهندسين</span>
+                    </span>
                 </div>
-                <div class="flex-1 grid grid-cols-2 gap-4 reveal">
-                    <div class="aspect-square bg-[#f5f5f7] rounded-3xl p-8 flex flex-col justify-end">
-                        <span class="text-4xl font-bold">19</span>
-                        <span class="text-[11px] text-gray-500 font-bold uppercase tracking-widest mt-2">Engineers</span>
-                    </div>
-                    <div class="aspect-square bg-black text-white rounded-3xl p-8 flex flex-col justify-end">
-                        <span class="text-4xl font-bold">01</span>
-                        <span class="text-[11px] text-gray-400 font-bold uppercase tracking-widest mt-2">Vision</span>
-                    </div>
+                <div class="aspect-square bg-black text-white rounded-3xl p-8 flex flex-col justify-end">
+                    <span class="text-4xl font-bold">01</span>
+                    <span class="text-[11px] text-gray-400 font-bold uppercase tracking-widest mt-2">
+                        <span class="en-only">Vision</span>
+                        <span class="ar-only">رؤية</span>
+                    </span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="partner-with-us" class="py-40 bg-[#f5f5f7] px-6 border-t border-gray-100">
+<!-- Partner With Guidexa -->
+<section id="partner-with-us" class="py-40 bg-[#f5f5f7] px-6 border-t border-gray-100">
     <div class="max-w-[1024px] mx-auto">
         <div class="text-center reveal mb-16">
             <h2 class="text-[48px] md:text-[64px] font-semibold tracking-tight leading-tight mb-6">
-                Partner With Guidexa
+                <span class="en-only">Partner With Guidexa</span>
+                <span class="ar-only">اشترك مع Guidexa</span>
             </h2>
             <p class="text-[21px] md:text-[28px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
-                Scale independence across communities, schools, health programs, and organizations. As a student-led initiative from Palestine, we're ready to collaborate — from pilot distributions to bulk deployments and joint awareness efforts.
+                <span class="en-only">Scale independence across communities, schools, health programs, and organizations. As a student-led initiative from Palestine, we're ready to collaborate — from pilot distributions to bulk deployments and joint awareness efforts.</span>
+                <span class="ar-only">وسّع الاستقلال عبر المجتمعات، المدارس، برامج الصحة والمنظمات. كمبادرة يقودها طلاب من فلسطين، نحن جاهزون للتعاون — من توزيعات تجريبية إلى نشرات كبيرة وحملات توعية مشتركة.</span>
             </p>
         </div>
 
@@ -1707,26 +2278,36 @@ document.querySelectorAll('#faq button').forEach(btn => {
             <!-- Partnership Type 1: NGOs & Blindness Organizations -->
             <div class="reveal bento-card overflow-hidden flex flex-col h-full border border-gray-200 bg-white">
                 <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-3xl font-semibold mb-4 text-center">NGOs & Blindness Associations</h3>
+                    <h3 class="text-3xl font-semibold mb-4 text-center">
+                        <span class="en-only">NGOs & Blindness Associations</span>
+                        <span class="ar-only">المنظمات غير الحكومية وجمعيات المكفوفين</span>
+                    </h3>
                     <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                        Integrate Guidexa into rehabilitation, training, and independence programs.
+                        <span class="en-only">Integrate Guidexa into rehabilitation, training, and independence programs.</span>
+                        <span class="ar-only">دمج Guidexa في برامج التأهيل والتدريب والاستقلال.</span>
                     </p>
                     <ul class="mt-6 space-y-3 text-lg">
                         <li class="flex items-start">
                             <span class="text-blue-600 font-bold mr-3">✓</span>
-                            Discounted / donated units for members and clients
+                            <span class="en-only">Discounted / donated units for members and clients</span>
+                            <span class="ar-only">وحدات مخفضة / متبرع بها للأعضاء والمستفيدين</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-blue-600 font-bold mr-3">✓</span>
-                            Co-branded workshops and user training sessions
+                            <span class="en-only">Co-branded workshops and user training sessions</span>
+                            <span class="ar-only">ورش عمل مشتركة العلامة وجلسات تدريب المستخدمين</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-blue-600 font-bold mr-3">✓</span>
-                            Anonymized impact data to support your funding reports
+                            <span class="en-only">Anonymized impact data to support your funding reports</span>
+                            <span class="ar-only">بيانات تأثير مجهولة المصدر لدعم تقارير التمويل الخاصة بكم</span>
                         </li>
                     </ul>
                     <div class="mt-8 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-sm font-semibold text-blue-600">Empowering organizations that already serve the visually impaired.</p>
+                        <p class="text-sm font-semibold text-blue-600">
+                            <span class="en-only">Empowering organizations that already serve the visually impaired.</span>
+                            <span class="ar-only">تمكين المنظمات التي تخدم ذوي الإعاقة البصرية بالفعل.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1734,26 +2315,36 @@ document.querySelectorAll('#faq button').forEach(btn => {
             <!-- Partnership Type 2: Governments & Ministries -->
             <div class="reveal bento-card overflow-hidden flex flex-col h-full border border-gray-200 bg-white delay-100">
                 <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-3xl font-semibold mb-4 text-center">Governments & Ministries</h3>
+                    <h3 class="text-3xl font-semibold mb-4 text-center">
+                        <span class="en-only">Governments & Ministries</span>
+                        <span class="ar-only">الحكومات والوزارات</span>
+                    </h3>
                     <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                        Support national accessibility goals, education inclusion, and community safety initiatives.
+                        <span class="en-only">Support national accessibility goals, education inclusion, and community safety initiatives.</span>
+                        <span class="ar-only">دعم الأهداف الوطنية للوصولية، إدراج التعليم، ومبادرات سلامة المجتمع.</span>
                     </p>
                     <ul class="mt-6 space-y-3 text-lg">
                         <li class="flex items-start">
                             <span class="text-green-600 font-bold mr-3">✓</span>
-                            Bulk procurement for schools, health centers, and public programs
+                            <span class="en-only">Bulk procurement for schools, health centers, and public programs</span>
+                            <span class="ar-only">الشراء بالجملة للمدارس، مراكز الصحة، والبرامج العامة</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-green-600 font-bold mr-3">✓</span>
-                            Pilot programs with evaluation and feedback loops
+                            <span class="en-only">Pilot programs with evaluation and feedback loops</span>
+                            <span class="ar-only">برامج تجريبية مع حلقات تقييم وتغذية راجعة</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-green-600 font-bold mr-3">✓</span>
-                            Alignment with SDGs 9 (Innovation) & 10 (Reduced Inequalities)
+                            <span class="en-only">Alignment with SDGs 9 (Innovation) & 10 (Reduced Inequalities)</span>
+                            <span class="ar-only">التوافق مع أهداف التنمية المستدامة 9 (الابتكار) و10 (تقليص التفاوتات)</span>
                         </li>
                     </ul>
                     <div class="mt-8 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-sm font-semibold text-green-600">Building inclusive infrastructure — one vest at a time.</p>
+                        <p class="text-sm font-semibold text-green-600">
+                            <span class="en-only">Building inclusive infrastructure — one vest at a time.</span>
+                            <span class="ar-only">بناء بنية تحتية شاملة — سترة واحدة في كل مرة.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1761,26 +2352,36 @@ document.querySelectorAll('#faq button').forEach(btn => {
             <!-- Partnership Type 3: Corporates & Donors -->
             <div class="reveal bento-card overflow-hidden flex flex-col h-full border border-gray-200 bg-white delay-200">
                 <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-3xl font-semibold mb-4 text-center">Corporates & Impact Donors</h3>
+                    <h3 class="text-3xl font-semibold mb-4 text-center">
+                        <span class="en-only">Corporates & Impact Donors</span>
+                        <span class="ar-only">الشركات والمتبرعون بالتأثير</span>
+                    </h3>
                     <p class="text-[#6e6e73] text-lg leading-relaxed mb-6 text-center">
-                        Sponsor distributions, fund R&D, or create branded impact programs.
+                        <span class="en-only">Sponsor distributions, fund R&D, or create branded impact programs.</span>
+                        <span class="ar-only">رعاية التوزيعات، تمويل البحث والتطوير، أو إنشاء برامج تأثير بعلامة تجارية.</span>
                     </p>
                     <ul class="mt-6 space-y-3 text-lg">
                         <li class="flex items-start">
                             <span class="text-purple-600 font-bold mr-3">✓</span>
-                            CSR-aligned bulk donations to underserved communities
+                            <span class="en-only">CSR-aligned bulk donations to underserved communities</span>
+                            <span class="ar-only">تبرعات جملة متوافقة مع المسؤولية الاجتماعية للمجتمعات المحرومة</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-purple-600 font-bold mr-3">✓</span>
-                            Co-marketing: feature Guidexa in your accessibility story
+                            <span class="en-only">Co-marketing: feature Guidexa in your accessibility story</span>
+                            <span class="ar-only">التسويق المشترك: إبراز Guidexa في قصة وصوليتكم</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-purple-600 font-bold mr-3">✓</span>
-                            Naming rights for regional pilots or features (e.g. "Powered by [Your Company]")
+                            <span class="en-only">Naming rights for regional pilots or features (e.g. "Powered by [Your Company]")</span>
+                            <span class="ar-only">حقوق التسمية للتجارب الإقليمية أو الميزات (مثل "مدعومة من [شركتكم]")</span>
                         </li>
                     </ul>
                     <div class="mt-8 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-sm font-semibold text-purple-600">Turn corporate impact into real independence for thousands.</p>
+                        <p class="text-sm font-semibold text-purple-600">
+                            <span class="en-only">Turn corporate impact into real independence for thousands.</span>
+                            <span class="ar-only">حوّل التأثير الشركاتي إلى استقلالية حقيقية لآلاف الأشخاص.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1788,47 +2389,74 @@ document.querySelectorAll('#faq button').forEach(btn => {
 
         <div class="mt-20 text-center reveal">
             <p class="text-2xl font-medium text-[#1d1d1f] mb-8 max-w-3xl mx-auto leading-relaxed">
-                “Partnerships turn products into population-level change. Let's bring affordable, dignified mobility to every corner of Palestine — and the Arab world.”
+                <span class="en-only">“Partnerships turn products into population-level change. Let's bring affordable, dignified mobility to every corner of Palestine — and the Arab world.”</span>
+                <span class="ar-only">«الشراكات تحول المنتجات إلى تغيير على مستوى السكان. دعونا نحمل التنقل الميسور والكريم إلى كل ركن في فلسطين — والعالم العربي.»</span>
             </p>
             <p class="text-lg text-[#6e6e73] mb-10">
-                — The Guidexa Student Team
+                <span class="en-only">— The Guidexa Student Team</span>
+                <span class="ar-only">— فريق طلاب Guidexa</span>
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-6">
                 <a href="https://wa.me/970597439818?text=Hi%20Guidexa%20team!%20I'm%20interested%20in%20partnership%20opportunities%20for%20[your%20organization/type].%20Can%20we%20discuss%20pilots,%20bulk%20pricing,%20or%20donations?" 
                    target="_blank" 
                    class="inline-block bg-[#0071e3] text-white px-10 py-5 rounded-full font-semibold text-xl hover:bg-[#0077ed] transition shadow-lg">
-                    Start a Partnership Conversation
+                    <span class="en-only">Start a Partnership Conversation</span>
+                    <span class="ar-only">ابدأ محادثة شراكة</span>
                 </a>
                 <a href="impact.pdf" class="inline-block border border-[#0071e3] text-[#0071e3] px-10 py-5 rounded-full font-semibold text-xl hover:bg-[#0071e3] hover:text-white transition">
-                    Download Partnership Info (PDF)
+                    <span class="en-only">Download Partnership Info (PDF)</span>
+                    <span class="ar-only">تحميل معلومات الشراكة (PDF)</span>
                 </a>
             </div>
 
             <p class="mt-8 text-sm text-[#86868b]">
-                WhatsApp: +970 597 439 818 | We usually respond within hours.
+                <span class="en-only">WhatsApp: +970 597 439 818 | We usually respond within hours.</span>
+                <span class="ar-only">واتساب: +970 597 439 818 | نرد عادة خلال ساعات.</span>
             </p>
         </div>
     </div>
 </section>
 
-    <footer class="bg-[#f5f5f7] pt-20 pb-12 px-6">
-        <div class="max-w-[1024px] mx-auto">
-            <div class="text-[12px] text-[#6e6e73] leading-relaxed space-y-4 pb-8 border-b border-gray-300">
-                <p>1. 10-meter detection range is optimal in indoor environments. External factors like heavy rain or mirror surfaces may affect LiDAR accuracy.</p>
-                <p>2. Battery life claim based on vibration level 2 and LiDAR scanning at 5Hz. Actual results will vary.</p>
-                <p>Guidexa One is not a medical device. It is an assistive tool intended to augment traditional mobility aids.</p>
-            </div>
-            <div class="flex flex-col md:flex-row justify-between items-center mt-8 text-[12px] text-[#6e6e73]">
-                <p>Copyright © 2026 Guidexa Student Co. All rights reserved.</p>
-                <div class="flex space-x-6">
-                <a href="legal.html" class="hover:underline hover:text-black">Privacy Policy</a>
-                <a href="legal.html" class="hover:underline hover:text-black">Terms of Sale</a>
-                <a href="legal.html" class="hover:underline hover:text-black">Sales Policy</a>
-            </div>
+<!-- Footer -->
+<footer class="bg-[#f5f5f7] pt-20 pb-12 px-6">
+    <div class="max-w-[1024px] mx-auto">
+        <div class="text-[12px] text-[#6e6e73] leading-relaxed space-y-4 pb-8 border-b border-gray-300">
+            <p>
+                <span class="en-only">1. 10-meter detection range is optimal in indoor environments. External factors like heavy rain or mirror surfaces may affect LiDAR accuracy.</span>
+                <span class="ar-only">1. مدى الكشف 10 أمتار مثالي في البيئات الداخلية. عوامل خارجية مثل المطر الغزير أو الأسطح العاكسة قد تؤثر على دقة LiDAR.</span>
+            </p>
+            <p>
+                <span class="en-only">2. Battery life claim based on vibration level 2 and LiDAR scanning at 5Hz. Actual results will vary.</span>
+                <span class="ar-only">2. ادعاء عمر البطارية يعتمد على مستوى الاهتزاز 2 ومسح LiDAR بـ5 هرتز. النتائج الفعلية قد تختلف.</span>
+            </p>
+            <p>
+                <span class="en-only">Guidexa One is not a medical device. It is an assistive tool intended to augment traditional mobility aids.</span>
+                <span class="ar-only">Guidexa One ليست جهازًا طبيًا. إنها أداة مساعدة مخصصة لتعزيز أدوات التنقل التقليدية.</span>
+            </p>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center mt-8 text-[12px] text-[#6e6e73]">
+            <p>
+                <span class="en-only">Copyright © 2026 Guidexa Student Co. All rights reserved.</span>
+                <span class="ar-only">حقوق الطبع والنشر © 2026 شركة Guidexa الطلابية. جميع الحقوق محفوظة.</span>
+            </p>
+            <div class="flex space-x-6">
+                <a href="legal.html" class="hover:underline hover:text-black">
+                    <span class="en-only">Privacy Policy</span>
+                    <span class="ar-only">سياسة الخصوصية</span>
+                </a>
+                <a href="legal.html" class="hover:underline hover:text-black">
+                    <span class="en-only">Terms of Sale</span>
+                    <span class="ar-only">شروط البيع</span>
+                </a>
+                <a href="legal.html" class="hover:underline hover:text-black">
+                    <span class="en-only">Sales Policy</span>
+                    <span class="ar-only">سياسة المبيعات</span>
+                </a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <script>
         // Scroll Reveal Controller
