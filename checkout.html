@@ -114,7 +114,7 @@
                     </div>
                 </section>
 
-                <button class="w-full bg-[#0071e3] text-white py-5 rounded-2xl font-bold text-xl hover:bg-[#0077ed] transition shadow-xl shadow-blue-200 mt-4">
+                <button id="complete-order-btn" class="w-full bg-[#0071e3] text-white py-5 rounded-2xl font-bold text-xl hover:bg-[#0077ed] transition shadow-xl shadow-blue-200 mt-4">
                     Complete Order
                 </button>
             </div>
@@ -131,13 +131,14 @@
                             <p class="font-bold text-lg leading-tight">Guidexa One</p>
                             <p class="text-sm text-gray-500">Essential Edition</p>
                             <p class="text-[11px] mt-1 font-bold text-[#0071e3] tracking-wider uppercase">SUMMER 2026 EDITION</p>
+                            <p id="quantity-display" class="text-sm text-gray-600 mt-1">Qty: 1</p>
                         </div>
                     </div>
 
                     <div class="space-y-4 text-sm border-t border-gray-100 pt-6">
                         <div class="flex justify-between">
                             <span class="text-gray-500 font-medium">Subtotal</span>
-                            <span class="font-semibold">$70.00</span>
+                            <span id="subtotal" class="font-semibold">$70.00</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-500 font-medium">Estimated Shipping</span>
@@ -145,7 +146,7 @@
                         </div>
                         <div class="flex justify-between text-xl font-bold border-t border-gray-100 pt-5 mt-2">
                             <span>Total</span>
-                            <span>$70.00</span>
+                            <span id="total" class="font-bold">$70.00</span>
                         </div>
                     </div>
 
@@ -163,6 +164,23 @@
     <footer class="py-12 text-center text-[13px] text-gray-400">
         <p>© 2026 Guidexa Student Co. | <a href="#" class="underline">Privacy Policy</a></p>
     </footer>
+
+    <!-- Dynamic quantity & price script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Read quantity from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const qty = Math.max(1, parseInt(urlParams.get('quantity')) || 1);
+            const unitPrice = 70;
+
+            // Update elements
+            document.getElementById('quantity-display').textContent = `Qty: ${qty}`;
+            document.getElementById('subtotal').textContent = `$${(unitPrice * qty).toFixed(2)}`;
+            document.getElementById('total').textContent = `$${(unitPrice * qty).toFixed(2)}`;
+            document.getElementById('complete-order-btn').textContent = 
+                `Complete Order – $${(unitPrice * qty).toFixed(2)}`;
+        });
+    </script>
 
 </body>
 </html>
