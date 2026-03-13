@@ -167,20 +167,37 @@
 
     <!-- Dynamic quantity & price script -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Read quantity from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const qty = Math.max(1, parseInt(urlParams.get('quantity')) || 1);
-            const unitPrice = 70;
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // 1. Get Data from URL
+        const total = urlParams.get('total') || "70.00";
+        const size = urlParams.get('size') || "Standard";
+        const engraving = urlParams.get('engraving');
+        const usbc = urlParams.get('usbc') === 'true';
+        const care = urlParams.get('care') === 'true';
 
-            // Update elements
-            document.getElementById('quantity-display').textContent = `Qty: ${qty}`;
-            document.getElementById('subtotal').textContent = `$${(unitPrice * qty).toFixed(2)}`;
-            document.getElementById('total').textContent = `$${(unitPrice * qty).toFixed(2)}`;
-            document.getElementById('complete-order-btn').textContent = 
-                `Complete Order – $${(unitPrice * qty).toFixed(2)}`;
-        });
-    </script>
+        // 2. Update the Summary Header
+        document.getElementById('quantity-display').innerHTML = `Size: <strong>${size}</strong>`;
+        
+        // 3. Create Add-on list
+        let addonHtml = "";
+        if (engraving) addonHtml += `<p class="text-[11px] text-gray-400 mt-1 italic">Engraved: "${engraving}"</p>`;
+        if (usbc) addonHtml += `<p class="text-[11px] text-gray-500 mt-1">+ USB-C Power Adapter</p>`;
+        if (care) addonHtml += `<p class="text-[11px] text-gray-500 mt-1">+ Guidexa Care+</p>`;
+        
+        // Inject add-ons below the product name
+        document.querySelector('.flex.flex-col.justify-center').insertAdjacentHTML('beforeend', addonHtml);
+
+        // 4. Update Prices
+        document.getElementById('subtotal').textContent = `$${total}`;
+        document.getElementById('total').textContent = `$${total}`;
+        
+        // Update the button text to match the specific total
+        const orderBtn = document.getElementById('complete-order-btn');
+        orderBtn.textContent = `Complete Order – $${total}`;
+    });
+</script>
 
 </body>
 </html>

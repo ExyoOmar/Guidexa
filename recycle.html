@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycling & Sustainability — Guidexa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-bg: #ffffff;
+            --apple-text: #1d1d1f;
+            --apple-green: #008037;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            -webkit-font-smoothing: antialiased;
+        }
+        .hero-title {
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+        }
+        .glass-nav {
+            backdrop-filter: saturate(180%) blur(20px);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .bento-card {
+            background: #f5f5f7;
+            border-radius: 30px;
+            transition: all 0.6s cubic-bezier(0.15, 0, 0.15, 1);
+            overflow: hidden;
+        }
+        .bento-card:hover { transform: scale(1.02); }
+        
+        /* Green Leaf Gradient for Sustainability */
+        .text-gradient-green {
+            background: linear-gradient(180deg, #008037 0%, #70c33a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-[100] h-14 glass-nav border-b border-gray-200/40">
+        <div class="max-w-[1280px] mx-auto px-6 h-full flex items-center justify-between">
+            <a href="index.html" class="text-xl font-bold tracking-tighter">Guidexa <span class="text-green-600 font-medium italic">Earth</span></a>
+            <div class="flex gap-8 text-xs font-semibold uppercase tracking-widest text-gray-500">
+                <a href="index.html" class="hover:text-black transition">Product</a>
+                <a href="#materials" class="hover:text-black transition">Materials</a>
+                <a href="#impact" class="hover:text-black transition">Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-20 px-6">
+        <div class="max-w-[1024px] mx-auto text-center">
+            <h2 class="text-green-600 font-bold text-sm uppercase tracking-widest mb-4">Sustainability</h2>
+            <h1 class="hero-title text-[56px] md:text-[90px] mb-8">One vest. <br><span class="text-gradient-green">25 plastic bottles.</span></h1>
+            <p class="text-[21px] md:text-[26px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
+                We believe that helping people navigate the world shouldn't cost the Earth. That's why every Guidexa vest is crafted from 100% recycled rPET mesh.
+            </p>
+        </div>
+    </section>
+
+    <section id="materials" class="py-24 px-6 bg-[#f5f5f7]">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bento-card bg-white p-10 flex flex-col justify-between h-[450px]">
+                    <div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Stage 01</span>
+                        <h3 class="text-2xl font-bold mt-4">Collection</h3>
+                        <p class="text-gray-500 mt-2">Post-consumer plastic bottles are collected and sanitized.</p>
+                    </div>
+                    <div class="text-7xl opacity-20 text-right font-black">25</div>
+                </div>
+
+                <div class="bento-card bg-white p-10 flex flex-col justify-between h-[450px]">
+                    <div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Stage 02</span>
+                        <h3 class="text-2xl font-bold mt-4">Transformation</h3>
+                        <p class="text-gray-500 mt-2">Plastic is shredded into flakes and spun into high-tenacity rPET yarn.</p>
+                    </div>
+                    <div class="flex justify-center">
+                         <div class="w-24 h-24 rounded-full border-4 border-dashed border-green-200 animate-spin-slow"></div>
+                    </div>
+                </div>
+
+                <div class="bento-card bg-green-600 p-10 flex flex-col justify-between h-[450px] text-white">
+                    <div>
+                        <span class="text-xs font-bold text-green-200 uppercase tracking-widest">Stage 03</span>
+                        <h3 class="text-2xl font-bold mt-4">The rPET Mesh</h3>
+                        <p class="text-green-100 mt-2">The result is a featherlight, water-resistant, and 100% recycled fabric.</p>
+                    </div>
+                    <div class="text-sm font-medium italic">Peak Durability. Zero Waste.</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="py-32 px-6">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight">A circular mission.</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="bento-card col-span-1 md:col-span-8 p-12 min-h-[500px] flex flex-col justify-end bg-[url('https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center text-white">
+                    <div class="bg-black/20 backdrop-blur-md p-8 rounded-2xl">
+                        <h4 class="text-3xl font-bold mb-2">Engineered for Life</h4>
+                        <p class="text-lg text-gray-100">Our rPET mesh is designed to last for years, reducing the need for replacements and minimizing environmental footprint.</p>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-1 md:col-span-4 p-12 bg-gray-900 text-white flex flex-col justify-between">
+                    <h4 class="text-2xl font-bold">Modular Design</h4>
+                    <p class="text-gray-400">Easily swap sensors and batteries to extend the life of your device without throwing the vest away.</p>
+                    <div class="mt-8 pt-8 border-t border-gray-800">
+                        <a href="#" class="text-green-400 hover:underline">Repair program ›</a>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-1 md:col-span-12 p-16 flex flex-col md:flex-row items-center justify-between bg-green-50">
+                    <div class="max-w-md">
+                        <h4 class="text-3xl font-bold mb-4">Carbon Neutral Goal</h4>
+                        <p class="text-gray-600 leading-relaxed">As a student company, we are tracking our logistics footprint from Tulkarm to our users, aiming for 100% carbon-neutral shipping by 2027.</p>
+                    </div>
+                    <div class="mt-8 md:mt-0 flex items-baseline">
+                        <span class="text-9xl font-black text-green-200">0</span>
+                        <span class="text-2xl font-bold text-green-600">CO₂</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 text-center px-6">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-bold mb-10 tracking-tight">Good for you. <br>Better for the world.</h2>
+            <a href="buy.html" class="inline-block px-10 py-4 bg-black text-white rounded-full font-bold hover:bg-gray-800 transition shadow-xl">Pre-order the rPET Vest</a>
+            <p class="mt-6 text-sm text-gray-400">Every purchase supports youth innovation at Al-Israa Secondary School.</p>
+        </div>
+    </section>
+
+    <style>
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+    </style>
+</body>
+</html>

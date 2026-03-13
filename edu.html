@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education — Guidexa Student-Led Innovation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-bg: #f5f5f7;
+            --apple-text: #1d1d1f;
+            --apple-blue: #0071e3;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            -webkit-font-smoothing: antialiased;
+        }
+        .hero-title {
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+        .bento-card {
+            background: #ffffff;
+            border-radius: 30px;
+            transition: all 0.6s cubic-bezier(0.15, 0, 0.15, 1);
+        }
+        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-[100] h-14 bg-white/80 backdrop-blur-xl border-b border-gray-200/40">
+        <div class="max-w-[1280px] mx-auto px-6 h-full flex items-center justify-between">
+            <a href="index.html" class="text-xl font-bold tracking-tight">Guidexa <span class="text-blue-600 font-medium">Education</span></a>
+            <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-black transition">Back to Product</a>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-20 px-6 bg-white">
+        <div class="max-w-[1024px] mx-auto text-center">
+            <h2 class="text-blue-600 font-bold text-sm uppercase tracking-widest mb-4">A Student-Led Initiative</h2>
+            <h1 class="hero-title text-[48px] md:text-[80px] mb-8">Empowering the next <br>generation of innovators.</h1>
+            <p class="text-[21px] md:text-[26px] text-[#6e6e73] font-medium max-w-3xl mx-auto leading-tight">
+                Guidexa is not just a product; it’s a living laboratory. Founded by students at Al-Israa Private Secondary School, we bridge the gap between classroom theory and humanitarian impact.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-[1200px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <div class="bento-card col-span-1 md:col-span-8 p-12 min-h-[400px] flex flex-col justify-center">
+                <span class="text-purple-600 font-bold text-[12px] uppercase tracking-widest">Engineering Skills</span>
+                <h3 class="text-[32px] font-bold mt-4 leading-tight">Beyond the Textbook.</h3>
+                <p class="text-[#86868b] mt-4 text-lg leading-relaxed">
+                    Our student engineers work with ESP-32 processors, ToF sensors, and haptic systems. They learn to prototype, debug, and refine hardware in the same way professional R&D departments do.
+                </p>
+            </div>
+
+            <div class="bento-card col-span-1 md:col-span-4 p-12 min-h-[400px] flex flex-col justify-center bg-[#1d1d1f] text-white">
+                <span class="text-blue-400 font-bold text-[12px] uppercase tracking-widest">Leadership</span>
+                <h3 class="text-[32px] font-bold mt-4 leading-tight">Future Leaders.</h3>
+                <p class="text-gray-400 mt-4 text-lg">
+                    Students manage HR, Finance, and Marketing departments, learning to lead teams and present ideas to national judges and media.
+                </p>
+            </div>
+
+            <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[400px]">
+                <span class="text-orange-600 font-bold text-[12px] uppercase tracking-widest">Professionalism</span>
+                <h3 class="text-[28px] font-bold mt-4">Corporate Discipline.</h3>
+                <p class="text-[#86868b] mt-4 text-lg">
+                    We utilize digital systems like Notion for task tracking and cloud archiving, teaching students the organizational workflows used by modern tech giants.
+                </p>
+            </div>
+
+            <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[400px] bg-blue-50">
+                <span class="text-blue-600 font-bold text-[12px] uppercase tracking-widest">Humanitarian Impact</span>
+                <h3 class="text-[28px] font-bold mt-4">Empathy through Research.</h3>
+                <p class="text-[#86868b] mt-4 text-lg">
+                    By engaging directly with visually impaired societies in Tulkarm, students learn that technology is most powerful when it solves real human challenges.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-white px-6">
+        <div class="max-w-[800px] mx-auto text-center">
+            <h2 class="text-[40px] md:text-[56px] font-bold tracking-tight mb-8">Partnered with Injaz.</h2>
+            <p class="text-[19px] md:text-[22px] text-[#86868b] leading-relaxed mb-12">
+                As part of the <strong>Injaz Palestine</strong> "Company Program," we have been mentored by industry experts, transforming our classroom project into a data-backed social enterprise.
+            </p>
+            <div class="flex flex-wrap justify-center gap-12 opacity-50 grayscale">
+                <div class="h-12 flex items-center font-bold text-xl italic tracking-tighter">INJAZ PALESTINE</div>
+                <div class="h-12 flex items-center font-bold text-xl italic tracking-tighter">AL-ISRAA SCHOOL</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-gray-200 text-center">
+        <p class="text-sm text-gray-400">© 2026 Guidexa Student Company. <br> Empowering students through innovation in Palestine.</p>
+    </footer>
+
+</body>
+</html>

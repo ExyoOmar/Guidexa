@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Vest — Guidexa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: #fff; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .glass-nav { backdrop-filter: saturate(180%) blur(20px); background-color: rgba(255, 255, 255, 0.8); }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky top-0 z-50 border-b border-gray-200 glass-nav">
+        <div class="max-w-[1000px] mx-auto px-6 h-[52px] flex items-center justify-between">
+            <h1 class="text-xl font-semibold text-[#1d1d1f]">Smart Vest</h1>
+            <div class="flex items-center gap-6">
+                <a href="#overview" class="text-xs text-[#1d1d1f] opacity-80 hover:text-[#0071e3]">Overview</a>
+                <a href="#specs" class="text-xs text-[#1d1d1f] opacity-80 hover:text-[#0071e3]">Tech Specs</a>
+                <a href="index.html#preorder" class="px-3 py-1 bg-[#0071e3] text-white rounded-full text-[11px] font-medium hover:bg-[#0077ed]">Buy</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="overview" class="pt-32 pb-20 overflow-hidden">
+        <div class="max-w-[1200px] mx-auto px-6 text-center">
+            <span class="text-orange-600 font-bold text-sm uppercase tracking-widest mb-4 block">The Future of Movement</span>
+            <h2 class="text-6xl md:text-8xl font-bold tracking-tight text-[#1d1d1f] mb-8">
+                How the world <br> becomes a feeling.
+            </h2>
+            <p class="text-[21px] md:text-[24px] text-[#86868b] max-w-2xl mx-auto leading-relaxed">
+                The Guidexa Vest scans your environment and translates it into subtle haptic pulses on your skin. Navigation, simplified.
+            </p>
+            <div class="mt-16">
+                <img src="hero-vest-front.png" alt="Smart Vest Hero" class="mx-auto max-w-[800px] w-full transform hover:scale-105 transition-transform duration-1000">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#f5f5f7]">
+        <div class="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div class="bg-white rounded-[40px] p-12 flex flex-col justify-between h-[600px] shadow-sm">
+                <div>
+                    <h3 class="text-4xl font-bold mb-6 tracking-tight">360° Vision. <br> Zero Eyesight.</h3>
+                    <p class="text-xl text-[#86868b] leading-relaxed">
+                        Using LiDAR and Time-of-Flight sensors, the vest maps objects up to 5 meters away in real-time, detecting obstacles before you even get close.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-[#1d1d1f] text-white rounded-[40px] p-12 flex flex-col justify-between h-[600px] shadow-xl">
+                <div>
+                    <h3 class="text-4xl font-bold mb-6 tracking-tight">The Language <br> of Pulse.</h3>
+                    <p class="text-xl text-gray-400 leading-relaxed">
+                        12 precision haptic motors communicate through your shoulders and chest. A soft tap on the left means clear path; a sharp vibration means a hazard.
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-full border border-gray-700 animate-pulse"></div>
+                        <div class="w-12 h-12 rounded-full border border-orange-500 animate-ping"></div>
+                        <div class="w-12 h-12 rounded-full border border-gray-700 animate-pulse"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-white">
+        <div class="max-w-[1000px] mx-auto px-6 flex flex-col md:flex-row items-center gap-20">
+            <div class="md:w-1/2">
+                <img src="mesh.png" alt="Breathable Fabric" class="rounded-3xl shadow-2xl">
+            </div>
+            <div class="md:w-1/2 text-left">
+                <h3 class="text-5xl font-bold tracking-tight mb-8">Invisible. <br> Breathable.</h3>
+                <p class="text-xl text-[#86868b] leading-relaxed mb-6">
+                    Designed for 24/7 wear. We used aerospace-grade mesh and sweat-wicking fabrics, ensuring you stay comfortable whether you're navigating a busy airport or walking through a park.
+                </p>
+                <ul class="space-y-4 text-lg font-medium">
+                    <li class="flex items-center gap-3"><span class="w-2 h-2 bg-orange-500 rounded-full"></span> Only 450 grams</li>
+                    <li class="flex items-center gap-3"><span class="w-2 h-2 bg-orange-500 rounded-full"></span> 18-hour battery life</li>
+                    <li class="flex items-center gap-3"><span class="w-2 h-2 bg-orange-500 rounded-full"></span> Weather-resistant IPX4</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 bg-[#f5f5f7] text-center">
+        <h2 class="text-5xl font-bold tracking-tight mb-10">Ready to redefine your <br> independence?</h2>
+        <div class="flex items-center justify-center gap-8">
+            <a href="index.html#preorder" class="px-10 py-4 bg-[#0071e3] text-white rounded-full text-lg font-medium hover:bg-[#0077ed] transition-all">Buy Smart Vest</a>
+            <a href="index.html" class="text-[#0066cc] text-lg font-medium hover:underline">Back to Lineup ›</a>
+        </div>
+    </section>
+
+</body>
+</html>

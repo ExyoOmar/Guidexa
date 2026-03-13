@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Availability — Guidexa Palestine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-bg: #f5f5f7;
+            --apple-blue: #0071e3;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--apple-bg); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body class="py-20 px-6">
+
+    <div class="max-w-[1000px] mx-auto">
+        <nav class="mb-12">
+            <a href="index.html" class="text-blue-600 hover:underline">‹ Back to Home</a>
+        </nav>
+
+        <header class="mb-20">
+            <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-[#1d1d1f] mb-6">Availability</h1>
+            <p class="text-2xl text-[#6e6e73] font-medium">Check the current stock of the Smart Vests in your region.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card p-10">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6">Regional Status</h2>
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="text-3xl">🇵🇸</span>
+                    <div>
+                        <h3 class="text-2xl font-bold">Palestine</h3>
+                        <p class="text-green-600 font-semibold flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            Accepting Pre-orders
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4 text-[#1d1d1f]">
+                    <div class="flex justify-between py-3 border-b border-gray-100">
+                        <span class="text-gray-500">Estimated Delivery</span>
+                        <span class="font-medium">2-4 Weeks</span>
+                    </div>
+                    <div class="flex justify-between py-3 border-b border-gray-100">
+                        <span class="text-gray-500">Shipping Partners</span>
+                        <span class="font-medium">Local Couriers</span>
+                    </div>
+                    <div class="flex justify-between py-3">
+                        <span class="text-gray-500">Support Centers</span>
+                        <span class="font-medium">Tulkarm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[30px] p-10 shadow-sm border border-gray-100">
+                <h2 class="text-2xl font-bold mb-6">Reserve Yours</h2>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                        <select class="w-full p-4 bg-gray-50 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                            <option>Ramallah</option>
+                            <option>Nablus</option>
+                            <option>Hebron (Al-Khalil)</option>
+                            <option>Tulkarm</option>
+                            <option>Jericho</option>
+                            <option>Bethlehem</option>
+                        </select>
+                    </div>
+                    <input type="text" placeholder="Full Name" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-200 outline-none">
+                    <input type="tel" placeholder="Phone Number" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-200 outline-none">
+                    <a href="buy.html" class="inline-block text-center w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 mt-4">
+    Confirm Pre-order
+</a>
+                    <p class="text-xs text-center text-gray-400 mt-4">Payment upon delivery or via local bank transfer.</p>
+                </form>
+            </div>
+        </div>
+
+        <section class="mt-20">
+            <h3 class="text-3xl font-bold mb-10">Local Experience Centers</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-bold text-xl mb-2">Tulkarm Center</h4>
+                    <p class="text-gray-500 text-sm">Al-Israa Secondary Private School, Building 4<br>demo@guidexa.org</p>
+                </div>
+                </div>
+        </section>
+    </div>
+
+</body>
+</html>
