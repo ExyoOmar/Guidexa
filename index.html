@@ -194,6 +194,33 @@
             100% { transform: translateY(0px); }
         }
         .float-animation { animation: float 6s ease-in-out infinite; }
+
+/* Morphing Hamburger Animation */
+#menu-toggle.active #line-1 {
+    transform: translateY(0.6px) rotate(45deg);
+}
+#menu-toggle.active #line-2 {
+    transform: translateY(-0.6px) rotate(-45deg);
+}
+
+/* Mobile Menu Visibility Logic */
+#mobile-menu.active {
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Apple-style link hover effect for mobile */
+.mobile-link {
+    transition: color 0.3s ease;
+}
+.mobile-link:hover {
+    color: #6e6e73;
+}
     </style>
 </head>
 <body>
@@ -204,56 +231,41 @@
     <a href="#preorder" class="skip-link">Jump to Pricing</a>
 </div>
 
-<nav class="fixed top-0 left-0 right-0 z-[100] h-14 glass-nav border-b border-gray-200/40 backdrop-blur-xl">
-  <div class="max-w-[1280px] mx-auto px-5 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-    
-    <!-- Logo -->
-    <a href="#" class="flex items-center gap-2.5 group">
-      <h1 class="text-2xl font-bold tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors">
-        Guidexa
-      </h1>
-    </a>
+<nav class="glass-nav fixed top-0 w-full z-[110] px-6 py-4 transition-all duration-300">
+    <div class="max-w-[1280px] mx-auto flex justify-between items-center">
+        <a href="#" class="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity">Guidexa</a>
 
-    <!-- Right side -->
-    <div class="flex items-center gap-6 sm:gap-8">
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+            <a href="shop.html" class="hover:text-black transition-colors">Store</a>
+            <a href="#" class="hover:text-black transition-colors">Smart Vest</a>
+            <a href="#" class="hover:text-black transition-colors">GuideAI</a>
+        </div>
 
-      <!-- Desktop links -->
-      <div class="hidden md:flex items-center gap-7 lg:gap-9 text-sm font-medium tracking-wide">
-        <a href="#tech" class="text-gray-700 hover:text-gray-900 transition-colors">Technology</a>
-        <a href="#specs" class="text-gray-700 hover:text-gray-900 transition-colors">Specs</a>
-        <a href="track.html" class="text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-1.5">
-          Track
-          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </a>
-        <a href="#about" class="text-gray-700 hover:text-gray-900 transition-colors">Our Story</a>
-      </div>
-
-      <!-- Language toggle -->
-      <div class="flex items-center gap-2 text-sm font-medium">
-        <button 
-          onclick="setLanguage('en')"
-          class="lang-btn px-2.5 py-1.5 rounded-lg transition-all lang-en-active"
-          data-lang="en"
-        >EN</button>
-        <span class="text-gray-400">/</span>
-        <button 
-          onclick="setLanguage('ar')"
-          class="lang-btn px-2.5 py-1.5 rounded-lg transition-all"
-          data-lang="ar"
-        >عربي</button>
-      </div>
-
-      <!-- Pre-order CTA – more prominent -->
-      <a href="#preorder"
-         class="inline-flex items-center px-5 sm:px-6 py-2.5 bg-blue-600 text-white font-medium text-sm sm:text-base rounded-full hover:bg-blue-700 active:scale-[0.98] transition-all shadow-md hover:shadow-lg">
-        Pre-order
-      </a>
-
+        <button id="menu-toggle" class="md:hidden relative w-8 h-8 flex flex-col items-center justify-center focus:outline-none" aria-label="Menu">
+            <span id="line-1" class="w-5 h-[1.2px] bg-black transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] translate-y-[-3px]"></span>
+            <span id="line-2" class="w-5 h-[1.2px] bg-black transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] translate-y-[3px]"></span>
+        </button>
     </div>
-  </div>
 </nav>
+
+<div id="mobile-menu" class="fixed inset-0 z-[105] bg-white/95 backdrop-blur-2xl translate-y-[-100%] transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden pointer-events-none">
+    <div class="flex flex-col pt-24 px-12 h-full overflow-y-auto">
+        <div class="flex flex-col space-y-5 text-3xl font-semibold tracking-tight">
+            <a href="#" class="mobile-link">Store</a>
+            <a href="#" class="mobile-link">Smart Vest</a>
+            <a href="#" class="mobile-link">GuideAI</a>
+            <a href="#" class="mobile-link">GXVoice</a>
+            <a href="#" class="mobile-link">Recycling Program</a>
+        </div>
+        
+        <div class="mt-12 pt-8 border-t border-gray-100 grid grid-cols-2 gap-y-4">
+            <a href="#" class="text-sm font-medium text-gray-500 hover:text-black">Legal</a>
+            <a href="#" class="text-sm font-medium text-gray-500 hover:text-black">Education</a>
+            <a href="#" class="text-sm font-medium text-gray-500 hover:text-black">About Us</a>
+            <a href="#" class="text-sm font-medium text-gray-500 hover:text-black">Support</a>
+        </div>
+    </div>
+</div>
 
 <style>
     /* Language visibility - strict one-at-a-time */
@@ -342,11 +354,7 @@ body.lang-ar a .ar-only {
 </style>
 
 <div class="fixed bottom-8 right-8 z-[500]">
-    <button onclick="toggleA11yMenu()" id="a11y-main-trigger" 
-        class="group flex items-center justify-center w-16 h-16 bg-[#0071e3] text-white rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300"
-        aria-label="Accessibility Settings">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12h6"/><path d="M12 9v6"/></svg>
-    </button>
+
 
     <div id="a11y-panel" class="hidden absolute bottom-20 right-0 w-[340px] bg-white/90 backdrop-blur-xl rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-white/20 p-6 animate-in slide-in-from-bottom-8 duration-500">
         
@@ -544,138 +552,425 @@ body.lang-ar a .ar-only {
 </style>
 
    <!-- Hero / Vest Section -->
-<section id="vest" class="pt-40 pb-20 bg-white overflow-hidden">
-    <div class="max-w-[1024px] mx-auto px-6 text-center">
-        <div class="reveal active">
-            <h2 class="text-orange-600 font-semibold text-lg md:text-xl mb-3">
-                <span class="en-only">New</span>
-                <span class="ar-only">جديد</span>
-            </h2>
-            <h1 class="hero-title text-[56px] md:text-[102px] gradient-gray">
-                <span class="en-only">Vision.<br>Without eyes.</span>
-                <span class="ar-only">رؤية.<br>بدون عيون.</span>
+<section id="hero" class="relative min-h-[90vh] md:min-h-screen flex flex-col justify-end overflow-hidden bg-black md:bg-white">
+    
+    <div class="absolute inset-0 z-0">
+        <img src="hero.png" alt="Background" class="w-full h-full object-cover object-top md:object-center">
+        
+        <div class="absolute inset-0 bg-black/40 md:hidden"></div>
+    </div>
+
+    <div class="container mx-auto px-6 md:px-12 pb-10 md:pb-20 relative z-10">
+        <div class="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 md:gap-8">
+            
+            <div class="w-full md:w-auto text-center md:text-left text-white md:text-black">
+                <div class="flex items-center justify-center md:justify-start gap-1 mb-1">
+                    <div class="text-3xl md:text-5xl font-bold tracking-tighter flex items-center">
+                       Guidexa
+                    </div>
+                </div>
+                <p class="text-base md:text-2xl font-semibold tracking-tight leading-tight opacity-90 md:opacity-100">
+                    Vision Without Eyes.
+                </p>
+            </div>
+
+            <div class="flex items-center justify-center gap-3 w-full md:w-auto">
+                <a href="#demo" class="flex-1 md:flex-none px-5 md:px-6 py-2.5 border border-white/40 md:border-black/30 rounded-full text-[13px] md:text-sm font-medium text-white md:text-black hover:bg-white/10 md:hover:bg-black/5 transition-colors text-center whitespace-nowrap">
+                    Book a demo
+                </a>
                 
-            </h1>
-            <p class="text-[21px] md:text-[28px] text-[#6e6e73] mt-6 font-medium max-w-2xl mx-auto leading-tight">
-                <span class="en-only">Experience the first wearable detection system that uses spatial haptics to map the world around you.</span>
-                <span class="ar-only">جرب أول نظام كشف قابل للارتداء يستخدم اللمس المكاني لرسم خريطة العالم من حولك.<br></span>
-            </p>
-            <div class="mt-8 flex space-x-8 justify-center text-lg font-normal">
-                <a href="https://www.facebook.com/share/v/1GRNqfGHyV/" class="text-[#0066cc] hover:underline transition">
-                    <span class="en-only">Watch the film ></span>
-                    <span class="ar-only">شاهد الفيلم ></span>
+                <a href="#buy" class="flex-1 md:flex-none px-8 md:px-10 py-2.5 bg-white md:bg-[#1d1d1f] text-black md:text-white rounded-full text-[13px] md:text-sm font-medium hover:opacity-90 transition-colors text-center whitespace-nowrap">
+                    Buy
                 </a>
-                <a href="#preorder" class="text-[#0066cc] hover:underline transition">
-                    <span class="en-only">Buy ></span>
-                    <span class="ar-only">اشترِ ></span>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-[#f5f5f7]">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 pb-8 md:pb-0 no-scrollbar">
+            
+            <div class="relative group min-w-[280px] md:min-w-0 aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-black flex-shrink-0">
+                <img src="img1.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90">
+                <div class="relative h-full flex flex-col justify-between p-8 z-10">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-white/60">Health</span>
+                        <h3 class="text-2xl font-semibold text-white mt-2 leading-tight">Knows you. <br> Inside and out.</h3>
+                    </div>
+                    <div class="flex justify-end">
+                        <button class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white transition-all hover:bg-white hover:text-black">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 pointer-events-none"></div>
+            </div>
+
+            <div class="relative group min-w-[280px] md:min-w-0 aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-black flex-shrink-0">
+                <img src="img2.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90">
+                <div class="relative h-full flex flex-col justify-between p-8 z-10">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-white/60">Safety</span>
+                        <h3 class="text-2xl font-semibold text-white mt-2 leading-tight">Keeps help close at hand.</h3>
+                    </div>
+                    <div class="flex justify-end">
+                        <button class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white transition-all hover:bg-white hover:text-black">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 pointer-events-none"></div>
+            </div>
+
+            <div class="relative group min-w-[280px] md:min-w-0 aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-black flex-shrink-0">
+                <img src="img3.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90">
+                <div class="relative h-full flex flex-col justify-between p-8 z-10">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-white/60">GuideAI + Guidexa</span>
+                        <h3 class="text-2xl font-semibold text-white mt-2 leading-tight">Dynamic duo.</h3>
+                    </div>
+                    <div class="flex justify-end">
+                        <button class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white transition-all hover:bg-white hover:text-black">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 pointer-events-none"></div>
+            </div>
+
+            <div class="relative group min-w-[280px] md:min-w-0 aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-black flex-shrink-0">
+                <img src="img4.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90">
+                <div class="relative h-full flex flex-col justify-between p-8 z-10">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-white/60">Personalization</span>
+                        <h3 class="text-2xl font-semibold text-white mt-2 leading-tight">Make it you-nique.</h3>
+                    </div>
+                    <div class="flex justify-end">
+                        <button class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white transition-all hover:bg-white hover:text-black">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 pointer-events-none"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-12 bg-white">
+    <div class="max-w-[1440px] mx-auto px-6">
+        
+        <div class="relative group w-full h-[640px] overflow-hidden rounded-[3rem] bg-black cursor-pointer">
+            
+            <img src="plz.png" 
+                 alt="Guidexa Feature" 
+                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-[1.03]">
+
+            <div class="relative h-full w-full flex flex-col justify-between p-10 md:p-16 z-10">
+                
+                <div class="max-w-xl">
+                    <p class="text-[13px] md:text-[15px] font-bold uppercase tracking-[0.05em] text-white/70">
+                        All out pro.
+                    </p>
+                    <h2 class="text-[32px] md:text-[56px] font-semibold text-white leading-[1.1] tracking-tight mt-2">
+                        Guidexa <br> Smart Vest
+                    </h2>
+                </div>
+
+                <div class="flex justify-between items-end">
+                    <p class="hidden md:block text-[19px] text-white/80 max-w-sm leading-snug">
+                        Turning plastic waste into life-changing <br> spatial awareness.
+                    </p>
+                    
+                    <button class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-2xl border border-white/10 text-white transition-all duration-300 group-hover:bg-white group-hover:text-black">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none"></div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="relative w-full pt-20 pb-24 md:pb-32 bg-[#f5f5f7] overflow-hidden flex flex-col items-center">
+    
+    <div class="container mx-auto px-6 text-center z-20">
+        <div class="max-w-3xl mx-auto">
+            <p class="text-[14px] md:text-[17px] font-semibold uppercase tracking-[0.02em] text-black/50 mb-3">
+                GuideAI App
+            </p>
+            <h2 class="text-[40px] md:text-[72px] font-semibold text-black leading-[1.05] tracking-tight">
+                Your world. <br> In your ear.
+            </h2>
+            <p class="text-[21px] md:text-[24px] text-black/60 mt-6 max-w-2xl mx-auto leading-relaxed font-normal">
+                Experience the first app that translates the visual world into real-time audio descriptions.
+            </p>
+            
+            <div class="mt-6 flex items-center justify-center">
+                <a href="#" class="text-[19px] md:text-[21px] text-[#0066cc] hover:underline flex items-center group font-medium">
+                    Learn more 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
                 </a>
             </div>
         </div>
+    </div>
+
+    <div class="relative w-full mt-10 md:mt-12 flex justify-center">
+        <div class="relative max-w-[350px] md:max-w-[500px] transition-transform duration-[1000ms] ease-out hover:scale-[1.01]">
+            <img src="guideai1.png" 
+                 alt="GuideAI Interface" 
+                 class="w-full h-auto block mx-auto drop-shadow-[0_40px_50px_rgba(0,0,0,0.12)]">
+        </div>
+    </div>
+
+</section>
+
+<section class="w-full bg-[#f5f5f7] overflow-hidden">
+    <div class="w-full">
+        <img src="enviroment.png" 
+             alt="GuideAI Environment" 
+             class="w-full h-auto min-h-[300px] md:min-h-0 object-cover object-center block">
+    </div>
+</section>
+
+<section class="py-20 bg-[#f5f5f7]">
+    <div class="max-w-[1440px] mx-auto px-6">
         
-        <div class="mt-20 reveal active delay-300 relative">
-            <div class="float-animation w-full max-w-4xl mx-auto flex items-center justify-center">
-                <img src="hero-vest-front.png" alt="Guidexa One Vest Front View" class="w-full h-auto max-h-[400px] object-contain">
+        <div class="flex overflow-x-auto md:grid md:grid-cols-3 gap-6 pb-8 md:pb-0 no-scrollbar">
+            
+            <div class="relative group min-w-[300px] md:min-w-0 aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-white shadow-sm flex-shrink-0">
+                <img src="rpet.png" alt="Feature 1" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="relative h-full flex flex-col justify-end p-8 z-10 pointer-events-none">
+                    <h3 class="text-2xl font-semibold text-white leading-tight">Material innovation.</h3>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/40"></div>
+            </div>
+
+            <div class="relative group min-w-[300px] md:min-w-0 aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-white shadow-sm flex-shrink-0">
+                <img src="water.png" alt="Feature 2" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="relative h-full flex flex-col justify-end p-8 z-10 pointer-events-none">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/40"></div>
+            </div>
+
+            <div class="relative group min-w-[300px] md:min-w-0 aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-white shadow-sm flex-shrink-0">
+                <img src="recycled.png" alt="Feature 3" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="relative h-full flex flex-col justify-end p-8 z-10 pointer-events-none">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/40"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Utility to hide scrollbar but keep functionality */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+
+
+<section class="relative w-full min-h-[80vh] md:min-h-screen flex items-center bg-black overflow-hidden">
+    
+    <div class="absolute inset-0 w-full h-full">
+        <img src="gx.png" 
+             alt="GXVoice Audio Companion" 
+             class="w-full h-full object-cover object-center opacity-80 md:opacity-100">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent md:hidden"></div>
+    </div>
+
+    <div class="container relative mx-auto px-6 z-10">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="max-w-2xl">
+                <p class="text-[14px] md:text-[17px] font-semibold uppercase tracking-[0.2em] text-white/70 mb-4">
+                    The Sound of Safety
+                </p>
+                <h2 class="text-[48px] md:text-[80px] font-bold text-white tracking-tight leading-[1.05] mb-8">
+                    GXVoice. <br>
+                    <span class="text-[#0066cc]">Vision, heard.</span>
+                </h2>
+                <p class="text-[21px] md:text-[24px] text-white/80 leading-relaxed font-medium mb-10 max-w-lg">
+                    A specialized audio earpiece that bridges the gap between detection and action. Connected seamlessly to your smart vest, it provides real-time spatial alerts to navigate the world with total confidence.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 items-center">
+                    <div class="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium">
+                        Always Syncing
+                    </div>
+                    <div class="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium">
+                        Spatial Audio
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 360° Safety Bubble Section -->
-<section class="py-40 bg-white px-6">
-    <div class="max-w-[800px] mx-auto text-center reveal">
-        <h3 class="text-[40px] md:text-[64px] font-semibold tracking-tight leading-tight mb-10">
-            <span class="en-only">A 360° safety bubble.<br>For your life on the move.</span>
-            <span class="ar-only">فقاعة أمان 360 درجة.<br>لحياتك أثناء التنقل.</span>
-        </h3>
-        <p class="text-[19px] md:text-[24px] text-[#86868b] leading-relaxed font-medium">
-            <span class="en-only">Our sensors don’t just spot walls. They identify head-height hazards, stairs, and fast-moving obstacles, translating them into gentle pulses that guide your intuition.</span>
-            <span class="ar-only">مستشعراتنا لا تكتفي بكشف الجدران فقط، بل تحدد المخاطر على مستوى الرأس، والسلالم، والعوائق المتحركة بسرعة، وتحولها إلى نبضات لطيفة توجه حدسك.</span>
-        </p>
+<section class="py-20 md:py-32 bg-[#f5f5f7]">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+            
+            <div class="lg:col-span-7">
+                <div class="sticky top-32">
+                    <div class="aspect-square bg-white rounded-[2rem] overflow-hidden flex items-center justify-center shadow-sm">
+                        <img id="product-image" src="hero-vest-front.png" alt="Guidexa Smart Vest" class="w-4/5 h-auto object-contain">
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5">
+                <div class="flex flex-col">
+                    <span class="text-[#bf4800] text-[14px] font-semibold mb-2">New</span>
+                    <h2 class="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] leading-tight mb-8">
+                        Buy Guidexa Smart Vest
+                    </h2>
+
+                    <div class="mb-12">
+                        <h3 class="text-[17px] font-semibold text-[#1d1d1f] mb-4">
+                            Model. <span class="text-[#6e6e73] font-normal">Which is best for you?</span>
+                        </h3>
+                        <div class="space-y-4" id="model-selection">
+                            <div data-price="49.99" class="model-option p-5 rounded-xl border border-[#d2d2d7] bg-white hover:border-[#86868b] transition-all cursor-pointer flex justify-between items-center group">
+                                <div class="flex flex-col">
+                                    <span class="text-[17px] font-semibold text-[#1d1d1f]">Guidexa Lite</span>
+                                    <span class="text-[12px] text-[#6e6e73]">2 meter detection range</span>
+                                </div>
+                                <span class="text-[14px] text-[#1d1d1f]">$49.99</span>
+                            </div>
+                            <div data-price="69.99" class="model-option p-5 rounded-xl border-2 border-[#0071e3] bg-white cursor-pointer flex justify-between items-center active-selection">
+                                <div class="flex flex-col">
+                                    <span class="text-[17px] font-semibold text-[#1d1d1f]">Guidexa Core</span>
+                                    <span class="text-[12px] text-[#6e6e73]">Standard safety bubble</span>
+                                </div>
+                                <span class="text-[14px] text-[#1d1d1f]">$69.99</span>
+                            </div>
+                            <div data-price="99.99" class="model-option p-5 rounded-xl border border-[#d2d2d7] bg-white hover:border-[#86868b] transition-all cursor-pointer flex justify-between items-center group">
+                                <div class="flex flex-col">
+                                    <span class="text-[17px] font-semibold text-[#1d1d1f]">Guidexa Pro</span>
+                                    <span class="text-[12px] text-[#6e6e73]">Advanced haptics & range</span>
+                                </div>
+                                <span class="text-[14px] text-[#1d1d1f]">$99.99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-12">
+                        <h3 class="text-[17px] font-semibold text-[#1d1d1f] mb-4">Essentials.</h3>
+                        <div class="space-y-3" id="addon-selection">
+                            <div data-price="19.99" class="addon-option p-5 rounded-xl border border-[#d2d2d7] bg-white flex justify-between items-center cursor-pointer hover:border-[#86868b] transition-all">
+                                <span class="text-[15px] text-[#1d1d1f]">GXVoice Earpiece</span>
+                                <span class="text-[14px] text-[#1d1d1f]">+$19.99</span>
+                            </div>
+                            <div data-price="14.99" class="addon-option p-5 rounded-xl border border-[#d2d2d7] bg-white flex justify-between items-center cursor-pointer hover:border-[#86868b] transition-all">
+                                <span class="text-[15px] text-[#1d1d1f]">18H Battery Accessory</span>
+                                <span class="text-[14px] text-[#1d1d1f]">+$14.99</span>
+                            </div>
+                            <div data-price="9.99" class="addon-option p-5 rounded-xl border border-[#d2d2d7] bg-white flex justify-between items-center cursor-pointer hover:border-[#86868b] transition-all">
+                                <span class="text-[15px] text-[#1d1d1f]">Charger + USB-C Cable</span>
+                                <span class="text-[14px] text-[#1d1d1f]">+$9.99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-[#d2d2d7]">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex flex-col">
+                                <span id="total-price" class="text-[32px] font-semibold text-[#1d1d1f]">$69.99</span>
+                                <span id="monthly-price" class="text-[12px] text-[#6e6e73]">Or $5.83/mo. for 12 mo.*</span>
+                            </div>
+                        </div>
+
+                        <button onclick="addToBag()" class="w-full py-4 bg-[#0071e3] text-white rounded-full font-semibold text-[17px] hover:bg-[#0077ed] transition-colors shadow-lg">
+    Add to Bag
+</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Technology / #tech Section -->
-<section id="tech" class="py-24 px-6 max-w-[1200px] mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<style>
+    .active-selection { border: 2px solid #0071e3 !important; }
+    .addon-active { background-color: #fbfbfd; border: 2px solid #0071e3 !important; }
+</style>
+
+  <script>
+    let basePrice = 69.99;
+    let selectedModel = "Guidexa Core";
+    let addons = [];
+
+    const modelOptions = document.querySelectorAll('.model-option');
+    const addonOptions = document.querySelectorAll('.addon-option');
+    const totalPriceDisplay = document.getElementById('total-price');
+    const monthlyPriceDisplay = document.getElementById('monthly-price');
+
+    function updateDisplay() {
+        let addonsTotal = addons.reduce((sum, item) => sum + item.price, 0);
+        const total = (basePrice + addonsTotal).toFixed(2);
+        totalPriceDisplay.innerText = `$${total}`;
+        monthlyPriceDisplay.innerText = `Or $${(total / 12).toFixed(2)}/mo. for 12 mo.*`;
+    }
+
+    modelOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            modelOptions.forEach(opt => opt.classList.remove('active-selection'));
+            option.classList.add('active-selection');
+            
+            basePrice = parseFloat(option.getAttribute('data-price'));
+            selectedModel = option.querySelector('.font-semibold').innerText;
+            updateDisplay();
+        });
+    });
+
+    addonOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const price = parseFloat(option.getAttribute('data-price'));
+            const name = option.querySelector('span').innerText;
+            
+            if (option.classList.contains('addon-active')) {
+                option.classList.remove('addon-active');
+                addons = addons.filter(item => item.name !== name);
+            } else {
+                option.classList.add('addon-active');
+                addons.push({ name, price });
+            }
+            updateDisplay();
+        });
+    });
+
+    function addToBag() {
+        let addonsTotal = addons.reduce((sum, item) => sum + item.price, 0);
+        const total = (basePrice + addonsTotal).toFixed(2);
+        const addonNames = addons.map(a => a.name).join(',');
         
-        <div class="bento-card col-span-1 md:col-span-8 p-12 h-[640px] flex flex-col justify-between overflow-hidden reveal">
-            <div class="max-w-md">
-                <span class="text-blue-600 font-bold text-[12px] uppercase tracking-widest">
-                    <span class="en-only">Active Scanning</span>
-                    <span class="ar-only">مسح نشط</span>
-                </span>
-                <h4 class="text-[40px] font-semibold tracking-tight leading-tight mt-4">
-                    <span class="en-only">Precision ToF.<br>Navigates the dark.</span>
-                    <span class="ar-only">دقة ToF.<br>تتجاوز الظلام.</span>
-                </h4>
-                <p class="text-[#86868b] mt-4 text-lg">
-                    <span class="en-only">Borrowed from autonomous vehicles, engineered for the human form. Detection range up to 5 meters.</span>
-                    <span class="ar-only">مستوحى من المركبات ذاتية القيادة، مصمم خصيصًا للجسم البشري. مدى كشف يصل إلى 5 أمتار.</span>
-                </p>
-            </div>
-            <div class="w-full h-80 bg-gray-50 rounded-[24px] border border-gray-100 flex items-center justify-center relative overflow-hidden">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50 to-transparent opacity-50"></div>
-                <div class="w-24 h-24 border border-blue-200 rounded-full animate-ping opacity-30"></div>
-                <div class="w-48 h-48 border border-blue-100 rounded-full animate-ping opacity-20 delay-75"></div>
-            </div>
-        </div>
+        // Redirect to checkout with all selected parameters
+        const url = `checkout.html?total=${total}&model=${encodeURIComponent(selectedModel)}&addons=${encodeURIComponent(addonNames)}`;
+        window.location.href = url;
+    }
+</script>
 
-        <div class="bento-card col-span-1 md:col-span-4 p-12 h-[640px] flex flex-col justify-between bg-white reveal">
-            <div>
-                <span class="text-green-600 font-bold text-[12px] uppercase tracking-widest">
-                    <span class="en-only">Efficiency</span>
-                    <span class="ar-only">كفاءة</span>
-                </span>
-                <h4 class="text-[36px] font-semibold tracking-tight leading-tight mt-4">
-                    <span class="en-only">Dawn till<br>Dusk.</span>
-                    <span class="ar-only">من الفجر<br>إلى الغروب.</span>
-                </h4>
-                <p class="text-[#86868b] mt-4">
-                    <span class="en-only">An 18-hour battery that powers through your longest journeys. Fast charge via USB-C.</span>
-                    <span class="ar-only">بطارية تدوم 18 ساعة تتحمل أطول رحلاتك. شحن سريع عبر USB-C.</span>
-                </p>
-            </div>
-            <div class="flex items-baseline space-x-1">
-                <span class="text-[120px] font-bold tracking-tighter text-[#1d1d1f]">18</span>
-                <span class="text-[32px] font-bold text-[#86868b]">
-                    <span class="en-only">hr</span>
-                    <span class="ar-only">ساعة</span>
-                </span>
-            </div>
-        </div>
-
-        <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[500px] reveal">
-            <span class="text-purple-600 font-bold text-[12px] uppercase tracking-widest">
-                <span class="en-only">Haptic Engine</span>
-                <span class="ar-only">محرك اللمس</span>
-            </span>
-            <h4 class="text-[32px] font-semibold tracking-tight mt-4">
-                <span class="en-only">Intuitive Language.</span>
-                <span class="ar-only">لغة حدسية.</span>
-            </h4>
-            <p class="text-[#86868b] mt-4 text-[19px] leading-relaxed">
-                <span class="en-only">Variable frequency vibrations localized to your chest and shoulders. It feels like someone is gently guiding your path.</span>
-                <span class="ar-only">اهتزازات بتردد متغير مركزة على الصدر والكتفين. تشعر وكأن شخصًا يرشدك بلطف في طريقك.</span>
-            </p>
-            <div class="mt-16 h-1 w-full bg-gray-100 rounded-full overflow-hidden">
-                <div class="h-full bg-purple-500 w-2/3"></div>
-            </div>
-        </div>
-
-        <div class="bento-card col-span-1 md:col-span-6 p-12 min-h-[500px] reveal">
-            <span class="text-orange-600 font-bold text-[12px] uppercase tracking-widest">
-                <span class="en-only">Sustainability</span>
-                <span class="ar-only">استدامة</span>
-            </span>
-            <h4 class="text-[32px] font-semibold tracking-tight mt-4">
-                <span class="en-only">Featherlight fabric.</span>
-                <span class="ar-only">نسيج خفيف كالريشة.</span>
-            </h4>
-            <p class="text-[#86868b] mt-4 text-[19px] leading-relaxed">
-                <span class="en-only">Crafted from aerospace mesh. Water-resistant, breathable, and designed to disappear under a jacket.</span>
-                <span class="ar-only">مصنوع من شبكة فضائية. مقاوم للماء، قابل للتنفس، ومصمم ليختفي تحت الجاكيت.</span>
-            </p>
-        </div>
+<section class="w-full bg-[#f5f5f7] overflow-hidden">
+    <div class="w-full">
+        <img src="privacy.png" 
+             alt="Guidexa Visual" 
+             class="w-full h-auto block object-cover">
     </div>
 </section>
 
@@ -915,134 +1210,6 @@ body.lang-ar a .ar-only {
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
 
-<!-- Pre-order Section -->
-<section id="preorder" class="py-24 bg-white">
-    <div class="max-w-[1240px] mx-auto px-6">
-        
-        <div class="mb-16">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="text-xs font-bold text-green-600 uppercase tracking-widest">In Stock & Ready to Ship</span>
-            </div>
-            <h2 class="text-5xl md:text-6xl font-semibold tracking-tight text-[#1d1d1f]">Buy Smart Vest.</h2>
-            <p class="text-lg text-[#6e6e73] mt-4 font-medium">
-                Free shipping and 14-day returns included.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            <div class="lg:col-span-7 lg:sticky lg:top-24">
-                <div class="rounded-3xl overflow-hidden bg-[#f5f5f7] aspect-square flex items-center justify-center p-12 relative group">
-                    <img id="product-hero" src="hero-vest-front.png" alt="Guidexa Vest" class="max-h-full w-auto object-contain transition-all duration-500 ease-in-out group-hover:scale-105">
-                    <div class="absolute bottom-6 right-6 bg-white/80 backdrop-blur-md p-2 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                </div>
-                
-                <div class="flex justify-center gap-4 mt-6">
-                    <button onclick="changeImage('hero-vest-front.png', this)" class="thumb-btn w-20 h-20 rounded-xl border-2 border-blue-500 overflow-hidden bg-gray-50 p-2 transition-all">
-                        <img src="hero-vest-front.png" class="w-full h-full object-contain">
-                    </button>
-                    <button onclick="changeImage('guidexa-vest-side.png', this)" class="thumb-btn w-20 h-20 rounded-xl border-2 border-transparent hover:border-gray-300 overflow-hidden bg-gray-50 p-2 transition-all">
-                        <img src="guidexa-vest-side.png" class="w-full h-full object-contain">
-                    </button>
-                    <button onclick="changeImage('guidexa-vest-worn.png', this)" class="thumb-btn w-20 h-20 rounded-xl border-2 border-transparent hover:border-gray-300 overflow-hidden bg-gray-50 p-2 transition-all">
-                        <img src="guidexa-vest-worn.png" class="w-full h-full object-contain">
-                    </button>
-                </div>
-            </div>
-
-            <div class="lg:col-span-5 space-y-10">
-                
-                <div id="size-selector">
-                    <div class="flex justify-between items-end mb-4">
-                        <h3 class="text-xl font-semibold text-[#1d1d1f]">Size.</h3>
-                        <a href="#" class="text-sm text-[#0066cc] hover:underline">Size Guide</a>
-                    </div>
-                    <div class="grid grid-cols-1 gap-4">
-                        <button onclick="selectSize(this, 70, 'Standard')" class="size-option flex justify-between items-center p-6 border-2 border-blue-500 rounded-2xl bg-blue-50/30 text-left transition-all group">
-                            <div>
-                                <span class="block font-bold text-lg">Standard</span>
-                                <span class="text-sm text-gray-500">Fits chest 34" to 44"</span>
-                            </div>
-                            <span class="font-semibold text-lg">$70</span>
-                        </button>
-                        
-                        <button onclick="selectSize(this, 70, 'Large')" class="size-option flex justify-between items-center p-6 border-2 border-gray-200 rounded-2xl hover:border-gray-400 text-left transition-all group">
-                            <div>
-                                <span class="block font-bold text-lg">Large</span>
-                                <span class="text-sm text-gray-500">Fits chest 44" to 54"</span>
-                            </div>
-                            <span class="font-semibold text-lg">$70</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="care-box" onclick="toggleCare()" class="p-8 rounded-2xl bg-[#f5f5f7] border-2 border-transparent cursor-pointer hover:border-gray-200 transition-all relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent pointer-events-none"></div>
-                    
-                    <div class="flex items-start gap-4 relative z-10">
-                        <div id="care-icon" class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center text-white font-bold italic shadow-lg shadow-orange-200 transition-colors">G+</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-center">
-                                <h3 class="font-bold text-lg text-[#1d1d1f]">Guidexa Care+</h3>
-                                <span id="care-status" class="text-xs font-bold bg-white px-3 py-1 rounded-full border border-gray-200 shadow-sm text-blue-600">ADD</span>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-2 leading-snug">Get 2 years of accidental damage protection and 24/7 priority support.</p>
-                            <p class="mt-3 text-sm font-bold text-[#1d1d1f]">+$19.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-10 border-t border-gray-200">
-                    <div class="flex flex-col gap-6">
-                        
-                        <div class="bg-gray-50 p-4 rounded-xl space-y-3">
-                            <div class="flex items-center gap-3 text-sm">
-                                <span class="text-lg">📦</span>
-                                <p class="text-gray-600">Order in the next <span class="font-bold text-black" id="countdown">02:45:10</span> for <span class="font-bold text-black">Express Two Week Delivery</span>.</p>
-                            </div>
-                            <div class="flex items-center gap-3 text-sm">
-                                <span class="text-lg">📍</span>
-                                <p class="text-gray-600">
-    Pickup: 
-    <a href="availability.html" class="text-[#0066cc] cursor-pointer hover:underline">
-        Check availability near you
-    </a>
-</p>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-between items-end px-2">
-                            <div>
-                                <span id="final-price" class="text-4xl font-bold text-[#1d1d1f]">$70.00</span>
-                                <p id="summary-text" class="text-[10px] text-gray-400 mt-1 font-bold uppercase tracking-[0.1em]">Standard Smart Vest + Free Shipping</p>
-                            </div>
-                        </div>
-                        
-                        <button onclick="handleCheckout()" class="w-full bg-[#0071e3] text-white py-5 rounded-2xl font-bold text-xl hover:bg-[#0077ed] transition-all shadow-xl shadow-blue-100 active:scale-[0.98] flex items-center justify-center gap-3">
-                            <span>Add to Bag</span>
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                        </button>
-                        
-                        <div class="flex items-center justify-center gap-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4" alt="Visa">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-6" alt="Mastercard">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="h-4" alt="Paypal">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" class="h-4" alt="Amex">
-                        </div>
-
-                        <p class="text-center text-[11px] text-gray-400 mt-2 leading-relaxed italic">
-                            Secure 256-bit SSL Encrypted Checkout. <br>
-                            Questions? <a href="https://wa.me/00970597439818" class="text-[#0066cc] font-medium hover:underline">Chat with a Specialist</a>.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <script>
     // Simple countdown timer to make it feel "Live"
@@ -1064,88 +1231,6 @@ body.lang-ar a .ar-only {
         }, 1000);
     }
     window.onload = startCountdown;
-</script>
-
-<script>
-    let basePrice = 70;
-    let carePrice = 0;
-    let selectedSizeName = "Standard";
-
-    // 1. Image Flipper (تقليب الصور)
-    function changeImage(src, btn) {
-        const hero = document.getElementById('product-hero');
-        
-        // Add a quick fade out/in effect
-        hero.style.opacity = '0';
-        
-        setTimeout(() => {
-            hero.src = src;
-            hero.style.opacity = '1';
-        }, 200);
-
-        // Update active thumbnail border
-        document.querySelectorAll('.thumb-btn').forEach(b => b.classList.replace('border-blue-500', 'border-transparent'));
-        btn.classList.replace('border-transparent', 'border-blue-500');
-    }
-
-    // 2. Size Selection
-    function selectSize(btn, price, sizeName) {
-        basePrice = price;
-        selectedSizeName = sizeName;
-
-        // Reset all buttons
-        document.querySelectorAll('.size-option').forEach(opt => {
-            opt.classList.remove('border-blue-500', 'bg-blue-50/30');
-            opt.classList.add('border-gray-200');
-        });
-
-        // Highlight selected
-        btn.classList.add('border-blue-500', 'bg-blue-50/30');
-        btn.classList.remove('border-gray-200');
-
-        updateTotal();
-    }
-
-    // 3. Care+ Toggle
-    function toggleCare() {
-        const careBox = document.getElementById('care-box');
-        const careIcon = document.getElementById('care-icon');
-        const careStatus = document.getElementById('care-status');
-
-        if (carePrice === 0) {
-            carePrice = 19;
-            careBox.classList.add('border-blue-500', 'bg-blue-50/30');
-            careIcon.classList.replace('bg-gray-400', 'bg-orange-500');
-            careStatus.innerText = "ADDED";
-        } else {
-            carePrice = 0;
-            careBox.classList.remove('border-blue-500', 'bg-blue-50/30');
-            careIcon.classList.replace('bg-orange-500', 'bg-gray-400');
-            careStatus.innerText = "ADD";
-        }
-        updateTotal();
-    }
-
-    // 4. Update Price & Summary
-    function updateTotal() {
-        const total = basePrice + carePrice;
-        document.getElementById('final-price').innerText = `$${total.toFixed(2)}`;
-        
-        let summary = selectedSizeName + " Vest";
-        if (carePrice > 0) summary += " + Guidexa Care+";
-        document.getElementById('summary-text').innerText = summary;
-    }
-
-    // 5. Fake Checkout Interaction
-    function handleCheckout() {
-    // Collect selection data to pass to the next page
-    const total = basePrice + carePrice;
-    const item = selectedSizeName + " Smart Vest";
-    const care = carePrice > 0 ? "Yes" : "No";
-
-    // Redirect to buy page with parameters
-    window.location.href = `buy.html?item=${item}&total=${total}&care=${care}`;
-}
 </script>
 
 <!-- JavaScript -->
@@ -2680,6 +2765,30 @@ document.querySelectorAll('#faq button').forEach(btn => {
             }
         });
     }
+
+   const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const body = document.body;
+
+menuToggle.addEventListener('click', () => {
+    const isOpen = menuToggle.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    
+    if (isOpen) {
+        body.classList.add('menu-open');
+    } else {
+        body.classList.remove('menu-open');
+    }
+});
+
+// Auto-close menu when a link is clicked
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        body.classList.remove('menu-open');
+    });
+});
 </script>
 </body>
 </html>
